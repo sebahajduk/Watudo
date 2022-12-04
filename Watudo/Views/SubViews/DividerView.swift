@@ -14,6 +14,10 @@ class DividerView: UIView {
         
         backgroundColor = .systemBackground.withAlphaComponent(0.2)
         translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: 1)
+        ])
     }
     
     required init?(coder: NSCoder) {
@@ -21,3 +25,5 @@ class DividerView: UIView {
     }
     
 }
+
+
