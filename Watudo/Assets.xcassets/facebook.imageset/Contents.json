@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "loginBackground.png",
+      "filename" : "facebook.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "loginBackground@2x.png",
+      "filename" : "facebook@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "loginBackground@3x.png",
+      "filename" : "facebook@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
