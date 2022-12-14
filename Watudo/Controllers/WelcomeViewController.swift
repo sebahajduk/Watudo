@@ -10,15 +10,17 @@ import UIKit
 class WelcomeViewController: UIViewController {
 
     let welcomeView = WelcomeView()
-
     var currentlyLogin = false
+    var backgroundGradient = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureWelcomeView()
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.isNavigationBarHidden = true
+        
+        
+        configureWelcomeView()
     }
     
     @objc private func buttonTapped() {
@@ -37,13 +39,23 @@ class WelcomeViewController: UIViewController {
     }
 }
 
-extension WelcomeViewController: LoginViewActionHandler {
-    func createAccountTapped(sender: Any?) {
-        let registerVC = RegisterViewController()
-        navigationController?.present(registerVC, animated: true)
+// Buttons tap action handlers
+extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandler {
+    func loginButtonTapped(sender: UIButton) {
+        WAnimations.buttonTapAnimation(sender)
+        
+        print("Hello world")
     }
     
-    func loginButtonTapped(sender: Any?) {
-        print("asd")
+    func signInByApple(sender: UIButton) {
+        WAnimations.buttonTapAnimation(sender)
+    }
+    
+    func signInByGoogle(sender: UIButton) {
+        WAnimations.buttonTapAnimation(sender)
+    }
+    
+    func signInByFacebook(sender: UIButton) {
+        WAnimations.buttonTapAnimation(sender)
     }
 }

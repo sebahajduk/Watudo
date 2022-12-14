@@ -9,31 +9,49 @@
 /* Begin PBXBuildFile section */
 		602E1D42293CA8CD00570249 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D41293CA8CD00570249 /* User.swift */; };
 		602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D43293CA8EF00570249 /* RegisterView.swift */; };
-		602E1D46293CCE1800570249 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D45293CCE1800570249 /* RegisterViewController.swift */; };
 		602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36B2939676A000A99C8 /* AppDelegate.swift */; };
 		602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36D2939676A000A99C8 /* SceneDelegate.swift */; };
-		602EB3702939676A000A99C8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36F2939676A000A99C8 /* LoginViewController.swift */; };
+		602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36F2939676A000A99C8 /* WelcomeViewController.swift */; };
 		602EB37529396771000A99C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37429396771000A99C8 /* Assets.xcassets */; };
 		602EB37829396771000A99C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37629396771000A99C8 /* LaunchScreen.storyboard */; };
+		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
+		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
+		607566BB2949135B0023A9DC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607566BA2949135B0023A9DC /* UIButtonExtension.swift */; };
 		608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D31293BD7CD00B8BF2A /* LoginView.swift */; };
 		608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */; };
 		608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D3A293BE13300B8BF2A /* DividerView.swift */; };
+		60A423DB294A357700B72126 /* WAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A423DA294A357700B72126 /* WAnimations.swift */; };
+		60A423DD294A81C400B72126 /* Panton-BlackCaps.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60A423DC294A81C300B72126 /* Panton-BlackCaps.otf */; };
+		60A423DF294A84C000B72126 /* Panton-LightCaps.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60A423DE294A84C000B72126 /* Panton-LightCaps.otf */; };
+		60A86AFD2941181D00DD484D /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFC2941181D00DD484D /* WButton.swift */; };
+		60A86AFF2941186A00DD484D /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFE2941186900DD484D /* WColors.swift */; };
+		E6D37E9DE99520690B656D20 /* Pods_Watudo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		602E1D41293CA8CD00570249 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		602E1D43293CA8EF00570249 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		602E1D45293CCE1800570249 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		602EB3682939676A000A99C8 /* Watudo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watudo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602EB36B2939676A000A99C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		602EB36D2939676A000A99C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		602EB36F2939676A000A99C8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		602EB36F2939676A000A99C8 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		602EB37429396771000A99C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		602EB37729396771000A99C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		602EB37929396771000A99C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
+		607566BA2949135B0023A9DC /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		608F1D31293BD7CD00B8BF2A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		608F1D3A293BE13300B8BF2A /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		60A423DA294A357700B72126 /* WAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAnimations.swift; sourceTree = "<group>"; };
+		60A423DC294A81C300B72126 /* Panton-BlackCaps.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Panton-BlackCaps.otf"; sourceTree = "<group>"; };
+		60A423DE294A84C000B72126 /* Panton-LightCaps.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Panton-LightCaps.otf"; sourceTree = "<group>"; };
+		60A86AFC2941181D00DD484D /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
+		60A86AFE2941186900DD484D /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
+		62FB0311AF5AA41099C33795 /* Pods-Watudo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.release.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.release.xcconfig"; sourceTree = "<group>"; };
+		9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watudo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73560A060775C724C2B5E49 /* Pods-Watudo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.debug.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6D37E9DE99520690B656D20 /* Pods_Watudo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +71,8 @@
 			children = (
 				602EB36A2939676A000A99C8 /* Watudo */,
 				602EB3692939676A000A99C8 /* Products */,
+				E550A03383B0609231D1376D /* Pods */,
+				B637006F5F99DF5FEB84EA5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,10 +87,13 @@
 		602EB36A2939676A000A99C8 /* Watudo */ = {
 			isa = PBXGroup;
 			children = (
+				607566B82948F5C00023A9DC /* dots.json */,
 				608F1D30293BD78200B8BF2A /* Controllers */,
 				608F1D2F293BD77C00B8BF2A /* Views */,
 				608F1D2E293BD77200B8BF2A /* Models */,
 				602EB36B2939676A000A99C8 /* AppDelegate.swift */,
+				60A423DC294A81C300B72126 /* Panton-BlackCaps.otf */,
+				60A423DE294A84C000B72126 /* Panton-LightCaps.otf */,
 				602EB36D2939676A000A99C8 /* SceneDelegate.swift */,
 				602EB37429396771000A99C8 /* Assets.xcassets */,
 				602EB37629396771000A99C8 /* LaunchScreen.storyboard */,
@@ -81,6 +105,7 @@
 		608F1D2E293BD77200B8BF2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
 				602E1D41293CA8CD00570249 /* User.swift */,
 			);
@@ -90,6 +115,7 @@
 		608F1D2F293BD77C00B8BF2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				60A423D9294A356000B72126 /* Animations */,
 				608F1D37293BDC6700B8BF2A /* SubViews */,
 				608F1D36293BDC5E00B8BF2A /* MainViews */,
 			);
@@ -99,8 +125,7 @@
 		608F1D30293BD78200B8BF2A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				602EB36F2939676A000A99C8 /* LoginViewController.swift */,
-				602E1D45293CCE1800570249 /* RegisterViewController.swift */,
+				602EB36F2939676A000A99C8 /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -109,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */,
+				607566BA2949135B0023A9DC /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -116,6 +142,7 @@
 		608F1D36293BDC5E00B8BF2A /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				60658815293FCCAF00EE7AE2 /* WelcomeView.swift */,
 				608F1D31293BD7CD00B8BF2A /* LoginView.swift */,
 				602E1D43293CA8EF00570249 /* RegisterView.swift */,
 			);
@@ -126,8 +153,42 @@
 			isa = PBXGroup;
 			children = (
 				608F1D3A293BE13300B8BF2A /* DividerView.swift */,
+				60A86AFC2941181D00DD484D /* WButton.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		60A423D9294A356000B72126 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				60A423DA294A357700B72126 /* WAnimations.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		60A86B002941192D00DD484D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				60A86AFE2941186900DD484D /* WColors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		B637006F5F99DF5FEB84EA5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E550A03383B0609231D1376D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E73560A060775C724C2B5E49 /* Pods-Watudo.debug.xcconfig */,
+				62FB0311AF5AA41099C33795 /* Pods-Watudo.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 602EB37C29396771000A99C8 /* Build configuration list for PBXNativeTarget "Watudo" */;
 			buildPhases = (
+				A08748D4CC980A35F8B38F8A /* [CP] Check Pods Manifest.lock */,
 				602EB3642939676A000A99C8 /* Sources */,
 				602EB3652939676A000A99C8 /* Frameworks */,
 				602EB3662939676A000A99C8 /* Resources */,
+				AF39970AC70A8AD5A65EC7A2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,27 +251,76 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60A423DD294A81C400B72126 /* Panton-BlackCaps.otf in Resources */,
 				602EB37829396771000A99C8 /* LaunchScreen.storyboard in Resources */,
+				60A423DF294A84C000B72126 /* Panton-LightCaps.otf in Resources */,
+				607566B92948F5C00023A9DC /* dots.json in Resources */,
 				602EB37529396771000A99C8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A08748D4CC980A35F8B38F8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Watudo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF39970AC70A8AD5A65EC7A2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Watudo/Pods-Watudo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Watudo/Pods-Watudo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Watudo/Pods-Watudo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		602EB3642939676A000A99C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				602E1D46293CCE1800570249 /* RegisterViewController.swift in Sources */,
+				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,
 				608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */,
-				602EB3702939676A000A99C8 /* LoginViewController.swift in Sources */,
+				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
+				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
+				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
 				602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */,
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
+				607566BB2949135B0023A9DC /* UIButtonExtension.swift in Sources */,
 				602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */,
 				602E1D42293CA8CD00570249 /* User.swift in Sources */,
+				60A86AFF2941186A00DD484D /* WColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +371,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -319,6 +432,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -342,11 +456,13 @@
 		};
 		602EB37D29396771000A99C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E73560A060775C724C2B5E49 /* Pods-Watudo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Watudo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +470,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -369,11 +486,13 @@
 		};
 		602EB37E29396771000A99C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62FB0311AF5AA41099C33795 /* Pods-Watudo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Watudo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -381,6 +500,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

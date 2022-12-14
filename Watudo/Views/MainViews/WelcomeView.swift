@@ -6,18 +6,35 @@
 //
 
 import UIKit
+import Lottie
 
 class WelcomeView: UIView {
+    
+    let helloLabel = UILabel()
+    let greetingLabel = UILabel()
 
     let loginView = LoginView()
     let registerView = RegisterView()
-    let takenImage = UIImageView(image: UIImage(named: "takenWithoutShip"))
-    let shipImage = UIImageView(image: UIImage(named: "Ship"))
     let scrollView = UIScrollView()
+    
+    private var lastContentOffset: CGFloat = 0
+    private var isShipZoomed = false
+    
+    private var dotsAnimationBackground: LottieAnimationView?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        backgroundColor = .systemBackground
+        backgroundColor = WColors.background
+        
+        dotsAnimationBackground = .init(name: "dots")
+        dotsAnimationBackground!.frame = bounds
+        dotsAnimationBackground!.contentMode = .scaleAspectFit
+        dotsAnimationBackground!.loopMode = .loop
+        dotsAnimationBackground!.animationSpeed = 0.5
+        dotsAnimationBackground!.translatesAutoresizingMaskIntoConstraints = false
+        dotsAnimationBackground?.alpha = 0.1
+        addSubview(dotsAnimationBackground!)
+        dotsAnimationBackground!.play()
         
         configure()
     }
@@ -25,68 +42,43 @@ class WelcomeView: UIView {
     private func configure() {
         configureScrollView()
         configureConstraints()
-        configureAnimation()
         
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureScrollView() {
-        addSubview(scrollView)
-        scrollView.addSubviews([loginView, shipImage, takenImage, registerView])
+        addSubviews([scrollView])
+        scrollView.addSubviews([loginView, registerView])
+        scrollView.delegate = self
         
         scrollView.isPagingEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        shipImage.contentMode = .scaleAspectFit
-        shipImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        takenImage.contentMode = .scaleAspectFit
-        takenImage.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func configureAnimation() {
-        let scaleAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
-        
-        scaleAnimation.duration = 5.0
-        scaleAnimation.repeatCount = .infinity
-        scaleAnimation.autoreverses = true
-        scaleAnimation.fromValue = 1.0
-        scaleAnimation.toValue = 1.2
-        
-        UIView.animate(withDuration: 5, delay: 0, options: [.autoreverse, .repeat]) {
-            self.shipImage.transform = CGAffineTransform(translationX: 0, y: 40)
-        }
-        
-        self.shipImage.layer.add(scaleAnimation, forKey: "scale")
+                
+        registerView.alpha = 0
     }
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            dotsAnimationBackground!.topAnchor.constraint(equalTo: topAnchor),
+            dotsAnimationBackground!.leadingAnchor.constraint(equalTo: leadingAnchor),
+            dotsAnimationBackground!.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dotsAnimationBackground!.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            loginView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            loginView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 140),
             loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             loginView.widthAnchor.constraint(equalTo: widthAnchor),
-            loginView.heightAnchor.constraint(equalToConstant: 600),
+            loginView.heightAnchor.constraint(equalToConstant: 500),
             
-            shipImage.topAnchor.constraint(equalTo: loginView.bottomAnchor),
-            shipImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            shipImage.widthAnchor.constraint(equalTo: widthAnchor),
-            shipImage.heightAnchor.constraint(equalToConstant: 300),
-            
-            takenImage.topAnchor.constraint(equalTo: shipImage.bottomAnchor, constant: -250),
-            takenImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            takenImage.widthAnchor.constraint(equalTo: widthAnchor),
-            takenImage.heightAnchor.constraint(equalToConstant: 300),
-            
-            registerView.topAnchor.constraint(equalTo: takenImage.bottomAnchor),
+            registerView.topAnchor.constraint(equalTo: loginView.bottomAnchor, constant: 130),
             registerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             registerView.widthAnchor.constraint(equalTo: widthAnchor),
-            registerView.heightAnchor.constraint(equalToConstant: 300),
-            registerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            registerView.heightAnchor.constraint(equalToConstant: 700),
+            registerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50)
         ])
     }
     
@@ -94,4 +86,24 @@ class WelcomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension WelcomeView: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContentOffset = scrollView.contentOffset.y
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 100 {
+            UIView.animate(withDuration: 0.15) { [weak self] in
+                self?.loginView.alpha = 1.0
+                self?.registerView.alpha = 0.0
+            }
+        } else if scrollView.contentOffset.y > 100 {
+            UIView.animate(withDuration: 0.15) { [weak self] in
+                self?.loginView.alpha = 0
+                self?.registerView.alpha = 1.0
+            }
+        }
+    }
 }

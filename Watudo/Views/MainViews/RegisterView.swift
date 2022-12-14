@@ -8,9 +8,10 @@
 import UIKit
 
 class RegisterView: UIView {
+    
+    let greetingLabel = UILabel()
+    let greetingDescriptionLabel = UILabel()
 
-    let backgroundImage = UIImageView(image: UIImage(named: "loginBackground"))
-    let welcomeImage = UIImageView(image: UIImage(named: "registerImage"))
     let nicknameTextField = UITextField()
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
@@ -25,10 +26,12 @@ class RegisterView: UIView {
     let emailImage = UIImageView(image: UIImage(systemName: "at"))
     let passwordImage = UIImageView(image: UIImage(systemName: "lock.fill"))
     let passwordRepeatImage = UIImageView(image: UIImage(systemName: "lock.rotation"))
+    
+    let createAccountButton = WButton(title: "Create account", role: .primary)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
+        backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
         
         configureUI()
@@ -75,35 +78,41 @@ class RegisterView: UIView {
     }
     
     private func configureLayoutElements() {
-        addSubviews([backgroundImage, welcomeImage, materialBackground, firstDivider, secondDivider, thirdDivider])
+        addSubviews([greetingLabel, greetingDescriptionLabel, materialBackground, firstDivider, secondDivider, thirdDivider, createAccountButton])
         
-        backgroundImage.alpha = 0.8
-        backgroundImage.contentMode = .scaleAspectFill
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        greetingLabel.text = "Hello there."
+        greetingLabel.textColor = WColors.purple
+        greetingLabel.font = UIFont(name: "Panton-BlackCaps", size: 40)
+        greetingLabel.textAlignment = .center
+        greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        welcomeImage.contentMode = .scaleAspectFit
-        welcomeImage.translatesAutoresizingMaskIntoConstraints = false
+        greetingDescriptionLabel.text = "Create your account\nStart tracking your activities"
+        greetingDescriptionLabel.textColor = WColors.purple
+        greetingDescriptionLabel.font = UIFont(name: "Panton-LightCaps", size: 20)
+        greetingDescriptionLabel.textAlignment = .center
+        greetingDescriptionLabel.numberOfLines = 0
+        greetingDescriptionLabel.adjustsFontSizeToFitWidth = true
+        greetingDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         materialBackground.layer.cornerRadius = 8
         materialBackground.clipsToBounds = true
         materialBackground.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            backgroundImage.topAnchor.constraint(equalTo: topAnchor, constant: -5),
-            backgroundImage.leftAnchor.constraint(equalTo: leftAnchor),
-            backgroundImage.rightAnchor.constraint(equalTo: rightAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
+            greetingLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            greetingLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            greetingLabel.heightAnchor.constraint(equalToConstant: 85),
             
-            welcomeImage.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
-            welcomeImage.bottomAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -100),
-            welcomeImage.widthAnchor.constraint(equalToConstant: 250),
-            welcomeImage.heightAnchor.constraint(equalToConstant: 150),
+            greetingDescriptionLabel.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 10),
+            greetingDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            greetingDescriptionLabel.widthAnchor.constraint(equalToConstant: 290),
+            greetingDescriptionLabel.heightAnchor.constraint(equalToConstant: 60),
             
             materialBackground.centerXAnchor.constraint(equalTo: centerXAnchor),
-            materialBackground.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            materialBackground.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 160),
             materialBackground.heightAnchor.constraint(equalToConstant: 189),
             materialBackground.widthAnchor.constraint(equalToConstant: 330),
             
@@ -157,18 +166,21 @@ class RegisterView: UIView {
             passwordRepeatImage.trailingAnchor.constraint(equalTo: repeatPasswordTextField.trailingAnchor),
             passwordRepeatImage.centerYAnchor.constraint(equalTo: repeatPasswordTextField.centerYAnchor),
             passwordRepeatImage.heightAnchor.constraint(equalToConstant: 20),
-            passwordRepeatImage.widthAnchor.constraint(equalToConstant: 20)
+            passwordRepeatImage.widthAnchor.constraint(equalToConstant: 20),
             
+            createAccountButton.topAnchor.constraint(equalTo: materialBackground.bottomAnchor, constant: 20),
+            createAccountButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            createAccountButton.heightAnchor.constraint(equalToConstant: 44),
+            createAccountButton.widthAnchor.constraint(equalToConstant: 290)
         ])
     }
-    
-    @objc private func buttonTapped() {
-        print("Tapped")
-    }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+}
+
+@objc protocol RegisterViewActionHandler {
     
 }

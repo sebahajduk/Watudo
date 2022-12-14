@@ -7,14 +7,57 @@
 
 import UIKit
 
+enum ButtonRole {
+    case primary, secondary
+}
+
 class WButton: UIButton {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        layer.cornerRadius = 10
+        translatesAutoresizingMaskIntoConstraints = false
     }
-    */
-
+    
+    convenience init(title: String, role: ButtonRole) {
+        self.init(frame: .zero)
+        
+        setTitle(title, for: .normal)
+        
+        
+        switch role {
+        case .primary:
+            setTitleColor(WColors.background, for: .normal)
+            backgroundColor = WColors.purple
+        case .secondary:
+            setTitleColor(WColors.purple, for: .normal)
+            backgroundColor = .clear
+            layer.borderWidth = 1
+            layer.borderColor = WColors.purple?.cgColor
+        }
+    }
+    
+    convenience init(image: UIImage, role: ButtonRole) {
+        self.init(frame: .zero)
+        
+        setImage(image, for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
+        self.imageView?.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.7)
+        
+        switch role {
+        case .primary:
+            tintColor = WColors.background
+            backgroundColor = WColors.purple
+        case .secondary:
+            tintColor = WColors.purple
+            backgroundColor = .clear
+            layer.borderWidth = 1
+            layer.borderColor = WColors.purple?.cgColor
+            
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
