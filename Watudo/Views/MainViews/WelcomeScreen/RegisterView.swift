@@ -43,41 +43,48 @@ class RegisterView: UIView {
         configureConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+@objc protocol RegisterViewActionHandler {
+    func createAccount(sender: UIButton)
+}
+
+// UI configure functions.
+extension RegisterView {
+    
     private func configureTextFields() {
-        addSubviews([nicknameTextField, emailTextField, passwordTextField, repeatPasswordTextField, nicknameImage, emailImage, passwordImage, passwordRepeatImage])
+        let images: [UIImageView] = [nicknameImage, emailImage, passwordImage, passwordRepeatImage]
+        let textFields: [UITextField] = [nicknameTextField, emailTextField, passwordTextField, repeatPasswordTextField]
+        
+        addSubviews(images)
+        addSubviews(textFields)
         
         nicknameTextField.placeholder = "Nickname"
-        nicknameTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         emailTextField.placeholder = "Email"
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         passwordTextField.placeholder = "Password"
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         repeatPasswordTextField.placeholder = "Repeat password"
+        
+        passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
-        repeatPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        nicknameImage.tintColor = .gray.withAlphaComponent(0.7)
-        nicknameImage.contentMode = .scaleAspectFit
-        nicknameImage.translatesAutoresizingMaskIntoConstraints = false
+        for textField in textFields {
+            textField.translatesAutoresizingMaskIntoConstraints = false
+        }
         
-        emailImage.tintColor = .gray.withAlphaComponent(0.7)
-        emailImage.contentMode = .scaleAspectFit
-        emailImage.translatesAutoresizingMaskIntoConstraints = false
+        for image in images {
+            image.tintColor = .gray.withAlphaComponent(0.7)
+            image.contentMode = .scaleAspectFit
+            image.translatesAutoresizingMaskIntoConstraints = false
+        }
         
-        passwordImage.tintColor = .gray.withAlphaComponent(0.7)
-        passwordImage.contentMode = .scaleAspectFit
-        passwordImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        passwordRepeatImage.tintColor = .gray.withAlphaComponent(0.7)
-        passwordRepeatImage.contentMode = .scaleAspectFit
-        passwordRepeatImage.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureLayoutElements() {
+        let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
         addSubviews([greetingLabel, greetingDescriptionLabel, materialBackground, firstDivider, secondDivider, thirdDivider, createAccountButton])
         
         greetingLabel.text = "Hello there."
@@ -97,6 +104,12 @@ class RegisterView: UIView {
         materialBackground.layer.cornerRadius = 8
         materialBackground.clipsToBounds = true
         materialBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+        createAccountButton.addTarget(nil, action: #selector(RegisterViewActionHandler.createAccount), for: .touchUpInside)
+        
+        if isLightMode {
+            createAccountButton.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 10)
+        }
     }
     
     private func configureConstraints() {
@@ -174,13 +187,28 @@ class RegisterView: UIView {
             createAccountButton.widthAnchor.constraint(equalToConstant: 290)
         ])
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
 
-@objc protocol RegisterViewActionHandler {
+extension RegisterView {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        resetViewsForNewInterfaceStyle(previousTraitCollection)
+    }
     
+    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
+        switch previousTraitCollection?.userInterfaceStyle {
+            // Change from light mode to dark mode.
+        case .light:
+            createAccountButton.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 0, shadowOpacity: 0, cornerRadius: 10)
+        
+            // Change from dark mode to light mode.
+        case .dark:
+            createAccountButton.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.7, cornerRadius: 10)
+            
+        default:
+            // Do nothing, view shouldn't change.
+            print("We have no information about user interface style")
+        }
+    }
 }

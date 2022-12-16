@@ -49,6 +49,10 @@ class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func signIn() {
+        print("Hello")
+    }
 }
 
 // Buttons tap action handler - called by Responder Chain in WelcomeViewController.
@@ -112,12 +116,13 @@ extension LoginView {
     }
     
     private func configureButtons() {
-        addSubviews([forgetPasswordButton, loginButton, appleButton, facebookButton, googleButton])
         let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
+        addSubviews([forgetPasswordButton, loginButton, appleButton, facebookButton, googleButton])
         
-        loginButton.clipsToBounds = false
-        loginButton.layer.masksToBounds = false
         loginButton.addTarget(nil, action: #selector(LoginViewActionHandler.loginButtonTapped), for: .touchUpInside)
+        appleButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByApple), for: .touchUpInside)
+        facebookButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByFacebook), for: .touchUpInside)
+        googleButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByGoogle), for: .touchUpInside)
         
         if isLightMode {
             loginButton.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 10)

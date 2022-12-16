@@ -66,6 +66,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60206715294BB3C1005650FA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				60206716294BB3DB005650FA /* Fonts */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		60206716294BB3DB005650FA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				60A423DC294A81C300B72126 /* Panton-BlackCaps.otf */,
+				60A423DE294A84C000B72126 /* Panton-LightCaps.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		60206717294BB477005650FA /* WelcomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				60658815293FCCAF00EE7AE2 /* WelcomeView.swift */,
+				608F1D31293BD7CD00B8BF2A /* LoginView.swift */,
+				602E1D43293CA8EF00570249 /* RegisterView.swift */,
+			);
+			path = WelcomeScreen;
+			sourceTree = "<group>";
+		};
 		602EB35F2939676A000A99C8 = {
 			isa = PBXGroup;
 			children = (
@@ -92,8 +119,7 @@
 				608F1D2F293BD77C00B8BF2A /* Views */,
 				608F1D2E293BD77200B8BF2A /* Models */,
 				602EB36B2939676A000A99C8 /* AppDelegate.swift */,
-				60A423DC294A81C300B72126 /* Panton-BlackCaps.otf */,
-				60A423DE294A84C000B72126 /* Panton-LightCaps.otf */,
+				60206715294BB3C1005650FA /* Utilities */,
 				602EB36D2939676A000A99C8 /* SceneDelegate.swift */,
 				602EB37429396771000A99C8 /* Assets.xcassets */,
 				602EB37629396771000A99C8 /* LaunchScreen.storyboard */,
@@ -142,9 +168,7 @@
 		608F1D36293BDC5E00B8BF2A /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				60658815293FCCAF00EE7AE2 /* WelcomeView.swift */,
-				608F1D31293BD7CD00B8BF2A /* LoginView.swift */,
-				602E1D43293CA8EF00570249 /* RegisterView.swift */,
+				60206717294BB477005650FA /* WelcomeScreen */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";

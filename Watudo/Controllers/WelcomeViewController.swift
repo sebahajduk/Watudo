@@ -19,7 +19,6 @@ class WelcomeViewController: UIViewController {
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.isNavigationBarHidden = true
         
-        
         configureWelcomeView()
     }
     
@@ -41,21 +40,31 @@ class WelcomeViewController: UIViewController {
 
 // Buttons tap action handlers
 extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandler {
+    // LoginView
     func loginButtonTapped(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        print("Hello world")
+        
     }
     
     func signInByApple(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
+        
     }
     
     func signInByGoogle(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
+        
     }
     
     func signInByFacebook(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
+        
+    }
+    
+    // RegisterView
+    func createAccount(sender: UIButton) {
+        WAnimations.buttonTapAnimation(sender)
+        
     }
 }
