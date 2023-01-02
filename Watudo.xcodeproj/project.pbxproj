@@ -14,9 +14,16 @@
 		602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36F2939676A000A99C8 /* WelcomeViewController.swift */; };
 		602EB37529396771000A99C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37429396771000A99C8 /* Assets.xcassets */; };
 		602EB37829396771000A99C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37629396771000A99C8 /* LaunchScreen.storyboard */; };
+		6031D55B296349CB0019D399 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D55A296349CB0019D399 /* Goal.swift */; };
+		6031D55F296361440019D399 /* HomeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D55E296361440019D399 /* HomeChartView.swift */; };
+		6031D5622963691C0019D399 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D5612963691C0019D399 /* ActivityCell.swift */; };
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
 		607566BB2949135B0023A9DC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607566BA2949135B0023A9DC /* UIButtonExtension.swift */; };
+		608E919F2951085E0072FE02 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E919E2951085E0072FE02 /* HomeViewController.swift */; };
+		608E91A1295108810072FE02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A0295108810072FE02 /* HomeView.swift */; };
+		608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A429510FA70072FE02 /* ReportsViewController.swift */; };
+		608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A629510FCB0072FE02 /* TabBarController.swift */; };
 		608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D31293BD7CD00B8BF2A /* LoginView.swift */; };
 		608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */; };
 		608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F1D3A293BE13300B8BF2A /* DividerView.swift */; };
@@ -38,9 +45,16 @@
 		602EB37429396771000A99C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		602EB37729396771000A99C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		602EB37929396771000A99C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6031D55A296349CB0019D399 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		6031D55E296361440019D399 /* HomeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartView.swift; sourceTree = "<group>"; };
+		6031D5612963691C0019D399 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
 		607566BA2949135B0023A9DC /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		608E919E2951085E0072FE02 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		608E91A0295108810072FE02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		608E91A429510FA70072FE02 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		608E91A629510FCB0072FE02 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		608F1D31293BD7CD00B8BF2A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		608F1D3A293BE13300B8BF2A /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -128,12 +142,21 @@
 			path = Watudo;
 			sourceTree = "<group>";
 		};
+		6031D560296368FB0019D399 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				6031D5612963691C0019D399 /* ActivityCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		608F1D2E293BD77200B8BF2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
 				602E1D41293CA8CD00570249 /* User.swift */,
+				6031D55A296349CB0019D399 /* Goal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,6 +175,9 @@
 			isa = PBXGroup;
 			children = (
 				602EB36F2939676A000A99C8 /* WelcomeViewController.swift */,
+				608E919E2951085E0072FE02 /* HomeViewController.swift */,
+				608E91A429510FA70072FE02 /* ReportsViewController.swift */,
+				608E91A629510FCB0072FE02 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				60206717294BB477005650FA /* WelcomeScreen */,
+				608E91A0295108810072FE02 /* HomeView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -176,8 +203,10 @@
 		608F1D37293BDC6700B8BF2A /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				6031D560296368FB0019D399 /* TableViewCells */,
 				608F1D3A293BE13300B8BF2A /* DividerView.swift */,
 				60A86AFC2941181D00DD484D /* WButton.swift */,
+				6031D55E296361440019D399 /* HomeChartView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -245,7 +274,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					602EB3672939676A000A99C8 = {
 						CreatedOnToolsVersion = 14.1;
@@ -332,16 +361,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */,
 				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,
+				6031D5622963691C0019D399 /* ActivityCell.swift in Sources */,
 				608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */,
+				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
+				608E91A1295108810072FE02 /* HomeView.swift in Sources */,
+				6031D55B296349CB0019D399 /* Goal.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
 				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
+				608E919F2951085E0072FE02 /* HomeViewController.swift in Sources */,
 				602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */,
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
 				607566BB2949135B0023A9DC /* UIButtonExtension.swift in Sources */,
+				6031D55F296361440019D399 /* HomeChartView.swift in Sources */,
 				602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */,
 				602E1D42293CA8CD00570249 /* User.swift in Sources */,
 				60A86AFF2941186A00DD484D /* WColors.swift in Sources */,
@@ -395,7 +431,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -456,7 +491,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -486,6 +520,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Watudo/Info.plist;
@@ -516,6 +551,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Watudo/Info.plist;

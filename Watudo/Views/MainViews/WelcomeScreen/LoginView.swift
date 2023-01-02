@@ -73,6 +73,12 @@ extension LoginView {
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        emailTextField.tag = 0
+        passwordTextField.tag = 1
+        
         emailImage.tintColor = .gray.withAlphaComponent(0.7)
         emailImage.contentMode = .scaleAspectFit
         

@@ -1,16 +1,30 @@
 PODS:
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
+  - IQKeyboardManagerSwift (6.5.10)
   - lottie-ios (4.0.1)
+  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
+  - Charts
+  - IQKeyboardManagerSwift
   - lottie-ios
 
 SPEC REPOS:
   trunk:
+    - Charts
+    - IQKeyboardManagerSwift
     - lottie-ios
+    - SwiftAlgorithms
 
 SPEC CHECKSUMS:
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 666f90ea82c96c386cd2c857246d9ae70ccc667b
+PODFILE CHECKSUM: 96e4b5aa7543a1e2582472298208ab4f75f849bb
 
 COCOAPODS: 1.11.3

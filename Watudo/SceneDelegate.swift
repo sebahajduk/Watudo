@@ -6,18 +6,26 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var curreLogged = false
+    var navController = UINavigationController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let navController = UINavigationController(rootViewController: WelcomeViewController())
+        
+        if curreLogged {
+            navController = UINavigationController(rootViewController: TabBarController())
+        } else {
+            navController = UINavigationController(rootViewController: WelcomeViewController())
+        }
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = navController
@@ -25,6 +33,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().tintColor = .systemGray2
         
         window?.makeKeyAndVisible()
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+    }
+    
+    func changeRootViewController(_ viewController: UIViewController, animated: Bool = true) {
+        guard let window = self.window else { return }
+        
+        window.rootViewController = viewController
+        
+        UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight],animations: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

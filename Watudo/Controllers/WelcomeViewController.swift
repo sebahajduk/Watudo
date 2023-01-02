@@ -10,7 +10,7 @@ import UIKit
 class WelcomeViewController: UIViewController {
 
     let welcomeView = WelcomeView()
-    var currentlyLogin = false
+    var currentlyLogged = false
     var backgroundGradient = CAGradientLayer()
     
     override func viewDidLoad() {
@@ -20,6 +20,7 @@ class WelcomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         
         configureWelcomeView()
+        
     }
     
     @objc private func buttonTapped() {
@@ -44,7 +45,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
     func loginButtonTapped(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
     }
     
     func signInByApple(sender: UIButton) {

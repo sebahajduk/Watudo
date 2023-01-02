@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIButton {
+extension UIView {
     
     public func addShadowToView(shadowColor: UIColor, offset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat) {
             self.layer.shadowColor = shadowColor.cgColor

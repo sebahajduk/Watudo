@@ -70,8 +70,11 @@ extension RegisterView {
         
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
-        
+        var tag = 0
         for textField in textFields {
+            textField.delegate = self
+            textField.tag = tag
+            tag += 1
             textField.translatesAutoresizingMaskIntoConstraints = false
         }
         
