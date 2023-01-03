@@ -27,4 +27,10 @@ class HomeViewController: UIViewController {
 
 }
 
-
+extension HomeViewController: HomeViewActionHandler {
+    func addActivityButtonTapped() {
+        let addActivityVC = AddActivityViewController()
+        
+       present(addActivityVC, animated: true)
+    }
+}

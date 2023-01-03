@@ -69,6 +69,8 @@ class HomeChartView: UIView {
         chartView.data = data
     }
     
+    
+    
     private func createChart() {
         addSubview(chartView)
         
