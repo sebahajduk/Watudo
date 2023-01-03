@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = WColors.background
+        view.backgroundColor = WColors.background!
         
         
         view.addSubview(homeView)
