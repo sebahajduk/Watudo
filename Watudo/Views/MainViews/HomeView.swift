@@ -19,6 +19,8 @@ class HomeView: UIView {
     
     let tableView = UITableView()
     
+    var activities: [Activity] = [Activity(name: "Coding"), Activity(name: "Gaming")]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -111,13 +113,13 @@ class HomeView: UIView {
 
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        cell.set()
+        cell.set(activityName: activities[indexPath.row].name)
         
         return cell
     }

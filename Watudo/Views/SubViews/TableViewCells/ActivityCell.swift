@@ -16,12 +16,10 @@ class ActivityCell: UITableViewCell {
     let name = UILabel()
     let time = UILabel()
 
-    
-    
-    func set() {
+    func set(activityName: String) {
         backgroundColor = WColors.background
         configure()
-        name.text = "Coding"
+        name.text = activityName
         name.textColor = WColors.purple
         name.font = .boldSystemFont(ofSize: 15)
         

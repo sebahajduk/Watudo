@@ -31,6 +31,19 @@ extension HomeViewController: HomeViewActionHandler {
     func addActivityButtonTapped() {
         let addActivityVC = AddActivityViewController()
         
-       present(addActivityVC, animated: true)
+        addActivityVC.sheetPresentationController?.detents = [.medium()]
+        addActivityVC.delegate = self
+        
+        present(addActivityVC, animated: true)
     }
+}
+
+extension HomeViewController: SendNewActivityDelegate {
+    
+    func sendActivity(activity: Activity) {
+        homeView.activities.append(activity)
+        homeView.tableView.reloadData()
+    }
+    
+    
 }

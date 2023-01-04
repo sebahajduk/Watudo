@@ -10,6 +10,8 @@ import UIKit
 class AddActivityViewController: UIViewController {
     
     let addActivityView = AddActivityView()
+    
+    var delegate: SendNewActivityDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,5 +30,16 @@ class AddActivityViewController: UIViewController {
             addActivityView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+}
 
+extension AddActivityViewController: AddActivityViewActionHandler {
+    func doneButtonTapped() {
+        let activity = Activity(name: addActivityView.nameTextField.text ?? "")
+        self.delegate?.sendActivity(activity: activity)
+        
+        self.dismiss(animated: true)
+    }
+}
+protocol SendNewActivityDelegate {
+    func sendActivity(activity: Activity)
 }
