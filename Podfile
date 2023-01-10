@@ -12,5 +12,6 @@ inhibit_all_warnings!
 pod 'lottie-ios'
 pod 'IQKeyboardManagerSwift'
 pod 'Charts'
+pod 'JTAppleCalendar'
 
 end

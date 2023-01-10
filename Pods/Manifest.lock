@@ -4,27 +4,31 @@ PODS:
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
   - IQKeyboardManagerSwift (6.5.10)
+  - JTAppleCalendar (8.0.4)
   - lottie-ios (4.0.1)
   - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
   - Charts
   - IQKeyboardManagerSwift
+  - JTAppleCalendar
   - lottie-ios
 
 SPEC REPOS:
   trunk:
     - Charts
     - IQKeyboardManagerSwift
+    - JTAppleCalendar
     - lottie-ios
     - SwiftAlgorithms
 
 SPEC CHECKSUMS:
   Charts: 354f86803d11d9c35de280587fef50d1af063978
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  JTAppleCalendar: f95b02c64f56d6f938fbf6582a04dcab9d709ebd
   lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 96e4b5aa7543a1e2582472298208ab4f75f849bb
+PODFILE CHECKSUM: bcc12e87f405ebe2bb8180587a20b0ad829585b6
 
 COCOAPODS: 1.11.3

@@ -14,10 +14,11 @@
 		602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36F2939676A000A99C8 /* WelcomeViewController.swift */; };
 		602EB37529396771000A99C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37429396771000A99C8 /* Assets.xcassets */; };
 		602EB37829396771000A99C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602EB37629396771000A99C8 /* LaunchScreen.storyboard */; };
-		6031D55B296349CB0019D399 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D55A296349CB0019D399 /* Goal.swift */; };
 		6031D55F296361440019D399 /* HomeChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D55E296361440019D399 /* HomeChartView.swift */; };
 		6031D5622963691C0019D399 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031D5612963691C0019D399 /* ActivityCell.swift */; };
 		603E470F2965FC8A00B0589E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603E470E2965FC8A00B0589E /* Category.swift */; };
+		60581736296C93D6002AEE2E /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60581735296C93D6002AEE2E /* Day.swift */; };
+		60581738296C94E1002AEE2E /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60581737296C94E1002AEE2E /* ReportsView.swift */; };
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
 		607566BB2949135B0023A9DC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607566BA2949135B0023A9DC /* UIButtonExtension.swift */; };
@@ -36,6 +37,8 @@
 		60A423DF294A84C000B72126 /* Panton-LightCaps.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60A423DE294A84C000B72126 /* Panton-LightCaps.otf */; };
 		60A86AFD2941181D00DD484D /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFC2941181D00DD484D /* WButton.swift */; };
 		60A86AFF2941186A00DD484D /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFE2941186900DD484D /* WColors.swift */; };
+		60EE4798296DB9E200DFDC37 /* ReportsCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EE4797296DB9E200DFDC37 /* ReportsCalendarCell.swift */; };
+		60EE479A296DCF5100DFDC37 /* ReportsCalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EE4799296DCF5100DFDC37 /* ReportsCalendarHeader.swift */; };
 		E6D37E9DE99520690B656D20 /* Pods_Watudo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,10 +52,11 @@
 		602EB37429396771000A99C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		602EB37729396771000A99C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		602EB37929396771000A99C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6031D55A296349CB0019D399 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		6031D55E296361440019D399 /* HomeChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartView.swift; sourceTree = "<group>"; };
 		6031D5612963691C0019D399 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		603E470E2965FC8A00B0589E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		60581735296C93D6002AEE2E /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		60581737296C94E1002AEE2E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
 		607566BA2949135B0023A9DC /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 		60A423DE294A84C000B72126 /* Panton-LightCaps.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Panton-LightCaps.otf"; sourceTree = "<group>"; };
 		60A86AFC2941181D00DD484D /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
 		60A86AFE2941186900DD484D /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
+		60EE4797296DB9E200DFDC37 /* ReportsCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalendarCell.swift; sourceTree = "<group>"; };
+		60EE4799296DCF5100DFDC37 /* ReportsCalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalendarHeader.swift; sourceTree = "<group>"; };
 		62FB0311AF5AA41099C33795 /* Pods-Watudo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.release.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.release.xcconfig"; sourceTree = "<group>"; };
 		9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watudo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73560A060775C724C2B5E49 /* Pods-Watudo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.debug.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,9 +170,9 @@
 				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
 				602E1D41293CA8CD00570249 /* User.swift */,
-				6031D55A296349CB0019D399 /* Goal.swift */,
 				60A2D89D29649C270082338B /* Activity.swift */,
 				603E470E2965FC8A00B0589E /* Category.swift */,
+				60581735296C93D6002AEE2E /* Day.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 				60206717294BB477005650FA /* WelcomeScreen */,
 				608E91A0295108810072FE02 /* HomeView.swift */,
 				60A2D89B29649BCB0082338B /* AddActivityView.swift */,
+				60581737296C94E1002AEE2E /* ReportsView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -215,6 +222,7 @@
 		608F1D37293BDC6700B8BF2A /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				60EE4796296DB98800DFDC37 /* CalendarDateCells */,
 				6031D560296368FB0019D399 /* TableViewCells */,
 				608F1D3A293BE13300B8BF2A /* DividerView.swift */,
 				60A86AFC2941181D00DD484D /* WButton.swift */,
@@ -237,6 +245,15 @@
 				60A86AFE2941186900DD484D /* WColors.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		60EE4796296DB98800DFDC37 /* CalendarDateCells */ = {
+			isa = PBXGroup;
+			children = (
+				60EE4797296DB9E200DFDC37 /* ReportsCalendarCell.swift */,
+				60EE4799296DCF5100DFDC37 /* ReportsCalendarHeader.swift */,
+			);
+			path = CalendarDateCells;
 			sourceTree = "<group>";
 		};
 		B637006F5F99DF5FEB84EA5A /* Frameworks */ = {
@@ -375,16 +392,19 @@
 			files = (
 				608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */,
 				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,
+				60581736296C93D6002AEE2E /* Day.swift in Sources */,
 				6031D5622963691C0019D399 /* ActivityCell.swift in Sources */,
 				608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */,
+				60EE479A296DCF5100DFDC37 /* ReportsCalendarHeader.swift in Sources */,
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
+				60581738296C94E1002AEE2E /* ReportsView.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
 				60A2D8A029649EF10082338B /* AddActivityViewController.swift in Sources */,
 				608E91A1295108810072FE02 /* HomeView.swift in Sources */,
-				6031D55B296349CB0019D399 /* Goal.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
 				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
 				608E919F2951085E0072FE02 /* HomeViewController.swift in Sources */,
+				60EE4798296DB9E200DFDC37 /* ReportsCalendarCell.swift in Sources */,
 				602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */,
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,

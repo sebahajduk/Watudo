@@ -39,11 +39,8 @@ extension HomeViewController: HomeViewActionHandler {
 }
 
 extension HomeViewController: SendNewActivityDelegate {
-    
     func sendActivity(activity: Activity) {
         homeView.activities.append(activity)
         homeView.tableView.reloadData()
     }
-    
-    
 }
