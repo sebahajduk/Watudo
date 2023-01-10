@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         
         view.addSubview(homeView)
         NSLayoutConstraint.activate([
-            homeView.topAnchor.constraint(equalTo: view.topAnchor),
+            homeView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             homeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             homeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             homeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

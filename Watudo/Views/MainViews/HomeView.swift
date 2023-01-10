@@ -7,6 +7,7 @@
 
 import UIKit
 import Charts
+import Lottie
 
 class HomeView: UIView {
     
@@ -24,6 +25,7 @@ class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
+        
         configureLabels()
         configureChart()
         configureAddButton()
@@ -43,11 +45,11 @@ class HomeView: UIView {
         
         weekSummaryLabel.text = "Week summary"
         weekSummaryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
-        weekSummaryLabel.textColor = WColors.purple!
+        weekSummaryLabel.textColor = WColors.foreground
         
         activitiesLabel.text = "Activities"
         activitiesLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
-        activitiesLabel.textColor = WColors.purple!
+        activitiesLabel.textColor = WColors.foreground
     }
     
     private func configureAddButton() {
@@ -80,7 +82,7 @@ class HomeView: UIView {
         
         NSLayoutConstraint.activate([
             weekSummaryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            weekSummaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            weekSummaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             weekSummaryLabel.widthAnchor.constraint(equalToConstant: 250),
             weekSummaryLabel.heightAnchor.constraint(equalToConstant: 50),
             
@@ -89,13 +91,13 @@ class HomeView: UIView {
             chartView.widthAnchor.constraint(equalToConstant: 330),
             chartView.heightAnchor.constraint(equalToConstant: 200),
             
-            addButton.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10),
+            addButton.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 30),
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             addButton.widthAnchor.constraint(equalToConstant: 44),
             addButton.heightAnchor.constraint(equalToConstant: 44),
             
             activitiesLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
-            activitiesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            activitiesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             activitiesLabel.widthAnchor.constraint(equalToConstant: 150),
             activitiesLabel.heightAnchor.constraint(equalToConstant: 50),
             

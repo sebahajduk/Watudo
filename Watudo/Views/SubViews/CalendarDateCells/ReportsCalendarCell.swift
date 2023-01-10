@@ -20,7 +20,7 @@ class ReportsCalendarCell: JTACDayCell {
     }
     
     func setColor(forAlpha: Double) {
-        dateLabel.textColor = WColors.purple?.withAlphaComponent(forAlpha)
+        dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
     }
     
     func configure() {

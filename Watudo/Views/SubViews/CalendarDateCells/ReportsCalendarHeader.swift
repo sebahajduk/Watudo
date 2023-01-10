@@ -17,8 +17,8 @@ class ReportsCalendarHeader: JTACMonthReusableView {
         addSubview(monthTitle)
         monthTitle.textAlignment = .center
         monthTitle.translatesAutoresizingMaskIntoConstraints = false
-        monthTitle.textColor = WColors.green
-        monthTitle.font = .boldSystemFont(ofSize: 15)
+        monthTitle.textColor = WColors.foreground
+        monthTitle.font = UIFont(name: "Panton-BlackCaps", size: 20)
         
         NSLayoutConstraint.activate([
             monthTitle.topAnchor.constraint(equalTo: topAnchor),

@@ -15,27 +15,30 @@ class ActivityCell: UITableViewCell {
     
     let name = UILabel()
     let time = UILabel()
+    let playStopImage = UIImageView(image: UIImage(systemName: "play.fill"))
 
     func set(activityName: String) {
-        backgroundColor = WColors.background
+        backgroundColor = .clear
         configure()
         name.text = activityName
-        name.textColor = WColors.purple
+        name.textColor = WColors.foreground
         name.font = .boldSystemFont(ofSize: 15)
         
         time.text = "0:30 / 2:30"
-        time.textColor = WColors.purple
+        time.textColor = WColors.foreground
         time.font = .systemFont(ofSize: 15)
     }
     
     private func configure() {
-        let views = [visualEffect, name, time]
+        let views = [visualEffect, name, time, playStopImage]
         addSubviews(views)
         
-        visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 5, shadowOpacity: 0.2, cornerRadius: 10)
+        visualEffect.addCornerRadius(radius: 20)
+        visualEffect.backgroundColor = WColors.foreground?
+            .withAlphaComponent(0.05)
         
-        visualEffect.backgroundColor = .systemBackground
-        
+        playStopImage.tintColor = WColors.green!
+                
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -54,7 +57,12 @@ class ActivityCell: UITableViewCell {
             time.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5),
             time.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 20),
             time.heightAnchor.constraint(equalToConstant: 20),
-            time.widthAnchor.constraint(equalToConstant: 100)
+            time.widthAnchor.constraint(equalToConstant: 100),
+            
+            playStopImage.centerYAnchor.constraint(equalTo: visualEffect.centerYAnchor),
+            playStopImage.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -30),
+            playStopImage.widthAnchor.constraint(equalToConstant: 15),
+            playStopImage.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     

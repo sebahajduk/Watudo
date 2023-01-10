@@ -12,16 +12,13 @@ class ReportsViewController: UIViewController {
 
     let myCalendar = JTACMonthView()
     
-    let monthLabal = UILabel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
         
         view.addSubview(myCalendar)
         myCalendar.translatesAutoresizingMaskIntoConstraints = false
-        myCalendar.layer.cornerRadius = 10
-        myCalendar.clipsToBounds = true
+        myCalendar.addCornerRadius(radius: 30)
         myCalendar.register(ReportsCalendarCell.self, forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
         myCalendar.minimumLineSpacing = 0
         myCalendar.calendarDelegate = self
@@ -29,20 +26,12 @@ class ReportsViewController: UIViewController {
         myCalendar.scrollDirection = .horizontal
         myCalendar.isPagingEnabled = true
         myCalendar.showsHorizontalScrollIndicator = false
+        myCalendar.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         
         myCalendar.register(ReportsCalendarHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ReportsCalendarHeader")
         
-        view.addSubview(monthLabal)
-        monthLabal.translatesAutoresizingMaskIntoConstraints = false
-        monthLabal.textAlignment = .center
-        
         NSLayoutConstraint.activate([
-            monthLabal.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            monthLabal.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            monthLabal.heightAnchor.constraint(equalToConstant: 20),
-            monthLabal.widthAnchor.constraint(equalToConstant: 100),
-            
-            myCalendar.topAnchor.constraint(equalTo: monthLabal.bottomAnchor, constant: 20),
+            myCalendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             myCalendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             myCalendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             myCalendar.heightAnchor.constraint(equalToConstant: 300)
@@ -69,7 +58,14 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
         formatter.dateFormat = "yyyy MM dd"
         
         let startDate = formatter.date(from: "2021 01 01")!
-        let endDate = Date()
+        
+        var dateComponent = DateComponents()
+        dateComponent.month = 3
+        
+        guard let endDate = Calendar.current.date(byAdding: dateComponent, to: Date()) else {
+            return ConfigurationParameters(startDate: startDate, endDate: Date())
+        }
+        
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
     }
     
@@ -101,6 +97,6 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     }
     
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
-        return MonthSize(defaultSize: 30)
+        return MonthSize(defaultSize: 35)
     }
 }

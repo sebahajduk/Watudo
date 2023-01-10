@@ -20,6 +20,7 @@ class TabBarController: UITabBarController {
         delegate = self
         
         tabBarAppearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        tabBarAppearance.backgroundColor = WColors.background
         tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: WColors.purple!]
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemGray2]
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.systemGray2

@@ -36,15 +36,8 @@ class HomeChartView: UIView {
         addSubview(visualEffect)
         
         visualEffect.translatesAutoresizingMaskIntoConstraints = false
-        visualEffect.backgroundColor = .systemBackground
-        
-        let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
-        
-        if isLightMode {
-            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 0), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-        } else {
-            visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-        }
+        visualEffect.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+        visualEffect.addCornerRadius(radius: 30)
         createChart()
         configureConstraints()
     }
@@ -55,12 +48,13 @@ class HomeChartView: UIView {
         presentWeek.drawCirclesEnabled = false
         presentWeek.mode = .cubicBezier
         presentWeek.lineWidth = 2
-        presentWeek.setColor(WColors.green!)
-        presentWeek.fillColor = WColors.green!
+        presentWeek.setColor(WColors.foreground!)
+        presentWeek.fillColor = WColors.foreground!
         presentWeek.fillAlpha = 0.2
         presentWeek.drawFilledEnabled = true
         presentWeek.drawVerticalHighlightIndicatorEnabled = false
         presentWeek.drawHorizontalHighlightIndicatorEnabled = false
+    
         
         let data = LineChartData(dataSet: presentWeek)
         
@@ -69,12 +63,18 @@ class HomeChartView: UIView {
         chartView.data = data
     }
     
-    
-    
     private func createChart() {
         addSubview(chartView)
         
         chartView.rightAxis.enabled = false
+        chartView.leftAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
+        chartView.leftAxis.axisLineColor = WColors.purple!
+        chartView.leftAxis.labelTextColor = WColors.foreground!
+        
+        chartView.xAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
+        chartView.xAxis.axisLineColor = WColors.purple!
+        chartView.xAxis.labelTextColor = WColors.foreground!
+        chartView.xAxis.labelFont = .boldSystemFont(ofSize: 10)
         
         chartView.xAxis.labelPosition = .bottom
         chartView.doubleTapToZoomEnabled = false
@@ -106,26 +106,26 @@ extension HomeView: ChartViewDelegate {
     }
 }
 
-extension HomeChartView {
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        resetViewsForNewInterfaceStyle(previousTraitCollection)
-    }
-    
-    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
-        switch previousTraitCollection?.userInterfaceStyle {
-            // Change from light mode to dark mode.
-        case .light:
-            visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-        
-            // Change from dark mode to light mode.
-        case .dark:
-            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-            
-        default:
-            // Do nothing, view shouldn't change.
-            print("We have no information about user interface style")
-        }
-    }
-}
+//extension HomeChartView {
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//
+//        resetViewsForNewInterfaceStyle(previousTraitCollection)
+//    }
+//
+//    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
+//        switch previousTraitCollection?.userInterfaceStyle {
+//            // Change from light mode to dark mode.
+//        case .light:
+//            visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
+//
+//            // Change from dark mode to light mode.
+//        case .dark:
+//            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
+//
+//        default:
+//            // Do nothing, view shouldn't change.
+//            print("We have no information about user interface style")
+//        }
+//    }
+//}
