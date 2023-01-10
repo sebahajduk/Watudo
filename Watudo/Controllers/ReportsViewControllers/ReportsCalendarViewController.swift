@@ -1,45 +1,38 @@
 //
-//  ReportsViewController.swift
+//  ReportsCalendarViewController.swift
 //  Watudo
 //
-//  Created by Sebastian Hajduk on 19/12/2022.
+//  Created by Sebastian Hajduk on 10/01/2023.
 //
 
 import UIKit
 import JTAppleCalendar
 
-class ReportsViewController: UIViewController {
-
-    let myCalendar = JTACMonthView()
+class ReportsCalendarViewController: UIViewController {
+    let calendarView = ReportsCalendarView()
+    var myCalendar: JTACMonthView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = WColors.background
-        
-        view.addSubview(myCalendar)
-        myCalendar.translatesAutoresizingMaskIntoConstraints = false
-        myCalendar.addCornerRadius(radius: 30)
-        myCalendar.register(ReportsCalendarCell.self, forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
-        myCalendar.minimumLineSpacing = 0
-        myCalendar.calendarDelegate = self
-        myCalendar.calendarDataSource = self
-        myCalendar.scrollDirection = .horizontal
-        myCalendar.isPagingEnabled = true
-        myCalendar.showsHorizontalScrollIndicator = false
-        myCalendar.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
-        
-        myCalendar.register(ReportsCalendarHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ReportsCalendarHeader")
-        
+        configure()
+
+        calendarView.myCalendar.calendarDelegate = self
+        calendarView.myCalendar.calendarDataSource = self
+    }
+    
+    private func configure() {
+        view.addSubview(calendarView)
+        myCalendar = calendarView.myCalendar
         NSLayoutConstraint.activate([
-            myCalendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            myCalendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            myCalendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            myCalendar.heightAnchor.constraint(equalToConstant: 300)
+            calendarView.topAnchor.constraint(equalTo: view.topAnchor),
+            calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
-extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource {
+extension ReportsCalendarViewController: JTACMonthViewDelegate, JTACMonthViewDataSource {
     func calendar(_ calendar: JTAppleCalendar.JTACMonthView, willDisplay cell: JTAppleCalendar.JTACDayCell, forItemAt date: Date, cellState: JTAppleCalendar.CellState, indexPath: IndexPath) {
         configureCell(view: cell, cellState: cellState)
     }

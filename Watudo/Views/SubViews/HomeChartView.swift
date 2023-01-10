@@ -10,7 +10,7 @@ import Charts
 
 class HomeChartView: UIView {
     
-    let visualEffect = UIVisualEffectView()
+    let visualEffect = WVisualEffectView(cornerRadius: 30)
     var chartView: LineChartView = LineChartView()
     let weekDays: [ChartDataEntry] = [
         ChartDataEntry(x: 0, y: 2),
@@ -37,7 +37,6 @@ class HomeChartView: UIView {
         
         visualEffect.translatesAutoresizingMaskIntoConstraints = false
         visualEffect.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
-        visualEffect.addCornerRadius(radius: 30)
         createChart()
         configureConstraints()
     }

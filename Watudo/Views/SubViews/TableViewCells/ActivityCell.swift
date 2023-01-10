@@ -11,7 +11,7 @@ class ActivityCell: UITableViewCell {
 
     static let reuseID = "ActivityCell"
     
-    let visualEffect = UIVisualEffectView()
+    let visualEffect = WVisualEffectView(cornerRadius: 20)
     
     let name = UILabel()
     let time = UILabel()
@@ -32,10 +32,6 @@ class ActivityCell: UITableViewCell {
     private func configure() {
         let views = [visualEffect, name, time, playStopImage]
         addSubviews(views)
-        
-        visualEffect.addCornerRadius(radius: 20)
-        visualEffect.backgroundColor = WColors.foreground?
-            .withAlphaComponent(0.05)
         
         playStopImage.tintColor = WColors.green!
                 
