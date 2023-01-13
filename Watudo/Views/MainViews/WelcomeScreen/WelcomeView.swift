@@ -54,7 +54,7 @@ class WelcomeView: UIView {
         
         scrollView.isPagingEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.shouldIgnoreScrollingAdjustment = true
+        scrollView.shouldIgnoreScrollingAdjustment = true
                 
         registerView.alpha = 0
     }

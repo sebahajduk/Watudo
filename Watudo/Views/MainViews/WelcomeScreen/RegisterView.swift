@@ -7,8 +7,7 @@
 
 import UIKit
 
-class RegisterView: UIView, UITextFieldDelegate
-{
+class RegisterView: UIView, UITextFieldDelegate {
     
     let greetingLabel = UILabel()
     let greetingDescriptionLabel = UILabel()
@@ -191,12 +190,13 @@ extension RegisterView {
             createAccountButton.widthAnchor.constraint(equalToConstant: 290)
         ])
     }
+    
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
         } else {
-            textField.resignFirstResponder()
+            textField.endEditing(true)
         }
         
         return true
