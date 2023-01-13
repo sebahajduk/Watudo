@@ -24,7 +24,7 @@ class ActivityCell: UITableViewCell {
         name.textColor = WColors.foreground
         name.font = .boldSystemFont(ofSize: 15)
         
-        time.text = "0:30 / 2:30"
+        time.text = "0:00:00"
         time.textColor = WColors.foreground
         time.font = .systemFont(ofSize: 15)
     }
@@ -34,6 +34,8 @@ class ActivityCell: UITableViewCell {
         addSubviews(views)
         
         playStopImage.tintColor = WColors.green!
+        
+        
                 
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false

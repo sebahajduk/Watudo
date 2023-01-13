@@ -7,7 +7,8 @@
 
 import UIKit
 
-class RegisterView: UIView {
+class RegisterView: UIView, UITextFieldDelegate
+{
     
     let greetingLabel = UILabel()
     let greetingDescriptionLabel = UILabel()
@@ -190,6 +191,20 @@ extension RegisterView {
             createAccountButton.widthAnchor.constraint(equalToConstant: 290)
         ])
     }
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
 }
 
 extension RegisterView {
@@ -201,6 +216,7 @@ extension RegisterView {
     
     func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
         switch previousTraitCollection?.userInterfaceStyle {
+            
             // Change from light mode to dark mode.
         case .light:
             createAccountButton.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 0, shadowOpacity: 0, cornerRadius: 10)
@@ -209,8 +225,8 @@ extension RegisterView {
         case .dark:
             createAccountButton.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.7, cornerRadius: 10)
             
-        default:
             // Do nothing, view shouldn't change.
+        default:
             print("We have no information about user interface style")
         }
     }

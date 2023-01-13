@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginView: UIView {
+class LoginView: UIView, UITextFieldDelegate {
     
     let greetingLabel = UILabel()
     let greetingDescriptionLabel = UILabel()
@@ -121,6 +121,21 @@ extension LoginView {
         
     }
     
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
+    
     private func configureButtons() {
         let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
         addSubviews([forgetPasswordButton, loginButton, appleButton, facebookButton, googleButton])
@@ -225,20 +240,20 @@ extension LoginView {
 extension LoginView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         resetViewsForNewInterfaceStyle(previousTraitCollection)
     }
-    
+
     func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
         switch previousTraitCollection?.userInterfaceStyle {
             // Change from light mode to dark mode.
         case .light:
             loginButton.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 10)
-        
+
             // Change from dark mode to light mode.
         case .dark:
             loginButton.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.7, cornerRadius: 10)
-            
+
         default:
             // Do nothing, view shouldn't change.
             print("We have no information about user interface style")

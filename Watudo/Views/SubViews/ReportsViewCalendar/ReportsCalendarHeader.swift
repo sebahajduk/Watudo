@@ -11,7 +11,12 @@ import JTAppleCalendar
 class ReportsCalendarHeader: JTACMonthReusableView {
     static let reuseID = "ReportsCalendarHeader"
     
-    var monthTitle = UILabel()
+    private let monthTitle = UILabel()
+    
+    func set(month: String) {
+        configure()
+        monthTitle.text = month
+    }
     
     private func configure() {
         addSubview(monthTitle)
@@ -26,10 +31,5 @@ class ReportsCalendarHeader: JTACMonthReusableView {
             monthTitle.trailingAnchor.constraint(equalTo: trailingAnchor),
             monthTitle.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-    
-    func set(month: String) {
-        configure()
-        monthTitle.text = month
     }
 }

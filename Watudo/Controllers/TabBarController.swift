@@ -14,17 +14,17 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.unselectedItemTintColor = WColors.purple
+        self.tabBar.unselectedItemTintColor = WColors.background
         
         tabBar.isTranslucent = true
         delegate = self
         
         tabBarAppearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         tabBarAppearance.backgroundColor = WColors.background
-        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: WColors.purple!]
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: WColors.foreground!]
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemGray2]
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.systemGray2
-        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = WColors.purple
+        tabBarAppearance.stackedLayoutAppearance.selected.iconColor = WColors.foreground!
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
         

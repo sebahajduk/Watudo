@@ -47,13 +47,14 @@ class WelcomeView: UIView {
     }
     
     private func configureScrollView() {
-        addSubviews([scrollView])
-        scrollView.addSubviews([loginView, registerView])
+        addSubview(scrollView)
+        scrollView.addSubview(loginView)
+        scrollView.addSubview(registerView)
         scrollView.delegate = self
         
         scrollView.isPagingEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.shouldIgnoreScrollingAdjustment = true
+//        scrollView.shouldIgnoreScrollingAdjustment = true
                 
         registerView.alpha = 0
     }

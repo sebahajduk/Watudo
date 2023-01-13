@@ -13,9 +13,7 @@ class ReportsCalendarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configure()
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -25,15 +23,21 @@ class ReportsCalendarView: UIView {
     func configure() {
         addSubview(myCalendar)
         myCalendar.translatesAutoresizingMaskIntoConstraints = false
+        myCalendar.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         myCalendar.addCornerRadius(radius: 30)
-        myCalendar.register(ReportsCalendarCell.self, forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
         myCalendar.minimumLineSpacing = 0
         myCalendar.scrollDirection = .horizontal
         myCalendar.isPagingEnabled = true
         myCalendar.showsHorizontalScrollIndicator = false
-        myCalendar.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         
-        myCalendar.register(ReportsCalendarHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ReportsCalendarHeader")
+        myCalendar.register(ReportsCalendarHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ReportsCalendarHeader.reuseID)
+        myCalendar.register(ReportsCalendarCell.self, forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
+
+        myCalendar.allowsRangedSelection = true
+        myCalendar.allowsSelection = true
+        myCalendar.allowsMultipleSelection = true
+        
+        myCalendar.scrollToHeaderForDate(Date())
         
         NSLayoutConstraint.activate([
             myCalendar.topAnchor.constraint(equalTo: topAnchor),
@@ -43,3 +47,4 @@ class ReportsCalendarView: UIView {
         ])
     }
 }
+

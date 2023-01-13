@@ -21,7 +21,7 @@ class HomeView: UIView {
     let tableView = UITableView()
     
     var activities: [Activity] = [Activity(name: "Coding"), Activity(name: "Gaming")]
-    
+//    
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false

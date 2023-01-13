@@ -1,9 +1,9 @@
-//
-//  UIViewExtension.swift
-//  Watudo
-//
-//  Created by Sebastian Hajduk on 03/12/2022.
-//
+////
+////  UIViewExtension.swift
+////  Watudo
+////
+////  Created by Sebastian Hajduk on 03/12/2022.
+////
 
 import UIKit
 
@@ -15,23 +15,17 @@ extension UIView {
             addSubview(view)
         }
     }
+    
+    public func addShadowToView(shadowColor: UIColor, offset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat) {
+            self.layer.shadowColor = shadowColor.cgColor
+            self.layer.shadowOpacity = shadowOpacity
+            self.layer.shadowOffset = offset
+            self.layer.shadowRadius = shadowRadius
+            self.layer.cornerRadius = cornerRadius
+    }
+    
+    public func addCornerRadius(radius: CGFloat) {
+        self.layer.cornerRadius = radius
+    }
 }
 
-extension UIView: UITextFieldDelegate {
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        
-        return true
-    }
-    
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.endEditing(true)
-    }
-    
-}
