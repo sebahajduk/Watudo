@@ -7,6 +7,7 @@
 
 import UIKit
 import JTAppleCalendar
+import Charts
 
 class ReportsViewController: UIViewController  {
     
@@ -24,6 +25,7 @@ class ReportsViewController: UIViewController  {
         calendar = myCalendarView.myCalendar
         myCalendarView.myCalendar.calendarDelegate = self
         myCalendarView.myCalendar.calendarDataSource = self
+        reportsChartView.chartView.delegate = self
         myCalendarView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -100,8 +102,15 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     }
     
     func handleCellSelected(cell: ReportsCalendarCell, cellState: CellState) {
+        let today = Date().formatted(date: .numeric, time: .omitted)
+        let cellStateTime = cellState.date.formatted(date: .numeric, time: .omitted)
+       
+        let isToday: Bool = today == cellStateTime ? true : false
+        
         if cellState.isSelected {
             cell.cellSelected = true
+        } else if isToday {
+            cell.isToday = true
         } else {
             cell.cellSelected = false
         }
@@ -120,5 +129,11 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         return MonthSize(defaultSize: 35)
+    }
+}
+
+extension ReportsViewController: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry)
     }
 }

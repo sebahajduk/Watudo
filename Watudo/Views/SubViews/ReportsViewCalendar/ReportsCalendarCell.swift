@@ -20,6 +20,12 @@ class ReportsCalendarCell: JTACDayCell {
         }
     }
     
+    var isToday: Bool = false {
+        didSet {
+            markTodayCell()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -36,6 +42,11 @@ class ReportsCalendarCell: JTACDayCell {
     func setColor(forAlpha: Double) {
         dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
         circle.backgroundColor = WColors.background?.withAlphaComponent(forAlpha)
+    }
+    
+    private func markTodayCell() {
+        circle.backgroundColor = WColors.green
+        dateLabel.textColor = .white
     }
     
     private func selectionChanged() {
