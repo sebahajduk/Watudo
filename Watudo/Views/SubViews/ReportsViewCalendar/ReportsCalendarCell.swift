@@ -12,7 +12,8 @@ class ReportsCalendarCell: JTACDayCell {
     static let reuseID = "ReportsCalendarCell"
     private let circle = WVisualEffectView()
     private let dateLabel = UILabel()
-    
+    private var isLightMode: Bool!
+
     var cellSelected: Bool = false {
         didSet {
             selectionChanged()
@@ -34,19 +35,14 @@ class ReportsCalendarCell: JTACDayCell {
     
     func setColor(forAlpha: Double) {
         dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
+        circle.backgroundColor = WColors.background?.withAlphaComponent(forAlpha)
     }
     
     private func selectionChanged() {
         if cellSelected {
-            UIView.animate(withDuration: 0.2) { [weak self] in
-                guard let self else { return }
-                self.circle.backgroundColor = WColors.purple
-            }
+            self.circle.backgroundColor = WColors.purple
         } else {
-            UIView.animate(withDuration: 0.2) { [weak self] in
-                guard let self else { return }
-                self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
-            }
+           self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         }
     }
     

@@ -36,7 +36,6 @@ class HomeChartView: UIView {
         addSubview(visualEffect)
         
         visualEffect.translatesAutoresizingMaskIntoConstraints = false
-        visualEffect.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         createChart()
         configureConstraints()
     }
@@ -104,27 +103,3 @@ extension HomeView: ChartViewDelegate {
         print(entry)
     }
 }
-
-//extension HomeChartView {
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//
-//        resetViewsForNewInterfaceStyle(previousTraitCollection)
-//    }
-//
-//    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
-//        switch previousTraitCollection?.userInterfaceStyle {
-//            // Change from light mode to dark mode.
-//        case .light:
-//            visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 0), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-//
-//            // Change from dark mode to light mode.
-//        case .dark:
-//            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.2, cornerRadius: 30)
-//
-//        default:
-//            // Do nothing, view shouldn't change.
-//            print("We have no information about user interface style")
-//        }
-//    }
-//}

@@ -11,13 +11,16 @@ import JTAppleCalendar
 class ReportsViewController: UIViewController  {
     
     let myCalendarView = ReportsCalendarView()
+    let reportsChartView = ReportsChartView()
+    
     var calendar: JTACMonthView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
         
-        view.addSubview(myCalendarView)
+        view.addSubviews([myCalendarView, reportsChartView])
         calendar = myCalendarView.myCalendar
         myCalendarView.myCalendar.calendarDelegate = self
         myCalendarView.myCalendar.calendarDataSource = self
@@ -27,7 +30,12 @@ class ReportsViewController: UIViewController  {
             myCalendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             myCalendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             myCalendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            myCalendarView.heightAnchor.constraint(equalToConstant: 300)
+            myCalendarView.heightAnchor.constraint(equalToConstant: 300),
+            
+            reportsChartView.topAnchor.constraint(equalTo: myCalendarView.bottomAnchor, constant: 20),
+            reportsChartView.leadingAnchor.constraint(equalTo: myCalendarView.leadingAnchor),
+            reportsChartView.trailingAnchor.constraint(equalTo: myCalendarView.trailingAnchor),
+            reportsChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }
@@ -78,9 +86,7 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     func configureCell(view: JTACDayCell, cellState: CellState) {
         guard let cell =
                 view as? ReportsCalendarCell else { return }
-        
         cell.set(forDate: cellState.text)
-        
         handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
     }
