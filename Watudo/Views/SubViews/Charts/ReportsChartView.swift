@@ -33,7 +33,10 @@ class ReportsChartView: UIView {
             if let index = activities.firstIndex(of: activity) {
                 let chartValue = BarChartDataEntry(x: Double(index), y: activity.timeSpent)
                 let dataSet = BarChartDataSet(entries: [chartValue], label: activity.name)
-                dataSet.colors = [WColors.purple!]
+                dataSet.colors = [WColors.foreground!.withAlphaComponent(0.2)]
+                dataSet.barBorderWidth = 2
+                dataSet.barBorderColor = WColors.foreground!
+                
                 summary.append(dataSet)
             }
         }

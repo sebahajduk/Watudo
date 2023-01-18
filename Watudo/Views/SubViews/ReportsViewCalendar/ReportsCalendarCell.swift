@@ -16,6 +16,7 @@ class ReportsCalendarCell: JTACDayCell {
 
     var cellSelected: Bool = false {
         didSet {
+            setColor(forAlpha: 1.0)
             selectionChanged()
         }
     }
@@ -34,26 +35,44 @@ class ReportsCalendarCell: JTACDayCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.isSelected = false
+    }
+    
     func set(forDate: String) {
         configure()
         dateLabel.text = forDate
+        
+        isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
     }
     
-    func setColor(forAlpha: Double) {
-        dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
-        circle.backgroundColor = WColors.background?.withAlphaComponent(forAlpha)
+    func setColor(forAlpha: Double = 1.0) {
+        if isLightMode && cellSelected {
+            self.dateLabel.textColor = .white.withAlphaComponent(forAlpha)
+            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(forAlpha)
+        } else {
+            self.dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
+            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+        }
     }
     
     private func markTodayCell() {
-        circle.backgroundColor = WColors.green
-        dateLabel.textColor = .white
+        if isToday {
+            circle.backgroundColor = WColors.green
+            dateLabel.textColor = .white
+        }
     }
     
     private func selectionChanged() {
+        
         if cellSelected {
+            if isLightMode {
+                self.dateLabel.textColor = .white
+            }
             self.circle.backgroundColor = WColors.purple
         } else {
-           self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         }
     }
     
@@ -83,3 +102,17 @@ class ReportsCalendarCell: JTACDayCell {
         ])
     }
 }
+
+extension ReportsCalendarCell {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        resetViewsForNewInterfaceStyle(previousTraitCollection)
+    }
+
+    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
+        selectionChanged()
+    }
+}
+
+

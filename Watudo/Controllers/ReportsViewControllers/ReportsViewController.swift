@@ -16,7 +16,6 @@ class ReportsViewController: UIViewController  {
     
     var calendar: JTACMonthView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
@@ -27,6 +26,8 @@ class ReportsViewController: UIViewController  {
         myCalendarView.myCalendar.calendarDataSource = self
         reportsChartView.chartView.delegate = self
         myCalendarView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         
         NSLayoutConstraint.activate([
             myCalendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -47,10 +48,15 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     //MARK: JTACMonthViewDelegate
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
+        
     }
     
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
+        return true
     }
     
     func calendar(_ calendar: JTAppleCalendar.JTACMonthView, willDisplay cell: JTAppleCalendar.JTACDayCell, forItemAt date: Date, cellState: JTAppleCalendar.CellState, indexPath: IndexPath) {
@@ -60,7 +66,6 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
     func calendar(_ calendar: JTAppleCalendar.JTACMonthView, cellForItemAt date: Date, cellState: JTAppleCalendar.CellState, indexPath: IndexPath) -> JTAppleCalendar.JTACDayCell {
         
         let cell = calendar.dequeueReusableCell(withReuseIdentifier: ReportsCalendarCell.reuseID, for: indexPath) as! ReportsCalendarCell
-        
         self.calendar(calendar, willDisplay: cell,forItemAt: date, cellState: cellState, indexPath: indexPath)
         
         return cell
@@ -89,8 +94,8 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
         guard let cell =
                 view as? ReportsCalendarCell else { return }
         cell.set(forDate: cellState.text)
-        handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
+        handleCellTextColor(cell: cell, cellState: cellState)
     }
     
     func handleCellTextColor(cell: ReportsCalendarCell, cellState: CellState) {
@@ -99,18 +104,20 @@ extension ReportsViewController: JTACMonthViewDelegate, JTACMonthViewDataSource 
         } else {
             cell.setColor(forAlpha: 0.3)
         }
-    }
-    
-    func handleCellSelected(cell: ReportsCalendarCell, cellState: CellState) {
+        
         let today = Date().formatted(date: .numeric, time: .omitted)
         let cellStateTime = cellState.date.formatted(date: .numeric, time: .omitted)
        
         let isToday: Bool = today == cellStateTime ? true : false
         
+        if isToday && !cellState.isSelected {
+            cell.isToday = true
+        }
+    }
+    
+    func handleCellSelected(cell: ReportsCalendarCell, cellState: CellState) {
         if cellState.isSelected {
             cell.cellSelected = true
-        } else if isToday {
-            cell.isToday = true
         } else {
             cell.cellSelected = false
         }
