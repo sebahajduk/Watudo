@@ -15,11 +15,11 @@ class ReportsChartView: UIView {
     var chartValues: [BarChartDataEntry] = []
     var summary: [BarChartDataSet] = []
     
-    let activities: [Activity] = [
-        Activity(name: "Coding", timeSpent: 1.5),
-        Activity(name: "Gaming", timeSpent: 8.5),
-        Activity(name: "Household", timeSpent: 3.5),
-        Activity(name: "Netflix", timeSpent: 5.5)
+    let categories: [Category] = [
+        Category(name: "Coding", timeSpent: 1, color: WColors.green!),
+        Category(name: "Netflix", timeSpent: 2, color: .yellow),
+        Category(name: "Gaming", timeSpent: 3, color: .gray),
+        Category(name: "House chores", timeSpent: 4, color: .blue)
     ]
     
     override init(frame: CGRect) {
@@ -29,13 +29,13 @@ class ReportsChartView: UIView {
     }
     
     func setData() {
-        for activity in activities {
-            if let index = activities.firstIndex(of: activity) {
-                let chartValue = BarChartDataEntry(x: Double(index), y: activity.timeSpent)
-                let dataSet = BarChartDataSet(entries: [chartValue], label: activity.name)
-                dataSet.colors = [WColors.foreground!.withAlphaComponent(0.2)]
+        for category in categories {
+            if let index = categories.firstIndex(of: category) {
+                let chartValue = BarChartDataEntry(x: Double(index), y: category.timeSpent)
+                let dataSet = BarChartDataSet(entries: [chartValue], label: category.name)
+                dataSet.colors = [category.color.withAlphaComponent(0.2)]
                 dataSet.barBorderWidth = 2
-                dataSet.barBorderColor = WColors.foreground!
+                dataSet.barBorderColor = category.color
                 
                 summary.append(dataSet)
             }

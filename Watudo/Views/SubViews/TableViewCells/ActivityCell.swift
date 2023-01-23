@@ -16,7 +16,8 @@ class ActivityCell: UITableViewCell {
     let name = UILabel()
     let time = UILabel()
     let playStopImage = UIImageView(image: UIImage(systemName: "play.fill"))
-
+    
+    
     func set(activityName: String) {
         backgroundColor = .clear
         configure()
@@ -35,14 +36,12 @@ class ActivityCell: UITableViewCell {
         
         playStopImage.tintColor = WColors.green!
         
-        
-                
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-            visualEffect.topAnchor.constraint(equalTo: topAnchor),
+            visualEffect.centerYAnchor.constraint(equalTo: centerYAnchor),
             visualEffect.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffect.heightAnchor.constraint(equalToConstant: 65),
             visualEffect.widthAnchor.constraint(equalToConstant: 330),

@@ -22,6 +22,9 @@
 		606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */; };
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
+		608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */; };
+		608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E02979D2450094A8D7 /* ProfileViewController.swift */; };
+		608942E32979D2590094A8D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E22979D2590094A8D7 /* ProfileView.swift */; };
 		608E919F2951085E0072FE02 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E919E2951085E0072FE02 /* HomeViewController.swift */; };
 		608E91A1295108810072FE02 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A0295108810072FE02 /* HomeView.swift */; };
 		608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A429510FA70072FE02 /* ReportsViewController.swift */; };
@@ -62,6 +65,9 @@
 		6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsChartView.swift; sourceTree = "<group>"; };
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
+		608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalViewController.swift; sourceTree = "<group>"; };
+		608942E02979D2450094A8D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		608942E22979D2590094A8D7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		608E919E2951085E0072FE02 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		608E91A0295108810072FE02 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		608E91A429510FA70072FE02 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 				608E919E2951085E0072FE02 /* HomeViewController.swift */,
 				608E91A629510FCB0072FE02 /* TabBarController.swift */,
 				60A2D89F29649EF10082338B /* AddActivityViewController.swift */,
+				608942E02979D2450094A8D7 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,6 +234,7 @@
 				608E91A0295108810072FE02 /* HomeView.swift */,
 				60A2D89B29649BCB0082338B /* AddActivityView.swift */,
 				60581737296C94E1002AEE2E /* ReportsView.swift */,
+				608942E22979D2590094A8D7 /* ProfileView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -282,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				608E91A429510FA70072FE02 /* ReportsViewController.swift */,
+				608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */,
 			);
 			path = ReportsViewControllers;
 			sourceTree = "<group>";
@@ -432,9 +441,11 @@
 				60A2D8A029649EF10082338B /* AddActivityViewController.swift in Sources */,
 				60EE479D296E163E00DFDC37 /* WVisualEffectView.swift in Sources */,
 				60EE479F296E187E00DFDC37 /* ReportsCalendarView.swift in Sources */,
+				608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */,
 				608E91A1295108810072FE02 /* HomeView.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
 				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
+				608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */,
 				608E919F2951085E0072FE02 /* HomeViewController.swift in Sources */,
 				60EE4798296DB9E200DFDC37 /* ReportsCalendarCell.swift in Sources */,
 				602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */,
@@ -442,6 +453,7 @@
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
 				606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */,
+				608942E32979D2590094A8D7 /* ProfileView.swift in Sources */,
 				60A2D89C29649BCB0082338B /* AddActivityView.swift in Sources */,
 				6031D55F296361440019D399 /* HomeChartView.swift in Sources */,
 				602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */,

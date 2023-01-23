@@ -48,12 +48,12 @@ class ReportsCalendarCell: JTACDayCell {
     }
     
     func setColor(forAlpha: Double = 1.0) {
-        if isLightMode && cellSelected {
+        if cellSelected {
             self.dateLabel.textColor = .white.withAlphaComponent(forAlpha)
-            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(forAlpha)
+            self.circle.backgroundColor = WColors.purple?.withAlphaComponent(forAlpha)
         } else {
             self.dateLabel.textColor = WColors.foreground?.withAlphaComponent(forAlpha)
-            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+            self.circle.backgroundColor = WColors.purple?.withAlphaComponent(0.05)
         }
     }
     
@@ -65,14 +65,13 @@ class ReportsCalendarCell: JTACDayCell {
     }
     
     private func selectionChanged() {
-        
         if cellSelected {
             if isLightMode {
                 self.dateLabel.textColor = .white
             }
             self.circle.backgroundColor = WColors.purple
         } else {
-            self.circle.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+            self.circle.backgroundColor = WColors.purple?.withAlphaComponent(0.05)
         }
     }
     
@@ -100,18 +99,6 @@ class ReportsCalendarCell: JTACDayCell {
             dateLabel.widthAnchor.constraint(equalToConstant: 40),
             dateLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
-    }
-}
-
-extension ReportsCalendarCell {
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        resetViewsForNewInterfaceStyle(previousTraitCollection)
-    }
-
-    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
-        selectionChanged()
     }
 }
 
