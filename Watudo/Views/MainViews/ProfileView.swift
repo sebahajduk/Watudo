@@ -25,6 +25,8 @@ class ProfileView: UIView {
     // Notifications
     // Reminders time
     
+    let timeZoneLabel = UILabel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = WColors.background
@@ -44,18 +46,25 @@ class ProfileView: UIView {
         }
         
         profileImage.image = UIImage(systemName: "camera")
-        nameLabel.text = "Micheal Meyers"
+        profileImage.contentMode = .scaleAspectFit
+        profileImage.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+        profileImage.tintColor = WColors.purple!.withAlphaComponent(0.5)
+        profileImage.addCornerRadius(radius: 75)
+        
+        nameLabel.text = "Micheal Myers"
         nameLabel.textAlignment = .center
+        nameLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
         
         appearenceModeLabel.text = "Dark mode"
+        appearenceModeLabel.font = UIFont(name: "Panton-BlackCaps", size: 15)
         
         NSLayoutConstraint.activate([
             profileImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            profileImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            profileImage.widthAnchor.constraint(equalToConstant: 50),
-            profileImage.heightAnchor.constraint(equalToConstant: 50),
+            profileImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            profileImage.widthAnchor.constraint(equalToConstant: 150),
+            profileImage.heightAnchor.constraint(equalToConstant: 150),
             
-            nameLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor),
+            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 40),
             nameLabel.widthAnchor.constraint(equalToConstant: 200),
