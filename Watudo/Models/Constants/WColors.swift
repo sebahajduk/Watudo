@@ -12,4 +12,5 @@ struct WColors {
     static let foreground = UIColor(named: "AppForegroundColor")
     static let purple = UIColor(named: "wPurple")
     static let green = UIColor(named: "wGreen")
+    static let red = UIColor(named: "wRed")
 }

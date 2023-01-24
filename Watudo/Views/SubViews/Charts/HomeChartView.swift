@@ -98,7 +98,7 @@ class HomeChartView: UIView {
     }
 }
 
-extension HomeView: ChartViewDelegate {
+extension TodayView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }

@@ -9,7 +9,9 @@ import UIKit
 import Charts
 import Lottie
 
-class HomeView: UIView {
+class TodayView: UIView {
+    
+    let quoteLabel = WLabel(text: "Example quote by unknown author.Example quote by unknown author. Example quote by unknown author.Example quote by unknown author. Example quote by unknown author.Example quote by unknown author.", textAlignment: .center, size: 15, weight: .light, color: WColors.purple!)
     
     let weekSummaryLabel = UILabel()
     let activitiesLabel = UILabel()
@@ -21,7 +23,7 @@ class HomeView: UIView {
     let tableView = UITableView()
     
     var activities: [Activity] = [Activity(name: "Coding"), Activity(name: "Gaming")]
-//    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -39,9 +41,7 @@ class HomeView: UIView {
     }
     
     private func configureLabels() {
-        addSubviews([weekSummaryLabel, activitiesLabel])
-        weekSummaryLabel.translatesAutoresizingMaskIntoConstraints = false
-        activitiesLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubviews([quoteLabel, weekSummaryLabel, activitiesLabel])
         
         weekSummaryLabel.text = "Week summary"
         weekSummaryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
@@ -50,6 +50,9 @@ class HomeView: UIView {
         activitiesLabel.text = "Activities"
         activitiesLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
         activitiesLabel.textColor = WColors.foreground
+        
+        quoteLabel.numberOfLines = 0
+        quoteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
     private func configureAddButton() {
@@ -80,8 +83,16 @@ class HomeView: UIView {
     
     private func configureConstraints() {
         
+        let heightOfQuoteLabel = CGFloat(quoteLabel.calculateMaxLines() * 15)
+        print(heightOfQuoteLabel)
+        
         NSLayoutConstraint.activate([
-            weekSummaryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            quoteLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            quoteLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            quoteLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            quoteLabel.heightAnchor.constraint(equalToConstant: heightOfQuoteLabel),
+            
+            weekSummaryLabel.topAnchor.constraint(equalTo: quoteLabel.bottomAnchor, constant: 20),
             weekSummaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             weekSummaryLabel.widthAnchor.constraint(equalToConstant: 250),
             weekSummaryLabel.heightAnchor.constraint(equalToConstant: 50),
@@ -113,7 +124,7 @@ class HomeView: UIView {
     func addActivityButtonTapped()
 }
 
-extension HomeView: UITableViewDelegate, UITableViewDataSource {
+extension TodayView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activities.count
     }

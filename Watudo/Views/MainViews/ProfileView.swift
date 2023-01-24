@@ -8,61 +8,99 @@
 import UIKit
 
 class ProfileView: UIView {
-
+    
     let profileImage = UIImageView()
-    let nameLabel = UILabel()
+    let nameLabel = WLabel(text: "Michael Myers", textAlignment: .center, size: 20, weight: .black)
+    
+    let firstDivider = DividerView()
     
     let appearenceModeSwitch = UISwitch()
-    let appearenceModeLabel = UILabel()
+    let appearenceModeLabel = WLabel(text: "Dark mode", size: 15, weight: .black)
+    
+    let timeZoneLabel = WLabel(text: "Time zone", size: 15, weight: .black)
+    let timeZoneTextField = UITextField()
+    let timeZonePicker = UIPickerView()
+    let timeZoneOptions = ["12h","24h"]
+    
+    let secondDivider = DividerView()
+    
+    let notificationsLabel = WLabel(text: "NOTIFICATIONS", size: 15, weight: .black)
+    let notificationsSwitch = UISwitch()
+    
+    let notificationsIntervalLabel = WLabel(text: "NOTIFICATIONS interval", size: 15, weight: .black)
+    let notificationsIntervalTextField = UITextField()
+    let notificationsIntervalPicker = UIPickerView()
+    let intervalOptions = ["5 min", "10 min", "15 min", "20 min", "30 min"]
     
     let categoriesEditButton = WButton(title: "Edit categories", role: .primary)
+    let rateUsButton = WButton(title: "Rate us", role: .secondary)
     let signOutButton = WButton(title: "Sign out", role: .secondary)
-    
-    // Time zone (24h/12h)
-    // Face ID
-    // Send feedback
-    // Delete activities history
-    // Notifications
-    // Reminders time
-    
-    let timeZoneLabel = UILabel()
+    let deleteAccount = WButton(title: "Delete account", role: .secondary)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = WColors.background
-        configure()
+        
+        
+        configureUserInfo()
+        configureSettingsViews()
+        configureButtons()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        let views: [UIView] = [profileImage, nameLabel, appearenceModeLabel, appearenceModeSwitch, categoriesEditButton, signOutButton]
+    private func configureUserInfo() {
+        let views: [UIView] = [profileImage, nameLabel]
         addSubviews(views)
-        
-        for view in views {
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
         
         profileImage.image = UIImage(systemName: "camera")
         profileImage.contentMode = .scaleAspectFit
         profileImage.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
         profileImage.tintColor = WColors.purple!.withAlphaComponent(0.5)
-        profileImage.addCornerRadius(radius: 75)
+        profileImage.addCornerRadius(radius: 50)
+        profileImage.clipsToBounds = true
         
-        nameLabel.text = "Micheal Myers"
-        nameLabel.textAlignment = .center
-        nameLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
+    }
+    
+    private func configureSettingsViews() {
+        let views: [UIView] = [firstDivider, appearenceModeLabel, appearenceModeSwitch, secondDivider, timeZoneLabel, timeZoneTextField, notificationsLabel, notificationsSwitch, notificationsIntervalLabel, notificationsIntervalTextField]
+        addSubviews(views)
         
-        appearenceModeLabel.text = "Dark mode"
-        appearenceModeLabel.font = UIFont(name: "Panton-BlackCaps", size: 15)
+        timeZonePicker.tag = 0
+        notificationsIntervalPicker.tag = 1
         
+        timeZonePicker.delegate = self
+        timeZonePicker.dataSource = self
+        
+        notificationsIntervalPicker.delegate = self
+        notificationsIntervalPicker.dataSource = self
+        
+        timeZoneTextField.inputView = timeZonePicker
+        timeZoneTextField.placeholder = "24H"
+        timeZoneTextField.textAlignment = .right
+        
+        notificationsIntervalTextField.inputView = notificationsIntervalPicker
+        notificationsIntervalTextField.placeholder = "30 min"
+        notificationsIntervalTextField.textAlignment = .right
+    }
+    
+    private func configureButtons() {
+        let views: [UIView] = [categoriesEditButton, rateUsButton, signOutButton, deleteAccount]
+        addSubviews(views)
+        
+        deleteAccount.setTitleColor(WColors.red, for: .normal)
+        deleteAccount.layer.borderColor = WColors.red?.cgColor
+    }
+    
+    private func configureConstraints() {
         NSLayoutConstraint.activate([
             profileImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             profileImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            profileImage.widthAnchor.constraint(equalToConstant: 150),
-            profileImage.heightAnchor.constraint(equalToConstant: 150),
+            profileImage.widthAnchor.constraint(equalToConstant: 100),
+            profileImage.heightAnchor.constraint(equalToConstant: 100),
             
             nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -71,22 +109,98 @@ class ProfileView: UIView {
             
             appearenceModeLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 100),
             appearenceModeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            appearenceModeLabel.widthAnchor.constraint(equalToConstant: 100),
+            appearenceModeLabel.widthAnchor.constraint(equalToConstant: 200),
             appearenceModeLabel.heightAnchor.constraint(equalToConstant: 30),
             
             appearenceModeSwitch.centerYAnchor.constraint(equalTo: appearenceModeLabel.centerYAnchor),
-            appearenceModeSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            appearenceModeSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            signOutButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            deleteAccount.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            deleteAccount.centerXAnchor.constraint(equalTo: centerXAnchor),
+            deleteAccount.widthAnchor.constraint(equalToConstant: 290),
+            deleteAccount.heightAnchor.constraint(equalToConstant: 44),
+            
+            signOutButton.bottomAnchor.constraint(equalTo: deleteAccount.topAnchor, constant: -10),
             signOutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             signOutButton.widthAnchor.constraint(equalToConstant: 290),
             signOutButton.heightAnchor.constraint(equalToConstant: 44),
             
-            categoriesEditButton.bottomAnchor.constraint(equalTo: signOutButton.topAnchor, constant: -10),
+            rateUsButton.bottomAnchor.constraint(equalTo: signOutButton.topAnchor, constant: -10),
+            rateUsButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            rateUsButton.widthAnchor.constraint(equalToConstant: 290),
+            rateUsButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            categoriesEditButton.bottomAnchor.constraint(equalTo: rateUsButton.topAnchor, constant: -10),
             categoriesEditButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             categoriesEditButton.widthAnchor.constraint(equalToConstant: 290),
-            categoriesEditButton.heightAnchor.constraint(equalToConstant: 44)
+            categoriesEditButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            timeZoneLabel.topAnchor.constraint(equalTo: appearenceModeLabel.bottomAnchor, constant: 15),
+            timeZoneLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            timeZoneLabel.widthAnchor.constraint(equalToConstant: 200),
+            timeZoneLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            timeZoneTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            timeZoneTextField.centerYAnchor.constraint(equalTo: timeZoneLabel.centerYAnchor),
+            timeZoneTextField.widthAnchor.constraint(equalToConstant: 50),
+            timeZoneTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            notificationsLabel.topAnchor.constraint(equalTo: timeZoneLabel.bottomAnchor, constant: 15),
+            notificationsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            notificationsLabel.widthAnchor.constraint(equalToConstant: 200),
+            notificationsLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            notificationsSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            notificationsSwitch.centerYAnchor.constraint(equalTo: notificationsLabel.centerYAnchor),
+            
+            notificationsIntervalLabel.topAnchor.constraint(equalTo: notificationsLabel.bottomAnchor, constant: 15),
+            notificationsIntervalLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            notificationsIntervalLabel.widthAnchor.constraint(equalToConstant: 200),
+            notificationsIntervalLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            notificationsIntervalTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            notificationsIntervalTextField.centerYAnchor.constraint(equalTo: notificationsIntervalLabel.centerYAnchor),
+            notificationsIntervalTextField.widthAnchor.constraint(equalToConstant: 100),
+            notificationsIntervalTextField.heightAnchor.constraint(equalToConstant: 30)
         ])
+        
     }
     
+}
+
+extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var title: String = ""
+        
+        if pickerView.tag == 0 {
+            title = timeZoneOptions[row]
+        } else {
+            title = intervalOptions[row]
+        }
+        
+        return title
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0 {
+            return timeZoneOptions.count
+        } else {
+            return intervalOptions.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView.tag == 0 {
+            timeZoneTextField.placeholder = timeZoneOptions[row]
+            timeZoneTextField.resignFirstResponder()
+        } else {
+            notificationsIntervalTextField.placeholder = intervalOptions[row]
+            notificationsIntervalTextField.resignFirstResponder()
+        }
+    }
 }
