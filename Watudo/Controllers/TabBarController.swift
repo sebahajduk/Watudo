@@ -33,7 +33,7 @@ class TabBarController: UITabBarController {
     
     private func configureVCs() {
         viewControllers = [
-            configureTabBar(for: HomeViewController(), title: "Today", image: UIImage(systemName: "house.fill")!),
+            configureTabBar(for: TodayViewController(), title: "Today", image: UIImage(systemName: "house.fill")!),
             configureTabBar(for: ReportsViewController(), title: "Reports", image: UIImage(systemName: "chart.pie.fill")!),
             configureTabBar(for: ProfileViewController(), title: "Profile", image: UIImage(systemName: "person.fill")!)
         ]

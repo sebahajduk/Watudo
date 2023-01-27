@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  TodayView.swift
 //  Watudo
 //
 //  Created by Sebastian Hajduk on 19/12/2022.
@@ -11,7 +11,8 @@ import Lottie
 
 class TodayView: UIView {
     
-    let quoteLabel = WLabel(text: "Example quote by unknown author.Example quote by unknown author. Example quote by unknown author.Example quote by unknown author. Example quote by unknown author.Example quote by unknown author.", textAlignment: .center, size: 15, weight: .light, color: WColors.purple!)
+    let quoteLabel = UILabel()
+    let quoteBackground = WVisualEffectView(cornerRadius: 10)
     
     let weekSummaryLabel = UILabel()
     let activitiesLabel = UILabel()
@@ -23,7 +24,10 @@ class TodayView: UIView {
     let tableView = UITableView()
     
     var activities: [Activity] = [Activity(name: "Coding"), Activity(name: "Gaming")]
-   
+    
+    var heightOfQuoteLabel: CGFloat = 0
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +45,7 @@ class TodayView: UIView {
     }
     
     private func configureLabels() {
-        addSubviews([quoteLabel, weekSummaryLabel, activitiesLabel])
+        addSubviews([quoteBackground, quoteLabel, weekSummaryLabel, activitiesLabel])
         
         weekSummaryLabel.text = "Week summary"
         weekSummaryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
@@ -53,6 +57,10 @@ class TodayView: UIView {
         
         quoteLabel.numberOfLines = 0
         quoteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        quoteLabel.font = .systemFont(ofSize: 15)
+        quoteLabel.textAlignment = .center
+        quoteLabel.textColor = WColors.foreground
+        quoteLabel.contentMode = .scaleAspectFit
     }
     
     private func configureAddButton() {
@@ -62,7 +70,7 @@ class TodayView: UIView {
         addButton.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), for: .normal)
         addButton.tintColor = WColors.purple!
         
-        addButton.addTarget(nil, action: #selector(HomeViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
+        addButton.addTarget(nil, action: #selector(TodayViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
     }
     
     private func configureChart() {
@@ -81,16 +89,18 @@ class TodayView: UIView {
         tableView.backgroundColor = .clear
     }
     
-    private func configureConstraints() {
-        
-        let heightOfQuoteLabel = CGFloat(quoteLabel.calculateMaxLines() * 15)
-        print(heightOfQuoteLabel)
+    func configureConstraints() {
         
         NSLayoutConstraint.activate([
-            quoteLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            quoteLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            quoteLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            quoteLabel.heightAnchor.constraint(equalToConstant: heightOfQuoteLabel),
+            quoteBackground.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            quoteBackground.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            quoteBackground.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            quoteBackground.heightAnchor.constraint(equalToConstant: 70),
+            
+            quoteLabel.centerXAnchor.constraint(equalTo: quoteBackground.centerXAnchor),
+            quoteLabel.centerYAnchor.constraint(equalTo: quoteBackground.centerYAnchor),
+            quoteLabel.widthAnchor.constraint(equalToConstant: 300),
+            quoteLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
             
             weekSummaryLabel.topAnchor.constraint(equalTo: quoteLabel.bottomAnchor, constant: 20),
             weekSummaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
@@ -120,7 +130,7 @@ class TodayView: UIView {
     }
 }
 
-@objc protocol HomeViewActionHandler {
+@objc protocol TodayViewActionHandler {
     func addActivityButtonTapped()
 }
 

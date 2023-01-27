@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.6.4)
   - Charts (4.1.0):
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
@@ -9,6 +10,7 @@ PODS:
   - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Charts
   - IQKeyboardManagerSwift
   - JTAppleCalendar
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Charts
     - IQKeyboardManagerSwift
     - JTAppleCalendar
@@ -23,12 +26,13 @@ SPEC REPOS:
     - SwiftAlgorithms
 
 SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Charts: 354f86803d11d9c35de280587fef50d1af063978
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   JTAppleCalendar: f95b02c64f56d6f938fbf6582a04dcab9d709ebd
   lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: bcc12e87f405ebe2bb8180587a20b0ad829585b6
+PODFILE CHECKSUM: 505c381060c5bd333920f282e74e300d00b34794
 
 COCOAPODS: 1.11.3

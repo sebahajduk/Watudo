@@ -13,5 +13,6 @@ pod 'lottie-ios'
 pod 'IQKeyboardManagerSwift'
 pod 'Charts'
 pod 'JTAppleCalendar'
+pod 'Alamofire'
 
 end
