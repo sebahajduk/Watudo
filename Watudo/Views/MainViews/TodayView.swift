@@ -12,7 +12,7 @@ import Lottie
 class TodayView: UIView {
     
     let quoteLabel = UILabel()
-    let quoteBackground = WVisualEffectView(cornerRadius: 10)
+    let quoteBackground = WVisualEffectView()
     
     let weekSummaryLabel = UILabel()
     let activitiesLabel = UILabel()
@@ -57,10 +57,16 @@ class TodayView: UIView {
         
         quoteLabel.numberOfLines = 0
         quoteLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        quoteLabel.font = .systemFont(ofSize: 15)
+        quoteLabel.font = .systemFont(ofSize: 13)
         quoteLabel.textAlignment = .center
-        quoteLabel.textColor = WColors.foreground
+        
+        quoteLabel.textColor = .white
         quoteLabel.contentMode = .scaleAspectFit
+        
+        quoteBackground.backgroundColor = WColors.purple!
+        quoteBackground.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 20)
+        
+        
     }
     
     private func configureAddButton() {
@@ -97,10 +103,10 @@ class TodayView: UIView {
             quoteBackground.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             quoteBackground.heightAnchor.constraint(equalToConstant: 70),
             
-            quoteLabel.centerXAnchor.constraint(equalTo: quoteBackground.centerXAnchor),
-            quoteLabel.centerYAnchor.constraint(equalTo: quoteBackground.centerYAnchor),
-            quoteLabel.widthAnchor.constraint(equalToConstant: 300),
-            quoteLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
+            quoteLabel.topAnchor.constraint(equalTo: quoteBackground.topAnchor, constant: 10),
+            quoteLabel.bottomAnchor.constraint(equalTo: quoteBackground.bottomAnchor, constant: -10),
+            quoteLabel.leadingAnchor.constraint(equalTo: quoteBackground.leadingAnchor, constant: 10),
+            quoteLabel.trailingAnchor.constraint(equalTo: quoteBackground.trailingAnchor, constant: -10),
             
             weekSummaryLabel.topAnchor.constraint(equalTo: quoteLabel.bottomAnchor, constant: 20),
             weekSummaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),

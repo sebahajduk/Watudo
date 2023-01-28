@@ -36,6 +36,10 @@ class HomeChartView: UIView {
         addSubview(visualEffect)
         
         visualEffect.translatesAutoresizingMaskIntoConstraints = false
+        
+        visualEffect.backgroundColor = WColors.purple
+        visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 20)
+        
         createChart()
         configureConstraints()
     }
@@ -46,8 +50,8 @@ class HomeChartView: UIView {
         presentWeek.drawCirclesEnabled = false
         presentWeek.mode = .cubicBezier
         presentWeek.lineWidth = 2
-        presentWeek.setColor(WColors.foreground!)
-        presentWeek.fillColor = WColors.foreground!
+        presentWeek.setColor(.white)
+        presentWeek.fillColor = .white
         presentWeek.fillAlpha = 0.2
         presentWeek.drawFilledEnabled = true
         presentWeek.drawVerticalHighlightIndicatorEnabled = false
@@ -65,13 +69,13 @@ class HomeChartView: UIView {
         addSubview(chartView)
         
         chartView.rightAxis.enabled = false
-        chartView.leftAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
-        chartView.leftAxis.axisLineColor = WColors.purple!
-        chartView.leftAxis.labelTextColor = WColors.foreground!
+        chartView.leftAxis.gridColor = .white.withAlphaComponent(0.2)
+        chartView.leftAxis.axisLineColor = .white
+        chartView.leftAxis.labelTextColor = .white
         
-        chartView.xAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
-        chartView.xAxis.axisLineColor = WColors.purple!
-        chartView.xAxis.labelTextColor = WColors.foreground!
+        chartView.xAxis.gridColor = .white.withAlphaComponent(0.2)
+        chartView.xAxis.axisLineColor = .white
+        chartView.xAxis.labelTextColor = .white
         chartView.xAxis.labelFont = .boldSystemFont(ofSize: 10)
         
         chartView.xAxis.labelPosition = .bottom
