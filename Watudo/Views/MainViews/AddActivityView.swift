@@ -70,8 +70,8 @@ class AddActivityView: UIView {
         NSLayoutConstraint.activate([
             doneButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            doneButton.widthAnchor.constraint(equalToConstant: 44),
             doneButton.heightAnchor.constraint(equalToConstant: 44),
+            doneButton.widthAnchor.constraint(equalToConstant: 44),
             
             titleLabel.topAnchor.constraint(equalTo: doneButton.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -80,31 +80,31 @@ class AddActivityView: UIView {
             
             visualEffect.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             visualEffect.centerXAnchor.constraint(equalTo: centerXAnchor),
-            visualEffect.widthAnchor.constraint(equalToConstant: 330),
             visualEffect.heightAnchor.constraint(equalToConstant: 118),
+            visualEffect.widthAnchor.constraint(equalToConstant: 330),
             
             nameTextField.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 10),
             nameTextField.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 20),
             nameTextField.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -20),
             nameTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            divider.centerYAnchor.constraint(equalTo: visualEffect.centerYAnchor),
             divider.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 30),
             divider.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -30),
+            divider.centerYAnchor.constraint(equalTo: visualEffect.centerYAnchor),
             divider.heightAnchor.constraint(equalToConstant: 1),
             
-            goalTextField.bottomAnchor.constraint(equalTo: visualEffect.bottomAnchor, constant: -10),
             goalTextField.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 20),
             goalTextField.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -20),
+            goalTextField.bottomAnchor.constraint(equalTo: visualEffect.bottomAnchor, constant: -10),
             goalTextField.heightAnchor.constraint(equalToConstant: 44),
             
             visualEffectSmall.topAnchor.constraint(equalTo: visualEffect.bottomAnchor),
             visualEffectSmall.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor),
-            visualEffectSmall.widthAnchor.constraint(equalToConstant: 250),
             visualEffectSmall.heightAnchor.constraint(equalToConstant: 64),
+            visualEffectSmall.widthAnchor.constraint(equalToConstant: 250),
             
-            paidSwitch.centerYAnchor.constraint(equalTo: moneyPerHourTextField.centerYAnchor),
             paidSwitch.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor),
+            paidSwitch.centerYAnchor.constraint(equalTo: moneyPerHourTextField.centerYAnchor),
             
             moneyPerHourTextField.topAnchor.constraint(equalTo: visualEffectSmall.topAnchor, constant: 10),
             moneyPerHourTextField.leadingAnchor.constraint(equalTo: visualEffectSmall.leadingAnchor, constant: 10),
@@ -113,8 +113,8 @@ class AddActivityView: UIView {
             
             categoryPicker.topAnchor.constraint(equalTo: moneyPerHourTextField.bottomAnchor, constant: 10),
             categoryPicker.centerXAnchor.constraint(equalTo: centerXAnchor),
+            categoryPicker.heightAnchor.constraint(equalToConstant: 150),
             categoryPicker.widthAnchor.constraint(equalToConstant: 330),
-            categoryPicker.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
     

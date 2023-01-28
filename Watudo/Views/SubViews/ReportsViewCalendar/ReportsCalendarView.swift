@@ -24,8 +24,7 @@ class ReportsCalendarView: UIView {
     
     func configure() {
         addSubviews([visualEffect, myCalendar])
-        visualEffect.translatesAutoresizingMaskIntoConstraints = false
-        myCalendar.translatesAutoresizingMaskIntoConstraints = false
+        
         myCalendar.backgroundColor = .clear
         myCalendar.addCornerRadius(radius: 30)
         myCalendar.minimumLineSpacing = 0
@@ -33,8 +32,12 @@ class ReportsCalendarView: UIView {
         myCalendar.isPagingEnabled = true
         myCalendar.showsHorizontalScrollIndicator = false
         
-        myCalendar.register(ReportsCalendarHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ReportsCalendarHeader.reuseID)
-        myCalendar.register(ReportsCalendarCell.self, forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
+        myCalendar.register(ReportsCalendarHeader.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: ReportsCalendarHeader.reuseID)
+        
+        myCalendar.register(ReportsCalendarCell.self,
+                            forCellWithReuseIdentifier: ReportsCalendarCell.reuseID)
 
         myCalendar.allowsRangedSelection = true
         myCalendar.allowsSelection = true

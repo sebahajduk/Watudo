@@ -78,19 +78,19 @@ class ReportsView: UIView {
             
             myCalendarView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             myCalendarView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            myCalendarView.widthAnchor.constraint(equalToConstant: 350),
             myCalendarView.heightAnchor.constraint(equalToConstant: 300),
+            myCalendarView.widthAnchor.constraint(equalToConstant: 350),
             
             reportsChartView.topAnchor.constraint(equalTo: myCalendarView.bottomAnchor, constant: 20),
             reportsChartView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            reportsChartView.widthAnchor.constraint(equalToConstant: 350),
             reportsChartView.heightAnchor.constraint(equalToConstant: 300),
+            reportsChartView.widthAnchor.constraint(equalToConstant: 350),
             
             tableView.topAnchor.constraint(equalTo: reportsChartView.bottomAnchor, constant: 40),
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            tableView.widthAnchor.constraint(equalTo: widthAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableHeight),
-            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            tableView.widthAnchor.constraint(equalTo: widthAnchor),
         ])
     }
     

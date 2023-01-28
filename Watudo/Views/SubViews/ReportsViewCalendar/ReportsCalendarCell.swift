@@ -96,8 +96,8 @@ class ReportsCalendarCell: JTACDayCell {
             
             dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             dateLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            dateLabel.heightAnchor.constraint(equalToConstant: 20),
             dateLabel.widthAnchor.constraint(equalToConstant: 40),
-            dateLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }

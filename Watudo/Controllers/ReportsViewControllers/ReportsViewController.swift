@@ -28,9 +28,7 @@ class ReportsViewController: UIViewController  {
     private func configure() {
         let reportsView = ReportsView(calendarView: myCalendarVC.view)
         reportsView.reportsChartView.chartView.delegate = self
-        view.addSubview(reportsView)
-        reportsView.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.addSubviews([reportsView])
         
         NSLayoutConstraint.activate([
             reportsView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -41,14 +39,8 @@ class ReportsViewController: UIViewController  {
     }
 }
 
-
-
 extension ReportsViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
-}
-
-extension ReportsViewController: UIScrollViewDelegate {
-    
 }

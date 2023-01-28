@@ -20,8 +20,6 @@ class WelcomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         
         configureWelcomeView()
-        
-        
     }
     
     @objc private func buttonTapped() {

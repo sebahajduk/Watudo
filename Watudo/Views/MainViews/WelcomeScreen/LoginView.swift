@@ -167,23 +167,23 @@ extension LoginView {
             greetingDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             greetingDescriptionLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            visualEffectView.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffectView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 160),
+            visualEffectView.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffectView.heightAnchor.constraint(equalToConstant: 105),
             visualEffectView.widthAnchor.constraint(equalToConstant: 330),
             
             forgetPasswordButton.topAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: 10),
             forgetPasswordButton.trailingAnchor.constraint(equalTo: visualEffectView.trailingAnchor),
-            forgetPasswordButton.widthAnchor.constraint(equalToConstant: 100),
             forgetPasswordButton.heightAnchor.constraint(equalToConstant: 20),
+            forgetPasswordButton.widthAnchor.constraint(equalToConstant: 100),
             
             loginButton.topAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: 50),
             loginButton.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 44),
             loginButton.widthAnchor.constraint(equalToConstant: 290),
             
-            emailTextField.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             emailTextField.topAnchor.constraint(equalTo: visualEffectView.topAnchor, constant: 5),
+            emailTextField.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
             emailTextField.widthAnchor.constraint(equalToConstant: 290),
             
@@ -192,8 +192,8 @@ extension LoginView {
             emailImage.heightAnchor.constraint(equalToConstant: 20),
             emailImage.widthAnchor.constraint(equalToConstant: 20),
 
-            passwordTextField.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             passwordTextField.bottomAnchor.constraint(equalTo: visualEffectView.bottomAnchor, constant: -5),
+            passwordTextField.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
             passwordTextField.widthAnchor.constraint(equalToConstant: 290),
             
@@ -208,29 +208,29 @@ extension LoginView {
             divider.widthAnchor.constraint(equalToConstant: 270),
             
             firstTimeHereLabel.topAnchor.constraint(equalTo: appleButton.bottomAnchor, constant: 50),
-            firstTimeHereLabel.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             firstTimeHereLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             firstTimeHereLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            firstTimeHereLabel.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
             
             signInDivider.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
-            signInDivider.widthAnchor.constraint(equalToConstant: 280),
             signInDivider.centerXAnchor.constraint(equalTo: centerXAnchor),
             signInDivider.heightAnchor.constraint(equalToConstant: 1),
+            signInDivider.widthAnchor.constraint(equalToConstant: 280),
             
             appleButton.topAnchor.constraint(equalTo: signInDivider.bottomAnchor, constant: 50),
             appleButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            appleButton.widthAnchor.constraint(equalToConstant: 80),
             appleButton.heightAnchor.constraint(equalToConstant: 50),
+            appleButton.widthAnchor.constraint(equalToConstant: 80),
             
             facebookButton.topAnchor.constraint(equalTo: signInDivider.bottomAnchor, constant: 50),
             facebookButton.trailingAnchor.constraint(equalTo: appleButton.leadingAnchor, constant: -10),
-            facebookButton.widthAnchor.constraint(equalToConstant: 80),
             facebookButton.heightAnchor.constraint(equalToConstant: 50),
+            facebookButton.widthAnchor.constraint(equalToConstant: 80),
             
             googleButton.topAnchor.constraint(equalTo: signInDivider.bottomAnchor, constant: 50),
             googleButton.leadingAnchor.constraint(equalTo: appleButton.trailingAnchor, constant: 10),
-            googleButton.widthAnchor.constraint(equalToConstant: 80),
             googleButton.heightAnchor.constraint(equalToConstant: 50),
+            googleButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
 }

@@ -17,7 +17,6 @@ class ActivityCell: UITableViewCell {
     let time = UILabel()
     let playStopImage = UIImageView(image: UIImage(systemName: "play.fill"))
     
-    
     func set(activityName: String) {
         backgroundColor = .clear
         configure()
@@ -41,8 +40,8 @@ class ActivityCell: UITableViewCell {
         }
         
         NSLayoutConstraint.activate([
-            visualEffect.centerYAnchor.constraint(equalTo: centerYAnchor),
             visualEffect.centerXAnchor.constraint(equalTo: centerXAnchor),
+            visualEffect.centerYAnchor.constraint(equalTo: centerYAnchor),
             visualEffect.heightAnchor.constraint(equalToConstant: 65),
             visualEffect.widthAnchor.constraint(equalToConstant: 330),
 
@@ -56,8 +55,8 @@ class ActivityCell: UITableViewCell {
             time.heightAnchor.constraint(equalToConstant: 20),
             time.widthAnchor.constraint(equalToConstant: 100),
             
-            playStopImage.centerYAnchor.constraint(equalTo: visualEffect.centerYAnchor),
             playStopImage.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -30),
+            playStopImage.centerYAnchor.constraint(equalTo: visualEffect.centerYAnchor),
             playStopImage.widthAnchor.constraint(equalToConstant: 15),
             playStopImage.heightAnchor.constraint(equalToConstant: 20)
         ])

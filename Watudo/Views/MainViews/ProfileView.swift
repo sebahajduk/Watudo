@@ -99,8 +99,8 @@ class ProfileView: UIView {
         NSLayoutConstraint.activate([
             profileImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             profileImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            profileImage.widthAnchor.constraint(equalToConstant: 100),
             profileImage.heightAnchor.constraint(equalToConstant: 100),
+            profileImage.widthAnchor.constraint(equalToConstant: 100),
             
             nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -109,59 +109,59 @@ class ProfileView: UIView {
             
             appearenceModeLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 100),
             appearenceModeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            appearenceModeLabel.widthAnchor.constraint(equalToConstant: 200),
             appearenceModeLabel.heightAnchor.constraint(equalToConstant: 30),
+            appearenceModeLabel.widthAnchor.constraint(equalToConstant: 200),
             
-            appearenceModeSwitch.centerYAnchor.constraint(equalTo: appearenceModeLabel.centerYAnchor),
             appearenceModeSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            appearenceModeSwitch.centerYAnchor.constraint(equalTo: appearenceModeLabel.centerYAnchor),
             
             deleteAccount.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30),
             deleteAccount.centerXAnchor.constraint(equalTo: centerXAnchor),
-            deleteAccount.widthAnchor.constraint(equalToConstant: 290),
             deleteAccount.heightAnchor.constraint(equalToConstant: 44),
+            deleteAccount.widthAnchor.constraint(equalToConstant: 290),
             
             signOutButton.bottomAnchor.constraint(equalTo: deleteAccount.topAnchor, constant: -10),
             signOutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signOutButton.widthAnchor.constraint(equalToConstant: 290),
             signOutButton.heightAnchor.constraint(equalToConstant: 44),
+            signOutButton.widthAnchor.constraint(equalToConstant: 290),
             
             rateUsButton.bottomAnchor.constraint(equalTo: signOutButton.topAnchor, constant: -10),
             rateUsButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            rateUsButton.widthAnchor.constraint(equalToConstant: 290),
             rateUsButton.heightAnchor.constraint(equalToConstant: 44),
+            rateUsButton.widthAnchor.constraint(equalToConstant: 290),
             
             categoriesEditButton.bottomAnchor.constraint(equalTo: rateUsButton.topAnchor, constant: -10),
             categoriesEditButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            categoriesEditButton.widthAnchor.constraint(equalToConstant: 290),
             categoriesEditButton.heightAnchor.constraint(equalToConstant: 44),
+            categoriesEditButton.widthAnchor.constraint(equalToConstant: 290),
             
             timeZoneLabel.topAnchor.constraint(equalTo: appearenceModeLabel.bottomAnchor, constant: 15),
             timeZoneLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            timeZoneLabel.widthAnchor.constraint(equalToConstant: 200),
             timeZoneLabel.heightAnchor.constraint(equalToConstant: 30),
+            timeZoneLabel.widthAnchor.constraint(equalToConstant: 200),
             
             timeZoneTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             timeZoneTextField.centerYAnchor.constraint(equalTo: timeZoneLabel.centerYAnchor),
-            timeZoneTextField.widthAnchor.constraint(equalToConstant: 50),
             timeZoneTextField.heightAnchor.constraint(equalToConstant: 30),
+            timeZoneTextField.widthAnchor.constraint(equalToConstant: 50),
             
             notificationsLabel.topAnchor.constraint(equalTo: timeZoneLabel.bottomAnchor, constant: 15),
             notificationsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            notificationsLabel.widthAnchor.constraint(equalToConstant: 200),
             notificationsLabel.heightAnchor.constraint(equalToConstant: 30),
+            notificationsLabel.widthAnchor.constraint(equalToConstant: 200),
             
             notificationsSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             notificationsSwitch.centerYAnchor.constraint(equalTo: notificationsLabel.centerYAnchor),
             
             notificationsIntervalLabel.topAnchor.constraint(equalTo: notificationsLabel.bottomAnchor, constant: 15),
             notificationsIntervalLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            notificationsIntervalLabel.widthAnchor.constraint(equalToConstant: 200),
             notificationsIntervalLabel.heightAnchor.constraint(equalToConstant: 30),
+            notificationsIntervalLabel.widthAnchor.constraint(equalToConstant: 200),
             
             notificationsIntervalTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             notificationsIntervalTextField.centerYAnchor.constraint(equalTo: notificationsIntervalLabel.centerYAnchor),
+            notificationsIntervalTextField.heightAnchor.constraint(equalToConstant: 30),
             notificationsIntervalTextField.widthAnchor.constraint(equalToConstant: 100),
-            notificationsIntervalTextField.heightAnchor.constraint(equalToConstant: 30)
         ])
         
     }

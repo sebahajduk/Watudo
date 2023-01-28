@@ -24,7 +24,6 @@ class WButton: UIButton {
         
         setTitle(title, for: .normal)
         
-        
         switch role {
         case .primary:
             setTitleColor(WColors.background, for: .normal)

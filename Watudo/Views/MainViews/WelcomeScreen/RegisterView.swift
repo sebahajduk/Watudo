@@ -124,16 +124,16 @@ extension RegisterView {
             
             greetingDescriptionLabel.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 10),
             greetingDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            greetingDescriptionLabel.widthAnchor.constraint(equalToConstant: 290),
             greetingDescriptionLabel.heightAnchor.constraint(equalToConstant: 60),
+            greetingDescriptionLabel.widthAnchor.constraint(equalToConstant: 290),
             
-            materialBackground.centerXAnchor.constraint(equalTo: centerXAnchor),
             materialBackground.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 160),
+            materialBackground.centerXAnchor.constraint(equalTo: centerXAnchor),
             materialBackground.heightAnchor.constraint(equalToConstant: 189),
             materialBackground.widthAnchor.constraint(equalToConstant: 330),
             
-            nicknameTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             nicknameTextField.topAnchor.constraint(equalTo: materialBackground.topAnchor, constant: 5),
+            nicknameTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             nicknameTextField.heightAnchor.constraint(equalToConstant: 44),
             nicknameTextField.widthAnchor.constraint(equalToConstant: 290),
             
@@ -142,12 +142,12 @@ extension RegisterView {
             nicknameImage.heightAnchor.constraint(equalToConstant: 20),
             nicknameImage.widthAnchor.constraint(equalToConstant: 20),
             
-            firstDivider.widthAnchor.constraint(equalToConstant: 270),
             firstDivider.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor),
             firstDivider.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
+            firstDivider.widthAnchor.constraint(equalToConstant: 270),
             
-            emailTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             emailTextField.topAnchor.constraint(equalTo: firstDivider.bottomAnchor),
+            emailTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
             emailTextField.widthAnchor.constraint(equalToConstant: 290),
             
@@ -156,12 +156,12 @@ extension RegisterView {
             emailImage.heightAnchor.constraint(equalToConstant: 20),
             emailImage.widthAnchor.constraint(equalToConstant: 20),
             
-            secondDivider.widthAnchor.constraint(equalToConstant: 270),
             secondDivider.topAnchor.constraint(equalTo: emailTextField.bottomAnchor),
             secondDivider.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
+            secondDivider.widthAnchor.constraint(equalToConstant: 270),
             
-            passwordTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             passwordTextField.topAnchor.constraint(equalTo: secondDivider.bottomAnchor),
+            passwordTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
             passwordTextField.widthAnchor.constraint(equalToConstant: 290),
             
@@ -174,8 +174,8 @@ extension RegisterView {
             thirdDivider.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
             thirdDivider.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             
-            repeatPasswordTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             repeatPasswordTextField.bottomAnchor.constraint(equalTo: materialBackground.bottomAnchor, constant: -6),
+            repeatPasswordTextField.centerXAnchor.constraint(equalTo: materialBackground.centerXAnchor),
             repeatPasswordTextField.heightAnchor.constraint(equalToConstant: 44),
             repeatPasswordTextField.widthAnchor.constraint(equalToConstant: 290),
             

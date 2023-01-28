@@ -20,8 +20,7 @@ class ReportsCalViewController: UIViewController {
         calendar.calendarDelegate = self
         calendar.calendarDataSource = self
         
-        view.addSubview(myCalendarView)
-        myCalendarView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubviews([myCalendarView])
         
         NSLayoutConstraint.activate([
             myCalendarView.topAnchor.constraint(equalTo: view.topAnchor),

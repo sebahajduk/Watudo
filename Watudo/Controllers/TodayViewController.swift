@@ -15,7 +15,6 @@ class TodayViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = WColors.background!
         
-        
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
             todayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
@@ -24,16 +23,13 @@ class TodayViewController: UIViewController {
             todayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        catchData()
+        fetchQuote()
     }
 
-    func catchData() {
+    func fetchQuote() {
         Task {
             let quoteOfTheDay = await QuoteApiManager.makeRequest()
-            todayView.quoteLabel.text = quoteOfTheDay?.q
-            UIView.animate(withDuration: 0.3, delay: 0) { [unowned self] in
-                todayView.heightOfQuoteLabel = CGFloat(todayView.quoteLabel.calculateMaxLines() * 15)
-            }
+            todayView.setQuote(quote: quoteOfTheDay?.q, author: quoteOfTheDay?.a)
         }
     }
     

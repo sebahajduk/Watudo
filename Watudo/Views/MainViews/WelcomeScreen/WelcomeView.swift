@@ -17,9 +17,6 @@ class WelcomeView: UIView {
     let registerView = RegisterView()
     let scrollView = UIScrollView()
     
-    private var lastContentOffset: CGFloat = 0
-    private var isShipZoomed = false
-    
     private var dotsAnimationBackground: LottieAnimationView?
     
     override init(frame: CGRect) {
@@ -31,11 +28,9 @@ class WelcomeView: UIView {
         dotsAnimationBackground!.contentMode = .scaleAspectFit
         dotsAnimationBackground!.loopMode = .loop
         dotsAnimationBackground!.animationSpeed = 0.5
-        dotsAnimationBackground!.translatesAutoresizingMaskIntoConstraints = false
         dotsAnimationBackground?.alpha = 0.1
-        addSubview(dotsAnimationBackground!)
         dotsAnimationBackground!.play()
-        
+        addSubviews([dotsAnimationBackground!])
         configure()
     }
     
@@ -73,14 +68,14 @@ class WelcomeView: UIView {
             
             loginView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 140),
             loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            loginView.widthAnchor.constraint(equalTo: widthAnchor),
             loginView.heightAnchor.constraint(equalToConstant: 700),
+            loginView.widthAnchor.constraint(equalTo: widthAnchor),
             
             registerView.topAnchor.constraint(equalTo: loginView.bottomAnchor),
             registerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            registerView.widthAnchor.constraint(equalTo: widthAnchor),
+            registerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50),
             registerView.heightAnchor.constraint(equalToConstant: 700),
-            registerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50)
+            registerView.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
     
@@ -91,9 +86,6 @@ class WelcomeView: UIView {
 }
 
 extension WelcomeView: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastContentOffset = scrollView.contentOffset.y
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y <= 100 {

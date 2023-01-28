@@ -82,9 +82,9 @@ class ReportsChartView: UIView {
     private func configureConstraints() {
         NSLayoutConstraint.activate([
             visualEffect.topAnchor.constraint(equalTo: topAnchor),
-            visualEffect.bottomAnchor.constraint(equalTo: bottomAnchor),
             visualEffect.leadingAnchor.constraint(equalTo: leadingAnchor),
             visualEffect.trailingAnchor.constraint(equalTo: trailingAnchor),
+            visualEffect.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             chartView.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 10),
             chartView.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 10),

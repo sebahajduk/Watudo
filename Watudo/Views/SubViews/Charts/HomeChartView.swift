@@ -34,11 +34,19 @@ class HomeChartView: UIView {
     
     private func configure() {
         addSubview(visualEffect)
-        
+        let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
         visualEffect.translatesAutoresizingMaskIntoConstraints = false
         
         visualEffect.backgroundColor = WColors.purple
-        visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 20)
+        
+        if isLightMode {
+            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 20)
+            visualEffect.backgroundColor = WColors.purple
+        } else {
+            visualEffect.addCornerRadius(radius: 20)
+            visualEffect.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+
+        }
         
         createChart()
         configureConstraints()
@@ -47,12 +55,18 @@ class HomeChartView: UIView {
     func setData() {
         let presentWeek = LineChartDataSet(entries: weekDays)
         
+        let gradientColors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.05).cgColor] as CFArray
+        let colorLocations: [CGFloat] = [1.0, 0.0]
+        let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
+
+        
         presentWeek.drawCirclesEnabled = false
         presentWeek.mode = .cubicBezier
         presentWeek.lineWidth = 2
         presentWeek.setColor(.white)
-        presentWeek.fillColor = .white
-        presentWeek.fillAlpha = 0.2
+        presentWeek.fill = LinearGradientFill(gradient: gradient!, angle: 90)
+        
+        presentWeek.fillAlpha = 0.4
         presentWeek.drawFilledEnabled = true
         presentWeek.drawVerticalHighlightIndicatorEnabled = false
         presentWeek.drawHorizontalHighlightIndicatorEnabled = false
@@ -90,9 +104,9 @@ class HomeChartView: UIView {
     private func configureConstraints() {
         NSLayoutConstraint.activate([
             visualEffect.topAnchor.constraint(equalTo: topAnchor),
-            visualEffect.bottomAnchor.constraint(equalTo: bottomAnchor),
             visualEffect.leadingAnchor.constraint(equalTo: leadingAnchor),
             visualEffect.trailingAnchor.constraint(equalTo: trailingAnchor),
+            visualEffect.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             chartView.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 10),
             chartView.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 10),
@@ -105,5 +119,32 @@ class HomeChartView: UIView {
 extension TodayView: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
+    }
+}
+
+extension HomeChartView {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        resetViewsForNewInterfaceStyle(previousTraitCollection)
+    }
+
+    func resetViewsForNewInterfaceStyle(_ previousTraitCollection: UITraitCollection?) {
+        switch previousTraitCollection?.userInterfaceStyle {
+            // Change from light mode to dark mode.
+        case .light:
+            visualEffect.addShadowToView(shadowColor: .clear, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.5, cornerRadius: 10)
+            visualEffect.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
+
+            // Change from dark mode to light mode.
+        case .dark:
+            visualEffect.addShadowToView(shadowColor: WColors.purple!, offset: CGSize(width: 0, height: 20), shadowRadius: 30, shadowOpacity: 0.7, cornerRadius: 10)
+            visualEffect.backgroundColor = WColors.purple
+
+
+        default:
+            // Do nothing, view shouldn't change.
+            print("We have no information about user interface style")
+        }
     }
 }
