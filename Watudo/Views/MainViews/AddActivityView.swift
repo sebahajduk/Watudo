@@ -13,7 +13,7 @@ class AddActivityView: UIView {
     
     let titleLabel = UILabel()
     
-    let visualEffect = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    let visualEffect = WVisualEffectView()
     let nameTextField = UITextField()
     let divider = DividerView()
     let goalTextField = UITextField()
@@ -22,7 +22,7 @@ class AddActivityView: UIView {
     
     let paidSwitch = UISwitch()
     
-    let visualEffectSmall = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    let visualEffectSmall = WVisualEffectView()
     let moneyPerHourTextField = UITextField()
     
     override init(frame: CGRect) {
@@ -43,9 +43,6 @@ class AddActivityView: UIView {
         titleLabel.text = "Add activity"
         titleLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
         titleLabel.textColor = WColors.purple
-        
-        categoryPicker.dataSource = self
-        categoryPicker.delegate = self
         
         moneyPerHourTextField.isEnabled = false
         moneyPerHourTextField.placeholder = "Paid?"
@@ -132,24 +129,6 @@ class AddActivityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension AddActivityView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "Category"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
-    }
 }
 
 @objc protocol AddActivityViewActionHandler {

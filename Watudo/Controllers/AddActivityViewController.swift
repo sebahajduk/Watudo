@@ -16,6 +16,10 @@ class AddActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
+        
+        addActivityView.categoryPicker.delegate = self
+        addActivityView.categoryPicker.dataSource = self
+        
         configure()
     }
     
@@ -34,12 +38,33 @@ class AddActivityViewController: UIViewController {
 
 extension AddActivityViewController: AddActivityViewActionHandler {
     func doneButtonTapped() {
-        let activity = Activity(name: addActivityView.nameTextField.text ?? "")
+        
+        let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
+        let activity = Activity(name: addActivityView.nameTextField.text ?? "", category: User().categories[pickerViewSelectedRow])
         self.delegate?.sendActivity(activity: activity)
         
         self.dismiss(animated: true)
     }
 }
+
+extension AddActivityViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return User().categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return User().categories[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30
+    }
+}
+
 protocol SendNewActivityDelegate {
     func sendActivity(activity: Activity)
 }

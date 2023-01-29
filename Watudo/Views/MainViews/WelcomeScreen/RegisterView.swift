@@ -16,7 +16,7 @@ class RegisterView: UIView, UITextFieldDelegate {
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
     let repeatPasswordTextField = UITextField()
-    let materialBackground = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    let materialBackground = WVisualEffectView()
     
     let firstDivider = DividerView()
     let secondDivider = DividerView()

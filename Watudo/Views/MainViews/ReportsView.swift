@@ -18,15 +18,15 @@ class ReportsView: UIView {
     let tableView = UITableView()
     
     let activities: [Activity] = [
-        Activity(name: "Coding"),
-        Activity(name: "Gaming"),
-        Activity(name: "Netflix"),
-        Activity(name: "House chores"),
-        Activity(name: "Coding"),
-        Activity(name: "Gaming"),
-        Activity(name: "Netflix"),
-        Activity(name: "House chores"),
-        Activity(name: "Coding")
+//        Activity(name: "Coding"),
+//        Activity(name: "Gaming"),
+//        Activity(name: "Netflix"),
+//        Activity(name: "House chores"),
+//        Activity(name: "Coding"),
+//        Activity(name: "Gaming"),
+//        Activity(name: "Netflix"),
+//        Activity(name: "House chores"),
+//        Activity(name: "Coding")
     ]
     
     var tableHeight: CGFloat = 225

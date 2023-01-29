@@ -14,7 +14,7 @@ class LoginView: UIView, UITextFieldDelegate {
     
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
-    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    let visualEffectView = WVisualEffectView()
     
     let emailImage = UIImageView(image: UIImage(systemName: "at"))
     let passwordImage = UIImageView(image: UIImage(systemName: "lock.fill"))

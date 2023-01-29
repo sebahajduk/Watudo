@@ -25,7 +25,9 @@ class TodayView: UIView {
     
     let tableView = UITableView()
     
-    var activities: [Activity] = [Activity(name: "Coding"), Activity(name: "Gaming")]
+    var activities: [Activity] = [
+//        Activity(name: "Coding"), Activity(name: "Gaming")
+    ]
     
     var heightOfQuoteLabel: CGFloat = 0
     
@@ -104,13 +106,13 @@ class TodayView: UIView {
     private func configureTableView() {
         addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseID)
         tableView.rowHeight = 75
         
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
+        tableView.sectionHeaderHeight = 30
+        
     }
     
     func configureConstraints() {
@@ -161,22 +163,6 @@ class TodayView: UIView {
 
 @objc protocol TodayViewActionHandler {
     func addActivityButtonTapped()
-}
-
-extension TodayView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
-        
-        cell.set(activityName: activities[indexPath.row].name)
-        
-        return cell
-    }
-    
-    
 }
 
 extension TodayView {

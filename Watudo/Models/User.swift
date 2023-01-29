@@ -6,3 +6,11 @@
 ////
 //
 //import Foundation
+
+class User {
+    let name: String = ""
+    let email = ""
+    
+    let categories: [Category] = [Category(name: "Coding"), Category(name: "Database")]
+    let activities: [Activity] = []
+}
