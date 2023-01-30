@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
     let welcomeView = WelcomeView()
     var currentlyLogged = false
     var backgroundGradient = CAGradientLayer()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         

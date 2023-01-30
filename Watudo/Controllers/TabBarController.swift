@@ -12,6 +12,8 @@ class TabBarController: UITabBarController {
     let uiTabBar = UITabBar()
     let tabBarAppearance = UITabBarAppearance()
     
+    let user = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.unselectedItemTintColor = WColors.background
@@ -32,10 +34,18 @@ class TabBarController: UITabBarController {
     }
     
     private func configureVCs() {
+        let todayVC = TodayViewController()
+        let reportsVC = ReportsViewController()
+        let profileVC = ProfileViewController()
+        
+        todayVC.setVC(user: user)
+        reportsVC.setVC(user: user)
+        profileVC.setVC(user: user)
+        
         viewControllers = [
-            configureTabBar(for: TodayViewController(), title: "Today", image: UIImage(systemName: "house.fill")!),
-            configureTabBar(for: ReportsViewController(), title: "Reports", image: UIImage(systemName: "chart.pie.fill")!),
-            configureTabBar(for: ProfileViewController(), title: "Profile", image: UIImage(systemName: "person.fill")!)
+            configureTabBar(for: todayVC, title: "Today", image: UIImage(systemName: "house.fill")!),
+            configureTabBar(for: reportsVC, title: "Reports", image: UIImage(systemName: "chart.pie.fill")!),
+            configureTabBar(for: profileVC, title: "Profile", image: UIImage(systemName: "person.fill")!)
         ]
     }
     

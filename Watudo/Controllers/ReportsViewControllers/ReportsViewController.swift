@@ -12,6 +12,8 @@ import Charts
 class ReportsViewController: UIViewController  {
     
     let myCalendarVC = ReportsCalViewController()
+    var user: User? = nil
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,6 +25,10 @@ class ReportsViewController: UIViewController  {
         view.backgroundColor = WColors.background
         
         configure()
+    }
+    
+    func setVC(user: User) {
+        self.user = user
     }
     
     private func configure() {

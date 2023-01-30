@@ -11,6 +11,8 @@ class TodayViewController: UIViewController {
 
     var todayView = TodayView()
     
+    var user: User?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background!
@@ -28,7 +30,11 @@ class TodayViewController: UIViewController {
         
         fetchQuote()
     }
-
+    
+    func setVC(user: User) {
+        self.user = user
+    }
+    
     func fetchQuote() {
         Task {
             let quoteOfTheDay = await QuoteApiManager.makeRequest()

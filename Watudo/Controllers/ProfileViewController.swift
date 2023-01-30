@@ -10,6 +10,8 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let profileView = ProfileView()
+    var user: User? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,5 +26,9 @@ class ProfileViewController: UIViewController {
                                                )
         ])
     }
-
+    
+    func setVC(user: User) {
+        self.user = user
+    }
+    
 }
