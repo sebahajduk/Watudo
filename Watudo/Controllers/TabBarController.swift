@@ -14,6 +14,8 @@ class TabBarController: UITabBarController {
     
     let user = User()
     
+    let window: UIWindow? = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.unselectedItemTintColor = WColors.background
@@ -29,8 +31,18 @@ class TabBarController: UITabBarController {
         tabBarAppearance.stackedLayoutAppearance.selected.iconColor = WColors.foreground!
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
-        
+        configureUserInterfaceStyle()
         configureVCs()
+    }
+    
+    private func configureUserInterfaceStyle() {
+        guard let window else { return }
+        
+        if Defaults.shared.isLightMode {
+            window.overrideUserInterfaceStyle = .light
+        } else {
+            window.overrideUserInterfaceStyle = .dark
+        }
     }
     
     private func configureVCs() {
@@ -38,9 +50,13 @@ class TabBarController: UITabBarController {
         let reportsVC = ReportsViewController()
         let profileVC = ProfileViewController()
         
+        user.name = "Watudo User"
+        
         todayVC.setVC(user: user)
         reportsVC.setVC(user: user)
         profileVC.setVC(user: user)
+        
+        
         
         viewControllers = [
             configureTabBar(for: todayVC, title: "Today", image: UIImage(systemName: "house.fill")!),

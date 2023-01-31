@@ -51,43 +51,50 @@ extension TodayViewController: TodayViewActionHandler {
         addActivityVC.sheetPresentationController?.detents = [.medium()]
         addActivityVC.delegate = self
         
+        guard let user else { return }
+        addActivityVC.setVC(user: user)
+        
         present(addActivityVC, animated: true)
     }
 }
 
 extension TodayViewController: SendNewActivityDelegate {
-    func sendActivity(activity: Activity) {
-        todayView.activities.append(activity)
+    func sendActivity(activity: Activity, category: Category) {
+        
+        guard let index = user?.categories.firstIndex(where: { $0 == category} ) else { return }
+        
+        user?.categories[index].activities.append(activity)
+        
         todayView.tableView.reloadData()
     }
 }
 
 extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todayView.activities.count
+        return user?.categories[section].activities.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        cell.set(activityName: todayView.activities[indexPath.row].name)
+        cell.set(activityName: user?.categories[indexPath.section].activities[indexPath.row].name ?? "")
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return User().categories[section].name
+        return user?.categories[section].name ?? ""
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return User().categories.count
+        return user?.categories.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = WColors.background
         let header = view as! UITableViewHeaderFooterView
         var content = header.defaultContentConfiguration()
-        content.text = User().categories[section].name
+        content.text = user?.categories[section].name ?? ""
         content.textProperties.color = WColors.green!
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content

@@ -10,7 +10,7 @@ import UIKit
 class ProfileView: UIView {
     
     let profileImage = UIImageView()
-    let nameLabel = WLabel(text: "Michael Myers", textAlignment: .center, size: 20, weight: .black)
+    let nameLabel = WLabel(text: "Unknown", textAlignment: .center, size: 20, weight: .black)
     
     let firstDivider = DividerView()
     
@@ -20,7 +20,7 @@ class ProfileView: UIView {
     let timeZoneLabel = WLabel(text: "Time zone", size: 15, weight: .black)
     let timeZoneTextField = UITextField()
     let timeZonePicker = UIPickerView()
-    let timeZoneOptions = ["12h","24h"]
+    let timeZoneOptions = ["AM/PM","GMT"]
     
     let secondDivider = DividerView()
     
@@ -143,7 +143,7 @@ class ProfileView: UIView {
             timeZoneTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             timeZoneTextField.centerYAnchor.constraint(equalTo: timeZoneLabel.centerYAnchor),
             timeZoneTextField.heightAnchor.constraint(equalToConstant: 30),
-            timeZoneTextField.widthAnchor.constraint(equalToConstant: 50),
+            timeZoneTextField.widthAnchor.constraint(equalToConstant: 100),
             
             notificationsLabel.topAnchor.constraint(equalTo: timeZoneLabel.bottomAnchor, constant: 15),
             notificationsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

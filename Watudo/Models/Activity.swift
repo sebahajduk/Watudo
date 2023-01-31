@@ -15,14 +15,14 @@ class Activity: Equatable {
     var isPaid: Bool = false
     var moneyPerHour: Double = 0
     
-    var category: Category?
+//    var category: Category?
     
     #warning("Remove 'timeSpent' from init.")
-    init(name: String, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0, timeSpent: Double = 0, category: Category) {
+    init(name: String, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0, timeSpent: Double = 0) {
         self.name = name
         self.dailyGoal = dailyGoal
         self.timeSpent = timeSpent
-        self.category = category
+//        self.category = category
     }
     
     static func == (lhs: Activity, rhs: Activity) -> Bool {

@@ -12,18 +12,17 @@ class ProfileViewController: UIViewController {
     let profileView = ProfileView()
     var user: User? = nil
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(profileView)
         profileView.translatesAutoresizingMaskIntoConstraints = false
+        profileView.nameLabel.text = user?.name ?? "Unknown"
         
         NSLayoutConstraint.activate([
             profileView.topAnchor.constraint(equalTo: view.topAnchor),
             profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor
-                                               )
+            profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -32,3 +31,5 @@ class ProfileViewController: UIViewController {
     }
     
 }
+
+

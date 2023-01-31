@@ -12,38 +12,28 @@ class ReportsView: UIView {
 
     let scrollView = UIScrollView()
     
-    var myCalendarView: UIView!
+    var myCalendarView = UIView() {
+        didSet {
+            configure()
+            print("Reloading views")
+        }
+    }
     let reportsChartView = ReportsChartView()
     
     let tableView = UITableView()
-    
-    let activities: [Activity] = [
-//        Activity(name: "Coding"),
-//        Activity(name: "Gaming"),
-//        Activity(name: "Netflix"),
-//        Activity(name: "House chores"),
-//        Activity(name: "Coding"),
-//        Activity(name: "Gaming"),
-//        Activity(name: "Netflix"),
-//        Activity(name: "House chores"),
-//        Activity(name: "Coding")
-    ]
     
     var tableHeight: CGFloat = 225
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    convenience init(calendarView: UIView) {
-        self.init(frame: .zero)
-        self.myCalendarView = calendarView
         configure()
         
         tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseID)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+    }
+    
+    func setView(calendarView: UIView, tableHeight: CGFloat) {
+        self.myCalendarView = calendarView
+        self.tableHeight = tableHeight
     }
     
     required init?(coder: NSCoder) {
@@ -64,11 +54,11 @@ class ReportsView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         
-        tableHeight = CGFloat(activities.count * 75)
-        
         if tableHeight > 600 {
             tableHeight = 560
         }
+        
+        print(tableHeight)
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -96,18 +86,4 @@ class ReportsView: UIView {
     
 }
 
-extension ReportsView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
-        
-        cell.set(activityName: activities[indexPath.row].name)
-        
-        return cell
-    }
-    
-    
-}
+

@@ -5,12 +5,26 @@
 ////  Created by Sebastian Hajduk on 04/12/2022.
 ////
 //
-//import Foundation
+import UIKit
 
 class User {
-    let name: String = ""
+    var name: String = ""
     let email = ""
     
-    let categories: [Category] = [Category(name: "Coding"), Category(name: "Database")]
+    var categories: [Category] = []
     let activities: [Activity] = []
+    
+    init() {
+        let codingCategory = Category(name: "Coding")
+        let databaseCategory = Category(name: "Database")
+        
+        codingCategory.activities.append(Activity(name: "Watudo"))
+        databaseCategory.activities.append(Activity(name: "Firestore"))
+        
+        categories.append(codingCategory)
+        categories.append(databaseCategory)
+        
+        //UserDefaults
+        Defaults.shared.isLightMode = UIScreen.main.traitCollection.userInterfaceStyle == .light ? true : false
+    }
 }
