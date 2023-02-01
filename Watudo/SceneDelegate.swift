@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window?.makeKeyAndVisible()
         
-        
+        window?.overrideUserInterfaceStyle = Defaults.shared.isDarkMode ? .dark : .light
 
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
@@ -47,6 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight],animations: nil)
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

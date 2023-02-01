@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileView)
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.nameLabel.text = user?.name ?? "Unknown"
+        loadSwitchValue()
         
         NSLayoutConstraint.activate([
             profileView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -30,6 +31,32 @@ class ProfileViewController: UIViewController {
         self.user = user
     }
     
+    private func loadSwitchValue() {
+        if Defaults.shared.isDarkMode != nil {
+            profileView.appearenceModeSwitch.isOn = Defaults.shared.isDarkMode
+        } else {
+            profileView.appearenceModeSwitch.isOn = traitCollection.userInterfaceStyle == .dark ? true : false
+        }
+    }
 }
 
-
+extension ProfileViewController: ProfileViewActionHandler {
+    func switchChanged(mySwitch: UISwitch) {
+        let isDarkMode = mySwitch.isOn
+        let window: UIWindow? = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first
+        
+        guard let window else { return }
+        if isDarkMode {
+            window.overrideUserInterfaceStyle = .unspecified
+            window.overrideUserInterfaceStyle = .dark
+            window.layoutIfNeeded()
+            Defaults.shared.isDarkMode = true
+            
+        } else {
+            window.overrideUserInterfaceStyle = .unspecified
+            window.overrideUserInterfaceStyle = .light
+            window.layoutIfNeeded()
+            Defaults.shared.isDarkMode = false
+        }
+    }
+}

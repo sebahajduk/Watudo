@@ -16,12 +16,13 @@ class Defaults {
     
     let defaults = UserDefaults.standard
     
-    var isLightMode: Bool {
+    var isDarkMode: Bool {
         set {
-            defaults.setValue(newValue, forKey: "isLightMode")
+            defaults.setValue(newValue, forKey: "isDarkMode")
+            
         }
         get {
-            return defaults.bool(forKey: "isLightMode")
+            return defaults.bool(forKey: "isDarkMode")
         }
     }
     

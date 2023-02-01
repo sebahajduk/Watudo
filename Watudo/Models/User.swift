@@ -24,7 +24,5 @@ class User {
         categories.append(codingCategory)
         categories.append(databaseCategory)
         
-        //UserDefaults
-        Defaults.shared.isLightMode = UIScreen.main.traitCollection.userInterfaceStyle == .light ? true : false
     }
 }

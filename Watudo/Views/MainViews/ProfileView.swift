@@ -85,6 +85,9 @@ class ProfileView: UIView {
         notificationsIntervalTextField.inputView = notificationsIntervalPicker
         notificationsIntervalTextField.placeholder = "30 min"
         notificationsIntervalTextField.textAlignment = .right
+        
+        appearenceModeSwitch.addTarget(nil, action: #selector(ProfileViewActionHandler.switchChanged), for: .valueChanged)
+        
     }
     
     private func configureButtons() {
@@ -203,4 +206,8 @@ extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
             notificationsIntervalTextField.resignFirstResponder()
         }
     }
+}
+
+@objc protocol ProfileViewActionHandler {
+    func switchChanged(mySwitch: UISwitch)
 }
