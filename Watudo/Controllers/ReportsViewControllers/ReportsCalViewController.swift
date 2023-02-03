@@ -9,16 +9,27 @@ import UIKit
 import JTAppleCalendar
 
 class ReportsCalViewController: UIViewController {
-
+    
+    var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }
+    
     let myCalendarView = ReportsCalendarView()
     var calendar: JTACMonthView!
     
+    var calendarDataSource: [String:[Activity]] = [:]
+    var selectedDates: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         calendar = myCalendarView.myCalendar
         calendar.calendarDelegate = self
         calendar.calendarDataSource = self
+        
+        populateDataSource()
         
         view.addSubviews([myCalendarView])
         
@@ -36,11 +47,16 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     //MARK: JTACMonthViewDelegate
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
-        
+        selectedDates.append(formatter.string(from: cellState.date))
+        print(selectedDates)
     }
     
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
+        
+        guard let index = selectedDates.firstIndex(where: { $0 == formatter.string(from: cellState.date)}) else { return }
+        
+        selectedDates.remove(at: index)
     }
     
     func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
@@ -61,10 +77,8 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     
     //MARK: JTACMonthViewDataSource
     func configureCalendar(_ calendar: JTAppleCalendar.JTACMonthView) -> JTAppleCalendar.ConfigurationParameters {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
         
-        let startDate = formatter.date(from: "2021 01 01")!
+        let startDate = formatter.date(from: "2021-01-01")!
         
         var dateComponent = DateComponents()
         dateComponent.month = 3
@@ -84,6 +98,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
         cell.set(forDate: cellState.text)
         handleCellSelected(cell: cell, cellState: cellState)
         handleCellTextColor(cell: cell, cellState: cellState)
+        handleCellEvents(cell: cell, cellState: cellState)
     }
     
     func handleCellTextColor(cell: ReportsCalendarCell, cellState: CellState) {
@@ -108,6 +123,30 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
         } else {
             cell.cellSelected = false
         }
+    }
+    
+    func handleCellEvents(cell: ReportsCalendarCell, cellState: CellState) {
+        let dataString = formatter.string(from: cellState.date)
+        
+        if calendarDataSource[dataString] == nil {
+            cell.dotView.isHidden = true
+        } else {
+            cell.dotView.isHidden = false
+        }
+    }
+    
+    func populateDataSource() {
+        // TODO: Here you should download data from a server
+        
+        calendarDataSource = [
+            "2023-02-22":[Activity(name: "YesterdayCoding")],
+            "2023-02-14":[Activity(name: "YesterdayCoding")],
+            "2023-02-21":[Activity(name: "YesterdayCoding")],
+            "2023-02-15":[Activity(name: "YesterdayCoding")]
+        ]
+        
+        // reloading calendar after downloading data
+        calendar.reloadData()
     }
     
     // Configuring calendar header.

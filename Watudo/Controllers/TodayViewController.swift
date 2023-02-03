@@ -78,7 +78,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
         cell.set(activityName: user?.categories[indexPath.section].activities[indexPath.row].name ?? "")
-        
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -98,5 +98,9 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         content.textProperties.color = WColors.green!
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

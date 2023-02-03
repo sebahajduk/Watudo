@@ -23,6 +23,5 @@ class User {
         
         categories.append(codingCategory)
         categories.append(databaseCategory)
-        
     }
 }

@@ -13,6 +13,8 @@ class ReportsCalendarCell: JTACDayCell {
     private let circle = WVisualEffectView()
     private let dateLabel = UILabel()
     private var isLightMode: Bool!
+    
+    let dotView = WVisualEffectView(cornerRadius: 3)
 
     var cellSelected: Bool = false {
         didSet {
@@ -76,10 +78,12 @@ class ReportsCalendarCell: JTACDayCell {
     }
     
     private func configure() {
-        addSubviews([circle, dateLabel])
+        addSubviews([circle, dateLabel, dotView])
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         dateLabel.textAlignment = .center
+        
+        dotView.backgroundColor = WColors.green
         
         circle.translatesAutoresizingMaskIntoConstraints = false
         circle.addCornerRadius(radius: 17.5)
@@ -93,6 +97,11 @@ class ReportsCalendarCell: JTACDayCell {
             circle.centerYAnchor.constraint(equalTo: centerYAnchor),
             circle.heightAnchor.constraint(equalToConstant: 35),
             circle.widthAnchor.constraint(equalToConstant: 35),
+            
+            dotView.centerXAnchor.constraint(equalTo: circle.centerXAnchor, constant: 15),
+            dotView.centerYAnchor.constraint(equalTo: circle.centerYAnchor, constant: -15),
+            dotView.heightAnchor.constraint(equalToConstant: 6),
+            dotView.widthAnchor.constraint(equalToConstant: 6),
             
             dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             dateLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),

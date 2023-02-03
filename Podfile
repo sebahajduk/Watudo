@@ -14,5 +14,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'Charts'
 pod 'JTAppleCalendar'
 pod 'Alamofire'
+pod 'FirebaseAuth'
+pod 'FirebaseFirestore'
 
 end
