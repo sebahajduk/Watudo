@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
     let uiTabBar = UITabBar()
     let tabBarAppearance = UITabBarAppearance()
     
-    let user = User()
+    let user = LocalUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()

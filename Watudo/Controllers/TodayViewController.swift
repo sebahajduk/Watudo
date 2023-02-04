@@ -11,7 +11,7 @@ class TodayViewController: UIViewController {
 
     var todayView = TodayView()
     
-    var user: User?
+    var user: LocalUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class TodayViewController: UIViewController {
         fetchQuote()
     }
     
-    func setVC(user: User) {
+    func setVC(user: LocalUser) {
         self.user = user
     }
     

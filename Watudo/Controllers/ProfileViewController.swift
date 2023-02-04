@@ -10,7 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let profileView = ProfileView()
-    var user: User? = nil
+    var user: LocalUser? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
         ])
     }
     
-    func setVC(user: User) {
+    func setVC(user: LocalUser) {
         self.user = user
     }
     
@@ -41,6 +41,15 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewActionHandler {
+    func signOutButtonTapped(sender: UIButton) {
+        do {
+            try FirebaseUserManager.shared.signOut()
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeViewController())
+        } catch {
+            print("There was an error signing out.")
+        }
+    }
+    
     func switchChanged(mySwitch: UISwitch) {
         let isDarkMode = mySwitch.isOn
         let window: UIWindow? = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first

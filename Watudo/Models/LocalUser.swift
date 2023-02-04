@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class User {
+class LocalUser {
     var name: String = ""
     let email = ""
     

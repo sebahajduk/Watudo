@@ -12,7 +12,7 @@ import Charts
 class ReportsViewController: UIViewController  {
     
     let myCalendarVC = ReportsCalViewController()
-    var user: User?
+    var user: LocalUser?
     let reportsView = ReportsView()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +29,7 @@ class ReportsViewController: UIViewController  {
         configure()
     }
     
-    func setVC(user: User) {
+    func setVC(user: LocalUser) {
         self.user = user
     }
     

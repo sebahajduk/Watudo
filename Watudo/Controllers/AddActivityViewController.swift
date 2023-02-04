@@ -13,7 +13,7 @@ class AddActivityViewController: UIViewController {
     
     var delegate: SendNewActivityDelegate? = nil
     
-    var user: User?
+    var user: LocalUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class AddActivityViewController: UIViewController {
         configure()
     }
     
-    func setVC(user: User) {
+    func setVC(user: LocalUser) {
         self.user = user
     }
 

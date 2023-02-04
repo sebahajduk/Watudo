@@ -40,31 +40,50 @@ class WelcomeViewController: UIViewController {
 
 // Buttons tap action handlers
 extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandler {
+      
     // LoginView
     func loginButtonTapped(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+        guard let email = welcomeView.loginView.emailTextField.text else { return }
+        guard let password = welcomeView.loginView.passwordTextField.text else { return }
+        
+        FirebaseUserManager.shared.signIn(email: email, password: password) { result in
+            switch result {
+            case .success:
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+            case .failure(let failure):
+                print("There was an error: \(failure.localizedDescription)")
+            }
+        }
     }
     
     func signInByApple(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
-        
     }
     
     func signInByGoogle(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
-        
     }
     
     func signInByFacebook(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
-        
     }
     
     // RegisterView
     func createAccount(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
+        guard let email = welcomeView.registerView.emailTextField.text else { return }
+        guard let password = welcomeView.registerView.passwordTextField.text else { return }
+        
+        FirebaseUserManager.shared.createAccount(email: email, password: password) { result in
+            switch result {
+            case .success:
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+            case .failure(let failure):
+                print("There was an error creating user: \(failure.localizedDescription)")
+            }
+        }
     }
 }

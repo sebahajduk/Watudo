@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		602E1D42293CA8CD00570249 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D41293CA8CD00570249 /* User.swift */; };
+		602E1D42293CA8CD00570249 /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D41293CA8CD00570249 /* LocalUser.swift */; };
 		602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D43293CA8EF00570249 /* RegisterView.swift */; };
 		602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36B2939676A000A99C8 /* AppDelegate.swift */; };
 		602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36D2939676A000A99C8 /* SceneDelegate.swift */; };
@@ -50,12 +50,12 @@
 		60EE479A296DCF5100DFDC37 /* ReportsCalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EE4799296DCF5100DFDC37 /* ReportsCalendarHeader.swift */; };
 		60EE479D296E163E00DFDC37 /* WVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EE479C296E163E00DFDC37 /* WVisualEffectView.swift */; };
 		60EE479F296E187E00DFDC37 /* ReportsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EE479E296E187E00DFDC37 /* ReportsCalendarView.swift */; };
-		60EFA5012986C50000586AB9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFA5002986C50000586AB9 /* UserManager.swift */; };
+		60EFA5012986C50000586AB9 /* FirebaseUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFA5002986C50000586AB9 /* FirebaseUserManager.swift */; };
 		E6D37E9DE99520690B656D20 /* Pods_Watudo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		602E1D41293CA8CD00570249 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		602E1D41293CA8CD00570249 /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		602E1D43293CA8EF00570249 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		602EB3682939676A000A99C8 /* Watudo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watudo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602EB36B2939676A000A99C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		60EE4799296DCF5100DFDC37 /* ReportsCalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalendarHeader.swift; sourceTree = "<group>"; };
 		60EE479C296E163E00DFDC37 /* WVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WVisualEffectView.swift; sourceTree = "<group>"; };
 		60EE479E296E187E00DFDC37 /* ReportsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalendarView.swift; sourceTree = "<group>"; };
-		60EFA5002986C50000586AB9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		60EFA5002986C50000586AB9 /* FirebaseUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserManager.swift; sourceTree = "<group>"; };
 		62FB0311AF5AA41099C33795 /* Pods-Watudo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.release.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.release.xcconfig"; sourceTree = "<group>"; };
 		9D092CCFB5BA1C7D906E1028 /* Pods_Watudo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watudo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73560A060775C724C2B5E49 /* Pods-Watudo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watudo.debug.xcconfig"; path = "Target Support Files/Pods-Watudo/Pods-Watudo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				60EA77702982F7C1000AACA9 /* Managers */,
 				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
-				602E1D41293CA8CD00570249 /* User.swift */,
+				602E1D41293CA8CD00570249 /* LocalUser.swift */,
 				60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */,
 				60A2D89D29649C270082338B /* Activity.swift */,
 				603E470E2965FC8A00B0589E /* Category.swift */,
@@ -292,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
-				60EFA5002986C50000586AB9 /* UserManager.swift */,
+				60EFA5002986C50000586AB9 /* FirebaseUserManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -415,7 +415,8 @@
 /* Begin PBXShellScriptBuildPhase section */
 		A08748D4CC980A35F8B38F8A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -432,12 +433,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		AF39970AC70A8AD5A65EC7A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -449,7 +450,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Watudo/Pods-Watudo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Watudo/Pods-Watudo-frameworks.sh\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -477,7 +478,7 @@
 				60EE479F296E187E00DFDC37 /* ReportsCalendarView.swift in Sources */,
 				608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */,
 				608E91A1295108810072FE02 /* TodayView.swift in Sources */,
-				60EFA5012986C50000586AB9 /* UserManager.swift in Sources */,
+				60EFA5012986C50000586AB9 /* FirebaseUserManager.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
 				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
 				608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */,
@@ -493,7 +494,7 @@
 				6031D55F296361440019D399 /* HomeChartView.swift in Sources */,
 				60404F802989A27D007415CC /* Defaults.swift in Sources */,
 				602EB36E2939676A000A99C8 /* SceneDelegate.swift in Sources */,
-				602E1D42293CA8CD00570249 /* User.swift in Sources */,
+				602E1D42293CA8CD00570249 /* LocalUser.swift in Sources */,
 				60A2D89E29649C270082338B /* Activity.swift in Sources */,
 				60A86AFF2941186A00DD484D /* WColors.swift in Sources */,
 				603E470F2965FC8A00B0589E /* Category.swift in Sources */,

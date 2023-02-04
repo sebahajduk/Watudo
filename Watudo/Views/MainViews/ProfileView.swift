@@ -96,6 +96,8 @@ class ProfileView: UIView {
         
         deleteAccount.setTitleColor(WColors.red, for: .normal)
         deleteAccount.layer.borderColor = WColors.red?.cgColor
+        
+        signOutButton.addTarget(nil, action: #selector(ProfileViewActionHandler.signOutButtonTapped), for: .touchUpInside)
     }
     
     private func configureConstraints() {
@@ -210,4 +212,5 @@ extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
 
 @objc protocol ProfileViewActionHandler {
     func switchChanged(mySwitch: UISwitch)
+    func signOutButtonTapped(sender: UIButton)
 }
