@@ -17,14 +17,14 @@ class ActivityCell: UITableViewCell {
     let time = UILabel()
     let playStopImage = UIImageView(image: UIImage(systemName: "play.fill"))
     
-    func set(activityName: String) {
+    func set(activityName: String, activityTime: Double) {
         backgroundColor = .clear
         configure()
         name.text = activityName
         name.textColor = WColors.foreground
         name.font = .boldSystemFont(ofSize: 15)
         
-        time.text = "0:00:00"
+        time.text = String(activityTime)
         time.textColor = WColors.foreground
         time.font = .systemFont(ofSize: 15)
     }

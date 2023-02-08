@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
-
+import FirebaseFirestoreSwift
 
 /// Everything sticked to user account (Login, creating account, signing out)
 class FirebaseUserManager {
@@ -38,6 +38,7 @@ class FirebaseUserManager {
             } else if let authResult = authResult {
                 completion(.success(authResult))
                 self.user = authResult.user
+                self.createDefaultDatabase()
             }
         }
     }
@@ -67,5 +68,13 @@ class FirebaseUserManager {
 
 /// User data managing (activities)
 extension FirebaseUserManager {
-    
+    private func createDefaultDatabase() {
+        let defaultActivity: Activity = Activity(name: "Coding")
+        
+        do {
+            try db.collection("Users").document("\(user!.uid)").collection("Days").document("Activities").setData(from: defaultActivity)
+        } catch {
+            print("There was an error creating default database.")
+        }
+    }
 }

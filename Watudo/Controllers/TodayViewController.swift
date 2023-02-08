@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TodayViewController: UIViewController {
-
+class TodayViewController: UIViewController, ActivityDelegate {
+    
     var todayView = TodayView()
     
     var user: LocalUser?
@@ -19,6 +19,7 @@ class TodayViewController: UIViewController {
         
         todayView.tableView.dataSource = self
         todayView.tableView.delegate = self
+        
         
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
@@ -33,6 +34,12 @@ class TodayViewController: UIViewController {
     
     func setVC(user: LocalUser) {
         self.user = user
+        
+        for category in user.categories {
+            for activity in category.activities {
+                activity.delegate = self
+            }
+        }
     }
     
     func fetchQuote() {
@@ -40,6 +47,10 @@ class TodayViewController: UIViewController {
             let quoteOfTheDay = await QuoteApiManager.makeRequest()
             todayView.setQuote(quote: quoteOfTheDay?.q, author: quoteOfTheDay?.a)
         }
+    }
+    
+    func activityDidChange() {
+        todayView.tableView.reloadData()
     }
     
 }
@@ -77,7 +88,10 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        cell.set(activityName: user?.categories[indexPath.section].activities[indexPath.row].name ?? "")
+        let activityName = user?.categories[indexPath.section].activities[indexPath.row].name ?? ""
+        let activityTime = user?.categories[indexPath.section].activities[indexPath.row].timeSpent ?? 0
+        
+        cell.set(activityName: activityName, activityTime: activityTime)
         cell.selectionStyle = .none
         return cell
     }
@@ -102,5 +116,8 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        TimeManager.shared.startTimer(for: (user?.categories[indexPath.section].activities[indexPath.row])!)
+        
     }
 }
