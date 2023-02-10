@@ -44,6 +44,8 @@
 		60A423DF294A84C000B72126 /* Panton-LightCaps.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60A423DE294A84C000B72126 /* Panton-LightCaps.otf */; };
 		60A86AFD2941181D00DD484D /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFC2941181D00DD484D /* WButton.swift */; };
 		60A86AFF2941186A00DD484D /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFE2941186900DD484D /* WColors.swift */; };
+		60D535EB2996B25C00DED790 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D535EA2996B25C00DED790 /* ActivityManager.swift */; };
+		60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D535EC2996BA5700DED790 /* DateExtesion.swift */; };
 		60E110D4298D816C008D4BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */; };
 		60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */; };
 		60EA77742982F811000AACA9 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA77732982F811000AACA9 /* Quote.swift */; };
@@ -95,6 +97,8 @@
 		60A423DE294A84C000B72126 /* Panton-LightCaps.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Panton-LightCaps.otf"; sourceTree = "<group>"; };
 		60A86AFC2941181D00DD484D /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
 		60A86AFE2941186900DD484D /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
+		60D535EA2996B25C00DED790 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
+		60D535EC2996BA5700DED790 /* DateExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtesion.swift; sourceTree = "<group>"; };
 		60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteApiManager.swift; sourceTree = "<group>"; };
 		60EA77732982F811000AACA9 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 		608F1D2E293BD77200B8BF2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				60D535E92996B23500DED790 /* Protocols */,
 				60EA77702982F7C1000AACA9 /* Managers */,
 				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
@@ -244,6 +249,7 @@
 			children = (
 				608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */,
 				608CBD8E29806D2300F82ABF /* UILabelExtension.swift */,
+				60D535EC2996BA5700DED790 /* DateExtesion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,12 +296,20 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		60D535E92996B23500DED790 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6066A70C2992CB6400A0BEBA /* TimeManager.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		60EA77702982F7C1000AACA9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
 				60EFA5002986C50000586AB9 /* FirebaseUserManager.swift */,
-				6066A70C2992CB6400A0BEBA /* TimeManager.swift */,
+				60D535EA2996B25C00DED790 /* ActivityManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D535EB2996B25C00DED790 /* ActivityManager.swift in Sources */,
 				608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */,
 				60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */,
 				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,
@@ -473,6 +488,7 @@
 				6031D5622963691C0019D399 /* ActivityCell.swift in Sources */,
 				608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */,
 				60EE479A296DCF5100DFDC37 /* ReportsCalendarHeader.swift in Sources */,
+				60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */,
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
 				60581738296C94E1002AEE2E /* ReportsView.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,

@@ -20,11 +20,15 @@ class Activity: NSObject, Codable {
         }
     }
     
+    var startDate: Date?
+    var endDate: Date?
+    
     var isPaid: Bool = false
     var moneyPerHour: Double = 0
+    var timer: Timer!
     
     #warning("Remove 'timeSpent' from init.")
-    init(name: String, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0, timeSpent: Double = 100) {
+    init(name: String, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0, timeSpent: Double = 0) {
         self.name = name
         self.dailyGoal = dailyGoal
         self.timeSpent = timeSpent
@@ -36,6 +40,26 @@ class Activity: NSObject, Codable {
     
     private enum CodingKeys: CodingKey {
         case id, name, dailyGoal, timeSpent, isPaid, moneyPerHour
+    }
+    
+    func startWork() {
+        startDate = Date()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { timer in
+            self.timeSpent = Date().timeIntervalSince(self.startDate!)
+        })
+        
+        RunLoop.main.add(timer, forMode: .common)
+    }
+    
+    func finishWork() -> Activity {
+        timer.invalidate()
+        endDate = Date()
+        
+        return self
+    }
+    
+    private func resetActivity() {
+        timeSpent = 0
     }
 }
 

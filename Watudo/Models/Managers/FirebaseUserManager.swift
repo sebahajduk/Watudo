@@ -70,9 +70,19 @@ class FirebaseUserManager {
 extension FirebaseUserManager {
     private func createDefaultDatabase() {
         let defaultActivity: Activity = Activity(name: "Coding")
-        
         do {
             try db.collection("Users").document("\(user!.uid)").collection("Days").document("Activities").setData(from: defaultActivity)
+        } catch {
+            print("There was an error creating default database.")
+        }
+    }
+    
+    func saveActivity(_ activity: Activity) {
+        let endDate = activity.endDate!.dateToStringYMD()
+        let endHours = activity.endDate!.dateToStringHMS()
+        
+        do {
+            try db.collection("Users").document("\(user!.uid)").collection("Days").document("\(endDate)").collection("Activities").document("\(UUID())").setData(from: activity)
         } catch {
             print("There was an error creating default database.")
         }

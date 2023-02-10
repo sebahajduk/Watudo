@@ -76,10 +76,9 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
         guard let user else { return cell }
-        let activityName = user.categories[indexPath.section].activities[indexPath.row].name
-        let activityTime = user.categories[indexPath.section].activities[indexPath.row].timeSpent
+        let activity = user.categories[indexPath.section].activities[indexPath.row]
         
-        cell.set(activityName: activityName, activityTime: activityTime)
+        cell.set(for: activity)
         
         return cell
     }

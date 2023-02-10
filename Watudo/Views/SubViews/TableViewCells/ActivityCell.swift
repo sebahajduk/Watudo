@@ -15,18 +15,40 @@ class ActivityCell: UITableViewCell {
     
     let name = UILabel()
     let time = UILabel()
-    let playStopImage = UIImageView(image: UIImage(systemName: "play.fill"))
+    let playStopImage = UIImageView()
     
-    func set(activityName: String, activityTime: Double) {
+    var isCounting = false
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+       
+        if selected {
+            print("Selected")
+            playStopImage.image = UIImage(systemName: "pause.fill")
+        } else {
+            playStopImage.image = UIImage(systemName: "play.fill")
+            print("Deselected")
+        }
+        
+    }
+    
+    func set(for activity: Activity) {
         backgroundColor = .clear
         configure()
-        name.text = activityName
+        name.text = activity.name
         name.textColor = WColors.foreground
         name.font = .boldSystemFont(ofSize: 15)
+        let formatter = DateComponentsFormatter()
+        formatter.zeroFormattingBehavior = .pad
+        formatter.allowedUnits = [.hour, .minute, .second]
         
-        time.text = String(activityTime)
+        time.text = formatter.string(from: activity.timeSpent)
         time.textColor = WColors.foreground
         time.font = .systemFont(ofSize: 15)
+    }
+    
+    func startTimer() {
+        
     }
     
     private func configure() {

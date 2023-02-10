@@ -11,15 +11,17 @@ class TodayViewController: UIViewController, ActivityDelegate {
     
     var todayView = TodayView()
     
-    var user: LocalUser?
-
+    var user: LocalUser!
+    
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background!
         
         todayView.tableView.dataSource = self
         todayView.tableView.delegate = self
-        
+        todayView.tableView.allowsMultipleSelection = true
         
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
@@ -50,7 +52,14 @@ class TodayViewController: UIViewController, ActivityDelegate {
     }
     
     func activityDidChange() {
+        let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            selectedRows?.forEach({ selectedRow in
+                self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+            })
+        }
     }
     
 }
@@ -74,7 +83,7 @@ extension TodayViewController: SendNewActivityDelegate {
         
         guard let index = user?.categories.firstIndex(where: { $0 == category} ) else { return }
         
-        user?.categories[index].activities.append(activity)
+        user.categories[index].activities.append(activity)
         
         todayView.tableView.reloadData()
     }
@@ -88,20 +97,19 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        let activityName = user?.categories[indexPath.section].activities[indexPath.row].name ?? ""
-        let activityTime = user?.categories[indexPath.section].activities[indexPath.row].timeSpent ?? 0
+        let activity =  user.categories[indexPath.section].activities[indexPath.row]
         
-        cell.set(activityName: activityName, activityTime: activityTime)
+        cell.set(for: activity)
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return user?.categories[section].name ?? ""
+        return user.categories[section].name
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return user?.categories.count ?? 0
+        return user.categories.count
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -115,9 +123,13 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        TimeManager.shared.startTimer(for: (user?.categories[indexPath.section].activities[indexPath.row])!)
-        
+        user.categories[indexPath.section].activities[indexPath.row].startWork()
     }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let activity = user.categories[indexPath.section].activities[indexPath.row].finishWork()
+        
+        FirebaseUserManager.shared.saveActivity(activity)
+    }
+        
 }
