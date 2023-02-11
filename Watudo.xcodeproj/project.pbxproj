@@ -44,7 +44,6 @@
 		60A423DF294A84C000B72126 /* Panton-LightCaps.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60A423DE294A84C000B72126 /* Panton-LightCaps.otf */; };
 		60A86AFD2941181D00DD484D /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFC2941181D00DD484D /* WButton.swift */; };
 		60A86AFF2941186A00DD484D /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFE2941186900DD484D /* WColors.swift */; };
-		60D535EB2996B25C00DED790 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D535EA2996B25C00DED790 /* ActivityManager.swift */; };
 		60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D535EC2996BA5700DED790 /* DateExtesion.swift */; };
 		60E110D4298D816C008D4BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */; };
 		60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */; };
@@ -97,7 +96,6 @@
 		60A423DE294A84C000B72126 /* Panton-LightCaps.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Panton-LightCaps.otf"; sourceTree = "<group>"; };
 		60A86AFC2941181D00DD484D /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
 		60A86AFE2941186900DD484D /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
-		60D535EA2996B25C00DED790 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		60D535EC2996BA5700DED790 /* DateExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtesion.swift; sourceTree = "<group>"; };
 		60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteApiManager.swift; sourceTree = "<group>"; };
@@ -181,6 +179,7 @@
 				602EB36D2939676A000A99C8 /* SceneDelegate.swift */,
 				602EB37429396771000A99C8 /* Assets.xcassets */,
 				602EB37629396771000A99C8 /* LaunchScreen.storyboard */,
+				60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */,
 				602EB37929396771000A99C8 /* Info.plist */,
 			);
 			path = Watudo;
@@ -211,7 +210,6 @@
 				60A86B002941192D00DD484D /* Constants */,
 				608F1D33293BD9A400B8BF2A /* Extensions */,
 				602E1D41293CA8CD00570249 /* LocalUser.swift */,
-				60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */,
 				60A2D89D29649C270082338B /* Activity.swift */,
 				603E470E2965FC8A00B0589E /* Category.swift */,
 				60581735296C93D6002AEE2E /* Day.swift */,
@@ -309,7 +307,6 @@
 			children = (
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
 				60EFA5002986C50000586AB9 /* FirebaseUserManager.swift */,
-				60D535EA2996B25C00DED790 /* ActivityManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -478,7 +475,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60D535EB2996B25C00DED790 /* ActivityManager.swift in Sources */,
 				608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */,
 				60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */,
 				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,

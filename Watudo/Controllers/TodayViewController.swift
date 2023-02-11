@@ -38,7 +38,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
         self.user = user
         
         for category in user.categories {
-            for activity in category.activities {
+            for activity in user.getActivitiesForCategory(category) {
                 activity.delegate = self
             }
         }
@@ -79,11 +79,10 @@ extension TodayViewController: TodayViewActionHandler {
 }
 
 extension TodayViewController: SendNewActivityDelegate {
+    #warning("Remove category from func")
     func sendActivity(activity: Activity, category: Category) {
         
-        guard let index = user?.categories.firstIndex(where: { $0 == category} ) else { return }
-        
-        user.categories[index].activities.append(activity)
+        user.activities.append(activity)
         
         todayView.tableView.reloadData()
     }
@@ -91,15 +90,15 @@ extension TodayViewController: SendNewActivityDelegate {
 
 extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user?.categories[section].activities.count ?? 0
+        return user.getActivitiesForCategory(user.categories[section]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        let activity =  user.categories[indexPath.section].activities[indexPath.row]
+        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
         
-        cell.set(for: activity)
+        cell.set(for: activities[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -123,12 +122,14 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        user.categories[indexPath.section].activities[indexPath.row].startWork()
+        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
+        
+        activities[indexPath.row].startWork()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let activity = user.categories[indexPath.section].activities[indexPath.row].finishWork()
-        
+        let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
+
         FirebaseUserManager.shared.saveActivity(activity)
     }
         

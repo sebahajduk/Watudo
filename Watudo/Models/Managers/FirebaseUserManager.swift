@@ -16,8 +16,8 @@ class FirebaseUserManager {
     
     var user: FirebaseAuth.User?
     
-    let db = Firestore.firestore()
-    let auth = Auth.auth()
+    private let db = Firestore.firestore()
+    private let auth = Auth.auth()
     
     var formatter: DateFormatter {
         let formatter = DateFormatter()
@@ -69,20 +69,33 @@ class FirebaseUserManager {
 /// User data managing (activities)
 extension FirebaseUserManager {
     private func createDefaultDatabase() {
-        let defaultActivity: Activity = Activity(name: "Coding")
+        let userActivitiesList = db.collection("Users").document("\(user!.uid)").collection("Activities")
+        let userCategoriesList = db.collection("Users").document("\(user!.uid)").collection("Categories")
+        
+        let defaultJobCategory: Category = Category(name: "Work")
+        let defaultHomeCategory: Category = Category(name: "House")
+        
+        let defaultHomeActivity: Activity = Activity(name: "House chores", category: defaultHomeCategory)
+        let defaultJobActivity: Activity = Activity(name: "Working", category: defaultJobCategory)
+        
         do {
-            try db.collection("Users").document("\(user!.uid)").collection("Days").document("Activities").setData(from: defaultActivity)
+            try userCategoriesList.document(defaultHomeCategory.name).setData(from: defaultHomeCategory)
+            try userCategoriesList.document(defaultJobCategory.name).setData(from: defaultJobCategory)
+            
+            try userActivitiesList.document(defaultHomeActivity.name).setData(from: defaultHomeActivity)
+            try userActivitiesList.document(defaultJobActivity.name).setData(from: defaultJobActivity)
         } catch {
             print("There was an error creating default database.")
         }
     }
     
     func saveActivity(_ activity: Activity) {
+        let daysHistory = db.collection("Users").document("\(user!.uid)").collection("Days")
         let endDate = activity.endDate!.dateToStringYMD()
         let endHours = activity.endDate!.dateToStringHMS()
         
         do {
-            try db.collection("Users").document("\(user!.uid)").collection("Days").document("\(endDate)").collection("Activities").document("\(UUID())").setData(from: activity)
+            try daysHistory.document("\(endDate)").collection("Activities").document("\(UUID())").setData(from: activity)
         } catch {
             print("There was an error creating default database.")
         }

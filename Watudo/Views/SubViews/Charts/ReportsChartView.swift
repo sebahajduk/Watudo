@@ -16,10 +16,10 @@ class ReportsChartView: UIView {
     var summary: [BarChartDataSet] = []
     
     let categories: [Category] = [
-        Category(name: "Coding", color: WColors.green!),
-        Category(name: "Netflix", color: .yellow),
-        Category(name: "Gaming", color: .gray),
-        Category(name: "House chores", color: .blue)
+        Category(name: "Coding"),
+        Category(name: "Netflix"),
+        Category(name: "Gaming"),
+        Category(name: "House chores")
     ]
     
     override init(frame: CGRect) {
@@ -31,11 +31,11 @@ class ReportsChartView: UIView {
     func setData() {
         for category in categories {
             if let index = categories.firstIndex(of: category) {
-                let chartValue = BarChartDataEntry(x: Double(index), y: category.timeSpend)
+                let chartValue = BarChartDataEntry(x: Double(index), y: 5)
                 let dataSet = BarChartDataSet(entries: [chartValue], label: category.name)
-                dataSet.colors = [category.color.withAlphaComponent(0.2)]
+//                dataSet.colors = [category.color.withAlphaComponent(0.2)]
                 dataSet.barBorderWidth = 2
-                dataSet.barBorderColor = category.color
+//                dataSet.barBorderColor = category.color
                 
                 summary.append(dataSet)
             }

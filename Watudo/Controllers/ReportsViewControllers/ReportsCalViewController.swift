@@ -138,13 +138,6 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func populateDataSource() {
         // TODO: Here you should download data from a server
         
-        calendarDataSource = [
-            "2023-02-22":[Activity(name: "YesterdayCoding")],
-            "2023-02-14":[Activity(name: "YesterdayCoding")],
-            "2023-02-21":[Activity(name: "YesterdayCoding")],
-            "2023-02-15":[Activity(name: "YesterdayCoding")]
-        ]
-        
         // reloading calendar after downloading data
         calendar.reloadData()
     }

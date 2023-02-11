@@ -43,9 +43,9 @@ class AddActivityViewController: UIViewController {
 
 extension AddActivityViewController: AddActivityViewActionHandler {
     func doneButtonTapped() {
-        
         let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
-        let activity = Activity(name: addActivityView.nameTextField.text ?? "")
+        let activity = Activity(name: addActivityView.nameTextField.text!, category: (user?.categories[pickerViewSelectedRow])!)
+        
         guard let user else { return }
         self.delegate?.sendActivity(activity: activity, category: user.categories[pickerViewSelectedRow])
         

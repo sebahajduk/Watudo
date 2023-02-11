@@ -14,6 +14,8 @@ class Activity: NSObject, Codable {
     var id = UUID()
     var name: String
     var dailyGoal: Double? = nil
+    var category: Category
+    
     var timeSpent: Double = 0 {
         didSet {
             delegate?.activityDidChange()
@@ -27,11 +29,10 @@ class Activity: NSObject, Codable {
     var moneyPerHour: Double = 0
     var timer: Timer!
     
-    #warning("Remove 'timeSpent' from init.")
-    init(name: String, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0, timeSpent: Double = 0) {
+    init(name: String, category: Category, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0) {
         self.name = name
         self.dailyGoal = dailyGoal
-        self.timeSpent = timeSpent
+        self.category = category
     }
     
     static func == (lhs: Activity, rhs: Activity) -> Bool {
@@ -39,7 +40,7 @@ class Activity: NSObject, Codable {
     }
     
     private enum CodingKeys: CodingKey {
-        case id, name, dailyGoal, timeSpent, isPaid, moneyPerHour
+        case id, name, category, dailyGoal, timeSpent, isPaid, moneyPerHour
     }
     
     func startWork() {

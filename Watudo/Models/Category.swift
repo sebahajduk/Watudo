@@ -7,22 +7,22 @@
 
 import UIKit
 
-class Category: Equatable {
+class Category: Equatable, Codable {
     let id = UUID()
-    var name: String
+    var name: String = ""
+    var colorHEX: String = ""
     
-    var color: UIColor
-    
-    var activities: [Activity] = []
-    var timeSpend: Double = 5
-    
-    init(name: String, color: UIColor = WColors.foreground!) {
+    init(name: String, colorHEX: String = "") {
         self.name = name
-        self.color = color
+        self.colorHEX = colorHEX
     }
     
     static func == (lhs: Category, rhs: Category) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.name == rhs.name
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case id, name, colorHEX
     }
 }
 

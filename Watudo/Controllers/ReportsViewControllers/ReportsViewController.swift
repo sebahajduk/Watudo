@@ -33,17 +33,17 @@ class ReportsViewController: UIViewController  {
         self.user = user
     }
     
-    private func calculateTableViewHeight() -> CGFloat {
-        var activitiesCount = 0
-        for category in user!.categories {
-            activitiesCount += category.activities.count
-        }
-        
-        return CGFloat(activitiesCount * 75)
-    }
+//    private func calculateTableViewHeight() -> CGFloat {
+//        var activitiesCount = 0
+//        for category in user!.categories {
+//            activitiesCount += category.activities.count
+//        }
+//
+//        return CGFloat(activitiesCount * 75)
+//    }
     
     private func configure() {
-        reportsView.setView(calendarView: myCalendarVC.view, tableHeight: calculateTableViewHeight())
+        reportsView.setView(calendarView: myCalendarVC.view, tableHeight: 1000)
         reportsView.reportsChartView.chartView.delegate = self
         view.addSubviews([reportsView])
         
@@ -69,16 +69,16 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let user else { return 0 }
         
-        return user.categories[section].activities.count
+        return user.getActivitiesForCategory(user.categories[section]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
         guard let user else { return cell }
-        let activity = user.categories[indexPath.section].activities[indexPath.row]
+        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
         
-        cell.set(for: activity)
+        cell.set(for: activities[indexPath.row])
         
         return cell
     }
