@@ -47,6 +47,7 @@ class Activity: NSObject, Codable {
         startDate = Date()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { timer in
             self.timeSpent = Date().timeIntervalSince(self.startDate!)
+            print(self.timeSpent)
         })
         
         RunLoop.main.add(timer, forMode: .common)

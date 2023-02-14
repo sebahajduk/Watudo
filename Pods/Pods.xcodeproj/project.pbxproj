@@ -1972,7 +1972,7 @@
 		4D1A160B85B6CDFEFF0CF6ED63F41B48 /* civil_time.h in Copy time/internal/cctz/include/cctz Public Headers */ = {isa = PBXBuildFile; fileRef = 77396C01014F39C8DACABC55CEEF7A9E /* civil_time.h */; };
 		4D25B9B738024BCE81CA4B86D577CDF9 /* trace.h in Headers */ = {isa = PBXBuildFile; fileRef = 72D1C47CF7583D1B0E4ACF1284F7F756 /* trace.h */; };
 		4D30CFD36F3082AE6058ED4D5A47279A /* pollset_custom.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2D8AD5A1FE580963F87EC41F785D4E09 /* pollset_custom.cc */; settings = {COMPILER_FLAGS = "-DGRPC_ARES=0 -Wno-comma -DBORINGSSL_PREFIX=GRPC -Wno-unreachable-code -Wno-shorten-64-to-32 -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4D31A971A953CF94D289272A572DF88E /* gRPC-C++-gRPCCertificates-Cpp in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */; };
+		4D31A971A953CF94D289272A572DF88E /* gRPCCertificates-Cpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */; };
 		4D40A2A20DCCCE5E52463640FA516B19 /* tls_certificate_provider.h in Copy security Public Headers */ = {isa = PBXBuildFile; fileRef = 3EBED69E2BAB1352F24022D5DFA69CC6 /* tls_certificate_provider.h */; };
 		4D4AC3F83B8A37381A1E531BBA07B6D0 /* debug_location.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E67121AE4A7FB70244EE0B5708EE6C4 /* debug_location.h */; };
 		4D4FCA9BC40E72018EDE5DD370755451 /* google_default_credentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A49DA4BF633E76FCEA7863FC3A9CA3E /* google_default_credentials.h */; };
@@ -15654,7 +15654,7 @@
 		9C3572F152D5BF9E470CD5758D67ADE0 /* abseil-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "abseil-umbrella.h"; sourceTree = "<group>"; };
 		9C51A275AAE346E651E9242735508AB7 /* filter_block.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = filter_block.cc; path = table/filter_block.cc; sourceTree = "<group>"; };
 		9C5AA88461B6CC7D2C0DF500421854AC /* alts_grpc_integrity_only_record_protocol.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = alts_grpc_integrity_only_record_protocol.cc; path = src/core/tsi/alts/zero_copy_frame_protector/alts_grpc_integrity_only_record_protocol.cc; sourceTree = "<group>"; };
-		9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "gRPC-C++-gRPCCertificates-Cpp"; path = "gRPCCertificates-Cpp.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "gRPCCertificates-Cpp.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7D6FCE04039929FC4D2172F9C17D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9C9D0A02623B060D5B5A020C2F7607CE /* RequestInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestInterceptor.swift; path = Source/RequestInterceptor.swift; sourceTree = "<group>"; };
 		9CA15E446279CD3A9B470DDEBD1F031B /* nanopb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = nanopb.release.xcconfig; sourceTree = "<group>"; };
@@ -18426,7 +18426,7 @@
 				519172F62353C84795D05BA8A499936B /* FirebaseSharedSwift */,
 				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities.framework */,
 				1911113E0FBF13CFF9132E5FF7685228 /* grpcpp.framework */,
-				9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */,
+				9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */,
 				B471867C535B02FA55D87E260F6480F8 /* grpc.framework */,
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher.framework */,
 				A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift.framework */,
@@ -26427,7 +26427,7 @@
 			);
 			name = "gRPC-C++-gRPCCertificates-Cpp";
 			productName = "gRPCCertificates-Cpp";
-			productReference = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */;
+			productReference = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		421B6ABF460857FE6CA2905EFB5A4F74 /* JTAppleCalendar */ = {
@@ -27121,7 +27121,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D31A971A953CF94D289272A572DF88E /* gRPC-C++-gRPCCertificates-Cpp in Resources */,
+				4D31A971A953CF94D289272A572DF88E /* gRPCCertificates-Cpp.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30560,6 +30560,7 @@
 			baseConfigurationReference = 82C8C43B4BBE42460AACF74B984A0B6F /* gRPC-C++.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -30610,6 +30611,7 @@
 			baseConfigurationReference = 345F9029B27B5CB79B631F321C75F25C /* gRPC-C++.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -23,11 +23,10 @@ class ActivityCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
        
         if selected {
-            print("Selected")
             playStopImage.image = UIImage(systemName: "pause.fill")
         } else {
             playStopImage.image = UIImage(systemName: "play.fill")
-            print("Deselected")
+            
         }
         
     }

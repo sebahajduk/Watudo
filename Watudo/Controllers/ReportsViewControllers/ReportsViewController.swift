@@ -33,15 +33,6 @@ class ReportsViewController: UIViewController  {
         self.user = user
     }
     
-//    private func calculateTableViewHeight() -> CGFloat {
-//        var activitiesCount = 0
-//        for category in user!.categories {
-//            activitiesCount += category.activities.count
-//        }
-//
-//        return CGFloat(activitiesCount * 75)
-//    }
-    
     private func configure() {
         reportsView.setView(calendarView: myCalendarVC.view, tableHeight: 1000)
         reportsView.reportsChartView.chartView.delegate = self

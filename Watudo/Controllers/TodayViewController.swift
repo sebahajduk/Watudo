@@ -37,6 +37,10 @@ class TodayViewController: UIViewController, ActivityDelegate {
     func setVC(user: LocalUser) {
         self.user = user
         
+        updateDelegate()
+    }
+    
+    private func updateDelegate() {
         for category in user.categories {
             for activity in user.getActivitiesForCategory(category) {
                 activity.delegate = self
@@ -54,12 +58,10 @@ class TodayViewController: UIViewController, ActivityDelegate {
     func activityDidChange() {
         let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
-        
-        DispatchQueue.main.async {
-            selectedRows?.forEach({ selectedRow in
-                self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
-            })
-        }
+        print("Hello")
+        selectedRows?.forEach({ selectedRow in
+            self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
     }
     
 }
@@ -74,6 +76,7 @@ extension TodayViewController: TodayViewActionHandler {
         guard let user else { return }
         addActivityVC.setVC(user: user)
         
+        
         present(addActivityVC, animated: true)
     }
 }
@@ -83,8 +86,13 @@ extension TodayViewController: SendNewActivityDelegate {
     func sendActivity(activity: Activity, category: Category) {
         
         user.activities.append(activity)
-        
+        updateDelegate()
+        let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
+        
+        selectedRows?.forEach({ selectedRow in
+            self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
     }
 }
 
@@ -125,6 +133,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
         
         activities[indexPath.row].startWork()
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

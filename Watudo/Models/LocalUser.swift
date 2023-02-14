@@ -22,7 +22,6 @@ class LocalUser {
                 filteredActivities.append(activity)
             }
         }
-        print(filteredActivities)
         return filteredActivities
     }
 }
