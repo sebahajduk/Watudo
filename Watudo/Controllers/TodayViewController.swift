@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayViewController: UIViewController, ActivityDelegate {
+class TodayViewController: UIViewController, ActivityDelegate, AddMenuDelegate {
     
     var todayView = TodayView()
     
@@ -22,6 +22,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
         todayView.tableView.dataSource = self
         todayView.tableView.delegate = self
         todayView.tableView.allowsMultipleSelection = true
+        todayView.menuDelegate = self
         
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
@@ -141,5 +142,24 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
 
         FirebaseUserManager.shared.saveActivity(activity)
     }
+    
+    /// Drag deleting row
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       if editingStyle == .delete {
+            let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
+            
+            user.delete(activity: activity)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    /// If cell is actively measuring time stop the timer.
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)!
         
+        if cell.isSelected {
+            let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
+            FirebaseUserManager.shared.saveActivity(activity)
+        }
+    }
 }

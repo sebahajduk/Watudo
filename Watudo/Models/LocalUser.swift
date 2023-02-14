@@ -24,4 +24,10 @@ class LocalUser {
         }
         return filteredActivities
     }
+    
+    func delete(activity: Activity) {
+        guard let index = activities.firstIndex(where: { $0 == activity}) else { return }
+        
+        activities.remove(at: index)
+    }
 }

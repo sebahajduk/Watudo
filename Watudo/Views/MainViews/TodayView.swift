@@ -10,6 +10,8 @@ import Charts
 import Lottie
 
 class TodayView: UIView {
+        
+    var menuDelegate: AddMenuDelegate? = nil
     
     let quoteLabel = UILabel()
     let quoteBackground = WVisualEffectView()
@@ -23,11 +25,10 @@ class TodayView: UIView {
     
     let addButton = UIButton()
     
+    
     let tableView = UITableView()
     
-    var activities: [Activity] = [
-//        Activity(name: "Coding"), Activity(name: "Gaming")
-    ]
+    var activities: [Activity] = []
     
     var heightOfQuoteLabel: CGFloat = 0
     
@@ -91,12 +92,24 @@ class TodayView: UIView {
     
     private func configureAddButton() {
         addSubview(addButton)
+        
+        var addMenu: UIMenu {
+            return UIMenu(title: "Add", image: nil, identifier: nil, options: [], children: menuItems)
+        }
+        var menuItems = [
+            UIAction(title: "Activity", image: UIImage(systemName: "timer.circle.fill"), handler: { action in
+                self.menuDelegate?.addActivityButtonTapped()
+            }),
+            UIAction(title: "Category", image: UIImage(systemName: "folder.fill"), handler: { (_) in })
+        ]
+        
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         addButton.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), for: .normal)
         addButton.tintColor = WColors.purple!
         
         addButton.addTarget(nil, action: #selector(TodayViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
+        addButton.menu = addMenu
     }
     
     private func configureChart() {
@@ -162,6 +175,10 @@ class TodayView: UIView {
 }
 
 @objc protocol TodayViewActionHandler {
+    func addActivityButtonTapped()
+}
+
+protocol AddMenuDelegate {
     func addActivityButtonTapped()
 }
 
