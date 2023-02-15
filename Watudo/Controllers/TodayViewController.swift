@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayViewController: UIViewController, ActivityDelegate, AddMenuDelegate {
+class TodayViewController: UIViewController, ActivityDelegate {
     
     var todayView = TodayView()
     
@@ -67,7 +67,7 @@ class TodayViewController: UIViewController, ActivityDelegate, AddMenuDelegate {
     
 }
 
-extension TodayViewController: TodayViewActionHandler {
+extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
     func addActivityButtonTapped() {
         let addActivityVC = AddActivityViewController()
         
@@ -77,8 +77,20 @@ extension TodayViewController: TodayViewActionHandler {
         guard let user else { return }
         addActivityVC.setVC(user: user)
         
-        
         present(addActivityVC, animated: true)
+    }
+    
+    func addCategoryButtonTapped() {
+        let addCategoryVC = AddCategoryViewController()
+        
+        addCategoryVC.sheetPresentationController?.detents = [.custom(resolver: { (_) in
+            return 200
+        })]
+        
+        guard let user else { return }
+        addCategoryVC.setVC(user: user)
+        
+        present(addCategoryVC, animated: true)
     }
 }
 

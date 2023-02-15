@@ -97,10 +97,12 @@ class TodayView: UIView {
             return UIMenu(title: "Add", image: nil, identifier: nil, options: [], children: menuItems)
         }
         var menuItems = [
-            UIAction(title: "Activity", image: UIImage(systemName: "timer.circle.fill"), handler: { action in
+            UIAction(title: "Activity", image: UIImage(systemName: "timer.circle.fill"), handler: { (_) in
                 self.menuDelegate?.addActivityButtonTapped()
             }),
-            UIAction(title: "Category", image: UIImage(systemName: "folder.fill"), handler: { (_) in })
+            UIAction(title: "Category", image: UIImage(systemName: "folder.fill"), handler: { (_) in
+                self.menuDelegate?.addCategoryButtonTapped()
+            })
         ]
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -180,6 +182,7 @@ class TodayView: UIView {
 
 protocol AddMenuDelegate {
     func addActivityButtonTapped()
+    func addCategoryButtonTapped()
 }
 
 extension TodayView {

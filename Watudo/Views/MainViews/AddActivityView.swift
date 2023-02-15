@@ -36,7 +36,7 @@ class AddActivityView: UIView {
         
         addSubviews(views)
         
-        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitle("Add", for: .normal)
         doneButton.setTitleColor(WColors.purple, for: .normal)
         doneButton.addTarget(nil, action: #selector(AddActivityViewActionHandler.doneButtonTapped), for: .touchUpInside)
         
