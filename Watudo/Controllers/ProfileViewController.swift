@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func loadSwitchValue() {
-        if Defaults.shared.isDarkMode != nil {
+        if Defaults.shared.isDarkMode {
             profileView.appearenceModeSwitch.isOn = Defaults.shared.isDarkMode
         } else {
             profileView.appearenceModeSwitch.isOn = traitCollection.userInterfaceStyle == .dark ? true : false

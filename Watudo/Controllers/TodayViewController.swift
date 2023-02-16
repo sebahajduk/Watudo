@@ -84,8 +84,9 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
         let addCategoryVC = AddCategoryViewController()
         
         addCategoryVC.sheetPresentationController?.detents = [.custom(resolver: { (_) in
-            return 200
+            return 300
         })]
+        addCategoryVC.delegate = self
         
         guard let user else { return }
         addCategoryVC.setVC(user: user)
@@ -94,7 +95,18 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
     }
 }
 
-extension TodayViewController: SendNewActivityDelegate {
+extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
+    func sendCategory(_ category: Category) {
+        user.categories.append(category)
+        
+        let selectedRows = todayView.tableView.indexPathsForSelectedRows
+        todayView.tableView.reloadData()
+        
+        selectedRows?.forEach({ selectedRow in
+            self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
+    }
+    
     #warning("Remove category from func")
     func sendActivity(activity: Activity, category: Category) {
         
@@ -107,6 +119,8 @@ extension TodayViewController: SendNewActivityDelegate {
             self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
     }
+    
+    
 }
 
 extension TodayViewController: UITableViewDelegate, UITableViewDataSource {

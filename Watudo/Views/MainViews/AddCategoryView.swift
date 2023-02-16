@@ -8,6 +8,8 @@
 import UIKit
 
 class AddCategoryView: UIView {
+    
+    let addCategoryLabel = UILabel()
 
     let visualEffect = WVisualEffectView(cornerRadius: 8)
     let nameTextField = UITextField()
@@ -20,6 +22,8 @@ class AddCategoryView: UIView {
         return colorWell
     }()
     
+    let addButton = UIButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -31,13 +35,32 @@ class AddCategoryView: UIView {
     }
     
     private func configure() {
-        addSubviews([visualEffect, nameTextField, colorLabel, colorPicker])
+        addSubviews([addCategoryLabel, addButton, visualEffect, nameTextField, colorLabel, colorPicker])
         
         nameTextField.placeholder = "Category name"
+        
+        addCategoryLabel.text = "Add category"
+        addCategoryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
+        addCategoryLabel.textColor = WColors.purple
+        
         colorLabel.text = "Color"
         
+        addButton.setTitle("Add", for: .normal)
+        addButton.setTitleColor(WColors.purple, for: .normal)
+        addButton.addTarget(nil, action: #selector(AddCategoryViewActionHandler.addButtonTapped), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
-            visualEffect.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            addButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addButton.heightAnchor.constraint(equalToConstant: 44),
+            addButton.widthAnchor.constraint(equalToConstant: 44),
+            
+            addCategoryLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor),
+            addCategoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            addCategoryLabel.heightAnchor.constraint(equalToConstant: 25),
+            addCategoryLabel.widthAnchor.constraint(equalToConstant: 150),
+            
+            visualEffect.topAnchor.constraint(equalTo: addCategoryLabel.bottomAnchor, constant: 20),
             visualEffect.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffect.heightAnchor.constraint(equalToConstant: 120),
             visualEffect.widthAnchor.constraint(equalToConstant: 330),
@@ -58,4 +81,8 @@ class AddCategoryView: UIView {
             colorPicker.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
+}
+
+@objc protocol AddCategoryViewActionHandler {
+    func addButtonTapped()
 }

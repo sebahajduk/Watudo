@@ -9,6 +9,8 @@ import UIKit
 
 class AddCategoryViewController: UIViewController {
 
+    var delegate: SendCategoryDelegate? = nil
+    
     let addCategoryView = AddCategoryView()
     
     var user: LocalUser?
@@ -16,6 +18,7 @@ class AddCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
+        
         configure()
     }
     
@@ -34,4 +37,21 @@ class AddCategoryViewController: UIViewController {
             addCategoryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+}
+
+extension AddCategoryViewController: AddCategoryViewActionHandler {
+    func addButtonTapped() {
+        guard let categoryName = addCategoryView.nameTextField.text else { return }
+        guard let color = addCategoryView.colorPicker.selectedColor?.hexStringFromColor() else { return }
+        
+        let category = Category(name: categoryName, colorHEX: color)
+        
+        self.delegate?.sendCategory(category)
+        
+        self.dismiss(animated: true)
+    }
+}
+
+protocol SendCategoryDelegate {
+    func sendCategory(_ category: Category)
 }

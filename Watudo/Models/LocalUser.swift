@@ -12,7 +12,11 @@ class LocalUser {
     let email = ""
     
     var activities: [Activity] = [Activity(name: "House chores", category: Category(name: "Home")), Activity(name: "Working", category: Category(name: "Work"))]
-    var categories: [Category] = [Category(name: "Home"), Category(name: "Work")]
+    var categories: [Category] = [Category(name: "Home"), Category(name: "Work"), Category(name: "Nothing")] {
+        didSet {
+            print("Change")
+        }
+    }
     
     func getActivitiesForCategory(_ category: Category) -> [Activity] {
         var filteredActivities: [Activity] = []
@@ -29,5 +33,14 @@ class LocalUser {
         guard let index = activities.firstIndex(where: { $0 == activity}) else { return }
         
         activities.remove(at: index)
+    }
+    
+    func addCategory(_ category: Category) {
+        categories.append(category)
+        
+    }
+    
+    func addActivity(_ activity: Activity) {
+        activities.append(activity)
     }
 }

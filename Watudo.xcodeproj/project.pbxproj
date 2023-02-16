@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */; };
 		601553F2299D548300A2817A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F1299D548300A2817A /* AddCategoryView.swift */; };
 		601553F4299D825100A2817A /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F3299D825100A2817A /* AddCategoryViewController.swift */; };
 		602E1D42293CA8CD00570249 /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D41293CA8CD00570249 /* LocalUser.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		601553F1299D548300A2817A /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		601553F3299D825100A2817A /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		602E1D41293CA8CD00570249 /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */,
 				608CBD8E29806D2300F82ABF /* UILabelExtension.swift */,
 				60D535EC2996BA5700DED790 /* DateExtesion.swift */,
+				6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				60EE479F296E187E00DFDC37 /* ReportsCalendarView.swift in Sources */,
 				608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */,
 				608E91A1295108810072FE02 /* TodayView.swift in Sources */,
+				6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */,
 				60EFA5012986C50000586AB9 /* FirebaseUserManager.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
 				6066A70D2992CB6400A0BEBA /* TimeManager.swift in Sources */,
