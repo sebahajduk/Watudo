@@ -66,11 +66,14 @@ class FirebaseManager {
     }
 }
 
-/// User data managing (activities)
+/// User data management (activities)
 extension FirebaseManager {
     private func createDefaultDatabase() {
-        let userActivitiesList = db.collection("Users").document("\(user!.uid)").collection("Activities")
-        let userCategoriesList = db.collection("Users").document("\(user!.uid)").collection("Categories")
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        userDoc.setData(["id":user!.uid])
+        
+        let userActivitiesList = userDoc.collection("Activities")
+        let userCategoriesList = userDoc.collection("Categories")
         
         let defaultJobCategory: Category = Category(name: "Work")
         let defaultHomeCategory: Category = Category(name: "House")
@@ -92,12 +95,49 @@ extension FirebaseManager {
     func saveActivity(_ activity: Activity) {
         let daysHistory = db.collection("Users").document("\(user!.uid)").collection("Days")
         let endDate = activity.endDate!.dateToStringYMD()
-        let endHours = activity.endDate!.dateToStringHMS()
         
+        ///Creating date parameters to be visibile for queries.
+        daysHistory.document("\(endDate)").setData(["id": endDate])
+        
+        ///Saving activity
         do {
             try daysHistory.document("\(endDate)").collection("Activities").document("\(UUID())").setData(from: activity)
         } catch {
             print("There was an error creating default database.")
+        }
+    }
+    
+    func fetchActivitiesByDate(completion: @escaping (Result<[String:[Activity]], Error>) -> Void) {
+        let days = db.collection("Users").document("\(user!.uid)").collection("Days")
+        var history: [String:[Activity]] = [:]
+        
+        days.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let day = document.documentID
+                    print(day)
+                    document.reference.collection("Activities").getDocuments { (querySnapshot, error) in
+                        if let error = error {
+                            print("Error: \(error)")
+                        } else {
+                            var activitiesList: [Activity] = []
+                            for doc in querySnapshot!.documents {
+                                do {
+                                    let activity = try doc.data(as: Activity.self)
+                                    activitiesList.append(activity)
+                                } catch {
+                                    print("Erro")
+                                }
+                            }
+                            history[day] = activitiesList
+                        }
+                        print(history)
+                        completion(.success(history))
+                    }
+                }
+            }
         }
     }
 }

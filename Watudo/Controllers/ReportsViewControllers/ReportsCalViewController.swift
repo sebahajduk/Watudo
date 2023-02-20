@@ -19,7 +19,12 @@ class ReportsCalViewController: UIViewController {
     let myCalendarView = ReportsCalendarView()
     var calendar: JTACMonthView!
     
-    var calendarDataSource: [String:[Activity]] = [:]
+    var calendarDataSource: [String:[Activity]] = [:] {
+        didSet {
+            calendar.reloadData()
+            print(calendarDataSource)
+        }
+    }
     var selectedDates: [String] = []
     
     override func viewDidLoad() {
@@ -28,7 +33,7 @@ class ReportsCalViewController: UIViewController {
         calendar = myCalendarView.myCalendar
         calendar.calendarDelegate = self
         calendar.calendarDataSource = self
-        
+
         populateDataSource()
         
         view.addSubviews([myCalendarView])
@@ -138,8 +143,16 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func populateDataSource() {
         // TODO: Here you should download data from a server
         
-        // reloading calendar after downloading data
-        calendar.reloadData()
+        FirebaseManager.shared.fetchActivitiesByDate { result in
+            switch result {
+            case .success(let success):
+                self.calendarDataSource = success
+            case .failure(let failure):
+                print("Upst")
+            }
+        }
+            
+        
     }
     
     // Configuring calendar header.

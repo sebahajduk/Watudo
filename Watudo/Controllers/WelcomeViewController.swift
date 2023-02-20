@@ -48,7 +48,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.loginView.emailTextField.text else { return }
         guard let password = welcomeView.loginView.passwordTextField.text else { return }
         
-        FirebaseUserManager.shared.signIn(email: email, password: password) { result in
+        FirebaseManager.shared.signIn(email: email, password: password) { result in
             switch result {
             case .success:
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
@@ -77,7 +77,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.registerView.emailTextField.text else { return }
         guard let password = welcomeView.registerView.passwordTextField.text else { return }
         
-        FirebaseUserManager.shared.createAccount(email: email, password: password) { result in
+        FirebaseManager.shared.createAccount(email: email, password: password) { result in
             switch result {
             case .success:
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())

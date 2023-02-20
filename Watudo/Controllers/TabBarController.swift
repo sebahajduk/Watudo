@@ -29,6 +29,8 @@ class TabBarController: UITabBarController {
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
         configureVCs()
+        
+       
     }
     
     private func configureVCs() {
@@ -76,3 +78,5 @@ extension TabBarController: UITabBarControllerDelegate {
     }
     
 }
+
+

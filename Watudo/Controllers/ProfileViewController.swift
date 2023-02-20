@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: ProfileViewActionHandler {
     func signOutButtonTapped(sender: UIButton) {
         do {
-            try FirebaseUserManager.shared.signOut()
+            try FirebaseManager.shared.signOut()
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeViewController())
         } catch {
             print("There was an error signing out.")

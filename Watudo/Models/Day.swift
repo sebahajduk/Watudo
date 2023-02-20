@@ -7,6 +7,7 @@
 
 import Foundation
 
-class Day {
-    var activities: [UUID: Double] = [:]
+class Day: Decodable {
+    var date: String = ""
+    var activities: [Activity] = []
 }

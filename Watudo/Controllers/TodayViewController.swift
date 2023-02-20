@@ -147,11 +147,12 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let sectionColor = UIColor().colorWithHexString(hexString: user!.categories[section].colorHEX)
         view.tintColor = WColors.background
         let header = view as! UITableViewHeaderFooterView
         var content = header.defaultContentConfiguration()
         content.text = user?.categories[section].name ?? ""
-        content.textProperties.color = WColors.green!
+        content.textProperties.color = sectionColor
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content
     }
@@ -166,7 +167,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
 
-        FirebaseUserManager.shared.saveActivity(activity)
+        FirebaseManager.shared.saveActivity(activity)
     }
     
     /// Drag deleting row
@@ -185,7 +186,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         
         if cell.isSelected {
             let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
-            FirebaseUserManager.shared.saveActivity(activity)
+            FirebaseManager.shared.saveActivity(activity)
         }
     }
 }

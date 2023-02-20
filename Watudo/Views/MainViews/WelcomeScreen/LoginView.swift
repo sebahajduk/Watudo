@@ -69,8 +69,8 @@ extension LoginView {
     private func configureTextFields() {
         addSubviews([emailTextField, passwordTextField, emailImage, passwordImage])
         
-        emailTextField.text = "Test5@gmail.com"
-        passwordTextField.text = "Test55"
+        emailTextField.text = "Test9@gmail.com"
+        passwordTextField.text = "Test99"
         
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"

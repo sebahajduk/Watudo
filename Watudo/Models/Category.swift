@@ -12,7 +12,7 @@ class Category: Equatable, Codable {
     var name: String = ""
     var colorHEX: String = ""
     
-    init(name: String, colorHEX: String = "") {
+    init(name: String, colorHEX: String = WColors.green!.hexStringFromColor()) {
         self.name = name
         self.colorHEX = colorHEX
     }
