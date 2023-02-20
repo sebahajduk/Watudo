@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 /// Everything sticked to user account (Login, creating account, signing out)
-class FirebaseUserManager {
-    static let shared = FirebaseUserManager()
+class FirebaseManager {
+    static let shared = FirebaseManager()
     
     var user: FirebaseAuth.User?
     
@@ -67,7 +67,7 @@ class FirebaseUserManager {
 }
 
 /// User data managing (activities)
-extension FirebaseUserManager {
+extension FirebaseManager {
     private func createDefaultDatabase() {
         let userActivitiesList = db.collection("Users").document("\(user!.uid)").collection("Activities")
         let userCategoriesList = db.collection("Users").document("\(user!.uid)").collection("Categories")
