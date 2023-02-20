@@ -107,22 +107,28 @@ extension FirebaseManager {
         }
     }
     
+    
+    /// Fetching data about acitivities history.
+    /// - Parameter completion: handling dictionary - as a key uses date in format "yyyy-MM-dd".
     func fetchActivitiesByDate(completion: @escaping (Result<[String:[Activity]], Error>) -> Void) {
         let days = db.collection("Users").document("\(user!.uid)").collection("Days")
         var history: [String:[Activity]] = [:]
-        
         days.getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                /// Document is a single day.
                 for document in querySnapshot!.documents {
                     let day = document.documentID
-                    print(day)
-                    document.reference.collection("Activities").getDocuments { (querySnapshot, error) in
+                    let docRef = document.reference.collection("Activities")
+                    
+                    docRef.getDocuments { (querySnapshot, error) in
                         if let error = error {
                             print("Error: \(error)")
                         } else {
                             var activitiesList: [Activity] = []
+                            
+                            ///doc is single activity in specified day (document).
                             for doc in querySnapshot!.documents {
                                 do {
                                     let activity = try doc.data(as: Activity.self)
@@ -133,11 +139,32 @@ extension FirebaseManager {
                             }
                             history[day] = activitiesList
                         }
-                        print(history)
                         completion(.success(history))
                     }
                 }
             }
         }
     }
+    
+    func add<T: Addable & Codable>(_ object: T) {
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        let userActivitiesList = userDoc.collection("Activities")
+        let userCategoriesList = userDoc.collection("Categories")
+        
+        if object is Category {
+            do {
+                try userCategoriesList.document(object.name).setData(from: object)
+            } catch {
+                print("There was an error saving your category.")
+            }
+        } else if object is Activity {
+            do {
+                try userActivitiesList.document(object.name).setData(from: object)
+            } catch {
+                print("There was an error saving your activity.")
+            }
+        }
+    }
+    
+    
 }

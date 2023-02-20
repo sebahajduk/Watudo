@@ -98,6 +98,7 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
 extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
     func sendCategory(_ category: Category) {
         user.categories.append(category)
+        FirebaseManager.shared.add(category)
         
         let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
@@ -109,7 +110,7 @@ extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
     
     #warning("Remove category from func")
     func sendActivity(activity: Activity, category: Category) {
-        
+        FirebaseManager.shared.add(activity)
         user.activities.append(activity)
         updateDelegate()
         let selectedRows = todayView.tableView.indexPathsForSelectedRows

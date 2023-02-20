@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Category: Equatable, Codable {
+class Category: Equatable, Codable, Addable {
     let id = UUID()
     var name: String = ""
     var colorHEX: String = ""
