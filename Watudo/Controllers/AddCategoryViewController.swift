@@ -13,17 +13,11 @@ class AddCategoryViewController: UIViewController {
     
     let addCategoryView = AddCategoryView()
     
-    var user: LocalUser?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background
         
         configure()
-    }
-    
-    func setVC(user: LocalUser) {
-        self.user = user
     }
     
     private func configure() {

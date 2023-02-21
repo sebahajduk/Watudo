@@ -11,8 +11,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
     
     var todayView = TodayView()
     
-    var user: LocalUser!
-    
     var timer: Timer?
     
     override func viewDidLoad() {
@@ -23,6 +21,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
         todayView.tableView.delegate = self
         todayView.tableView.allowsMultipleSelection = true
         todayView.menuDelegate = self
+        updateDelegate()
         
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
@@ -35,17 +34,11 @@ class TodayViewController: UIViewController, ActivityDelegate {
         fetchQuote()
     }
     
-    func setVC(user: LocalUser) {
-        self.user = user
-        
-        updateDelegate()
-    }
-    
     private func updateDelegate() {
-        for category in user.categories {
-            for activity in user.getActivitiesForCategory(category) {
-                activity.delegate = self
-            }
+        let activities = LocalUserManager.shared.getActivities()
+        
+        for activity in activities {
+            activity.delegate = self
         }
     }
     
@@ -74,9 +67,6 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
         addActivityVC.sheetPresentationController?.detents = [.medium()]
         addActivityVC.delegate = self
         
-        guard let user else { return }
-        addActivityVC.setVC(user: user)
-        
         present(addActivityVC, animated: true)
     }
     
@@ -88,16 +78,13 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
         })]
         addCategoryVC.delegate = self
         
-        guard let user else { return }
-        addCategoryVC.setVC(user: user)
-        
         present(addCategoryVC, animated: true)
     }
 }
 
 extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
     func sendCategory(_ category: Category) {
-        user.categories.append(category)
+        LocalUserManager.shared.addCategory(category)
         FirebaseManager.shared.add(category)
         
         let selectedRows = todayView.tableView.indexPathsForSelectedRows
@@ -109,8 +96,7 @@ extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
     }
     
     func sendActivity(activity: Activity) {
-        FirebaseManager.shared.add(activity)
-        user.activities.append(activity)
+        LocalUserManager.shared.addActivity(activity)
         updateDelegate()
         let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
@@ -119,19 +105,17 @@ extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
             self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
     }
-    
-    
 }
 
 extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user.getActivitiesForCategory(user.categories[section]).count
+        LocalUserManager.shared.getActivitiesForCategory(at: section).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
+        let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
         
         cell.set(for: activities[indexPath.row])
         cell.selectionStyle = .none
@@ -139,44 +123,39 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return user.categories[section].name
+        return LocalUserManager.shared.getCategory(for: section).name
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return user.categories.count
+        return LocalUserManager.shared.getNumberOfCategories()
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let sectionColor = UIColor().colorWithHexString(hexString: user!.categories[section].colorHEX)
+        let category = LocalUserManager.shared.getCategory(for: section)
+        let sectionColor = UIColor().colorWithHexString(hexString: category.colorHEX)
         view.tintColor = WColors.background
         let header = view as! UITableViewHeaderFooterView
+        
         var content = header.defaultContentConfiguration()
-        content.text = user?.categories[section].name ?? ""
+        content.text = category.name
         content.textProperties.color = sectionColor
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
-        
-        activities[indexPath.row].startWork()
-        
+        LocalUserManager.shared.startWork(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
-
-        FirebaseManager.shared.saveActivity(activity)
+        LocalUserManager.shared.finishWork(at: indexPath)
     }
     
     /// Drag deleting row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        if editingStyle == .delete {
-            let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
-            
-            user.delete(activity: activity)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+           LocalUserManager.shared.removeActivity(at: indexPath)
+           tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
@@ -185,8 +164,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)!
         
         if cell.isSelected {
-            let activity = user.getActivitiesForCategory(user.categories[indexPath.section])[indexPath.row].finishWork()
-            FirebaseManager.shared.saveActivity(activity)
+            LocalUserManager.shared.finishWork(at: indexPath)
         }
     }
 }

@@ -12,8 +12,6 @@ class TabBarController: UITabBarController {
     let uiTabBar = UITabBar()
     let tabBarAppearance = UITabBarAppearance()
     
-    let user = LocalUser()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.unselectedItemTintColor = WColors.background
@@ -30,19 +28,12 @@ class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = tabBarAppearance
         configureVCs()
         
-       
     }
     
     private func configureVCs() {
         let todayVC = TodayViewController()
         let reportsVC = ReportsViewController()
         let profileVC = ProfileViewController()
-        
-        user.name = "Watudo User"
-        
-        todayVC.setVC(user: user)
-        reportsVC.setVC(user: user)
-        profileVC.setVC(user: user)
         
         viewControllers = [
             configureTabBar(for: todayVC, title: "Today", image: UIImage(systemName: "house.fill")!),

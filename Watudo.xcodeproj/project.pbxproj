@@ -27,6 +27,7 @@
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
 		6066A70D2992CB6400A0BEBA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066A70C2992CB6400A0BEBA /* TimeManager.swift */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
+		607A096D29A4863000349400 /* LocalUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A096C29A4863000349400 /* LocalUserManager.swift */; };
 		608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */; };
 		608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E02979D2450094A8D7 /* ProfileViewController.swift */; };
 		608942E32979D2590094A8D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E22979D2590094A8D7 /* ProfileView.swift */; };
@@ -83,6 +84,7 @@
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		6066A70C2992CB6400A0BEBA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
+		607A096C29A4863000349400 /* LocalUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserManager.swift; sourceTree = "<group>"; };
 		608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalViewController.swift; sourceTree = "<group>"; };
 		608942E02979D2450094A8D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		608942E22979D2590094A8D7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			children = (
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
 				60EFA5002986C50000586AB9 /* FirebaseManager.swift */,
+				607A096C29A4863000349400 /* LocalUserManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				601553F4299D825100A2817A /* AddCategoryViewController.swift in Sources */,
 				602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */,
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
+				607A096D29A4863000349400 /* LocalUserManager.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
 				606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */,

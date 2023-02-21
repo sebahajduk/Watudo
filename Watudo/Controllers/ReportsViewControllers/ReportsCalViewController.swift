@@ -22,7 +22,6 @@ class ReportsCalViewController: UIViewController {
     var calendarDataSource: [String:[Activity]] = [:] {
         didSet {
             calendar.reloadData()
-            print(calendarDataSource)
         }
     }
     var selectedDates: [String] = []

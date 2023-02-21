@@ -12,8 +12,6 @@ class AddActivityViewController: UIViewController {
     let addActivityView = AddActivityView()
     
     var delegate: SendNewActivityDelegate? = nil
-    
-    var user: LocalUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +23,6 @@ class AddActivityViewController: UIViewController {
         configure()
     }
     
-    func setVC(user: LocalUser) {
-        self.user = user
-    }
-
     private func configure() {
         view.addSubview(addActivityView)
         
@@ -44,9 +38,10 @@ class AddActivityViewController: UIViewController {
 extension AddActivityViewController: AddActivityViewActionHandler {
     func doneButtonTapped() {
         let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
-        let activity = Activity(name: addActivityView.nameTextField.text!, category: (user?.categories[pickerViewSelectedRow])!)
+        let activityName = addActivityView.nameTextField.text!
+        let activityCategory = LocalUserManager.shared.getCategory(for: pickerViewSelectedRow)
         
-        guard let user else { return }
+        let activity = Activity(name: activityName, category: activityCategory)
         self.delegate?.sendActivity(activity: activity)
         
         self.dismiss(animated: true)
@@ -59,11 +54,11 @@ extension AddActivityViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return user?.categories.count ?? 0
+        LocalUserManager.shared.getNumberOfCategories()
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return user?.categories[row].name ?? ""
+        LocalUserManager.shared.getCategory(for: row).name
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

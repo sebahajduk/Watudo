@@ -12,7 +12,7 @@ import Charts
 class ReportsViewController: UIViewController  {
     
     let myCalendarVC = ReportsCalViewController()
-    var user: LocalUser?
+    
     let reportsView = ReportsView()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,10 +27,6 @@ class ReportsViewController: UIViewController  {
         view.backgroundColor = WColors.background
         
         configure()
-    }
-    
-    func setVC(user: LocalUser) {
-        self.user = user
     }
     
     private func configure() {
@@ -58,16 +54,13 @@ extension ReportsViewController: ChartViewDelegate {
 
 extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let user else { return 0 }
-        
-        return user.getActivitiesForCategory(user.categories[section]).count
+        LocalUserManager.shared.getActivitiesForCategory(at: section).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         
-        guard let user else { return cell }
-        let activities = user.getActivitiesForCategory(user.categories[indexPath.section])
+        let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
         
         cell.set(for: activities[indexPath.row])
         
@@ -75,18 +68,18 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return user?.categories[section].name ?? ""
+        LocalUserManager.shared.getCategory(for: section).name
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return user?.categories.count ?? 0
+        LocalUserManager.shared.getNumberOfCategories()
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = WColors.background
         let header = view as! UITableViewHeaderFooterView
         var content = header.defaultContentConfiguration()
-        content.text = user?.categories[section].name ?? ""
+        content.text = LocalUserManager.shared.getCategory(for: section).name
         content.textProperties.color = WColors.green!
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content

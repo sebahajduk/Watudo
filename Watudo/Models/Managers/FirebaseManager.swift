@@ -19,6 +19,8 @@ class FirebaseManager {
     private let db = Firestore.firestore()
     private let auth = Auth.auth()
     
+    var localUser: LocalUser?
+    
     var formatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -51,8 +53,8 @@ class FirebaseManager {
             if let error = error {
                 completion(.failure(error))
             } else if let authResult = authResult {
-                completion(.success(authResult))
                 self.user = authResult.user
+                completion(.success(authResult))
             }
         }
     }
@@ -62,6 +64,80 @@ class FirebaseManager {
             try auth.signOut()
         } catch let err as NSError {
             throw err
+        }
+    }
+}
+
+/// Download user
+extension FirebaseManager {
+    
+    func fetchUser(_ completion: @escaping (Result<LocalUser, Error>) -> Void) {
+        var activitiesList: [Activity] = []
+        var categories: [Category] = []
+        
+        fetchActivityList { result in
+            switch result {
+            case .success(let fetchedActivities):
+                activitiesList = fetchedActivities
+                
+                self.fetchCategoryList { result in
+                    switch result {
+                    case .success(let fetchedCategories):
+                        categories = fetchedCategories
+                        completion(.success(LocalUser(activities: activitiesList, categories: categories)))
+                    case .failure(let failure):
+                        completion(.failure(failure))
+                    }
+                }
+                
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
+    private func fetchActivityList(_ completion: @escaping (Result<[Activity], any Error>) -> Void) {
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        let userActivitiesList = userDoc.collection("Activities")
+        var activities: [Activity] = []
+        
+        userActivitiesList.getDocuments { (querySnapshot, error) in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            
+            for document in querySnapshot!.documents {
+                do {
+                    let activity = try document.data(as: Activity.self)
+                    activities.append(activity)
+                } catch  {
+                    completion(.failure(error))
+                }
+            }
+            completion(.success(activities))
+        }
+    }
+    
+    private func fetchCategoryList(_ completion: @escaping (Result<[Category], any Error>) -> Void) {
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        let userCategoryList = userDoc.collection("Categories")
+        var categories: [Category] = []
+        
+        userCategoryList.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                for doc in querySnapshot!.documents {
+                    do {
+                        let category = try doc.data(as: Category.self)
+                        categories.append(category)
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+                completion(.success(categories))
+            }
         }
     }
 }
@@ -163,6 +239,30 @@ extension FirebaseManager {
             } catch {
                 print("There was an error saving your activity.")
             }
+        }
+    }
+    
+    func delete<T: Addable & Codable>(_ object: T, completion: @escaping (Bool) -> Void) {
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        let userActivitiesList = userDoc.collection("Activities")
+        let userCategoriesList = userDoc.collection("Categories")
+        
+        if object is Category {
+            userCategoriesList.document(object.name).delete { error in
+                guard error == nil else {
+                    completion(false)
+                    return
+                }
+            }
+            completion(true)
+        } else if object is Activity {
+            userCategoriesList.document(object.name).delete { error in
+                guard error == nil else {
+                    completion(false)
+                    return
+                }
+            }
+            completion(true)
         }
     }
     

@@ -51,7 +51,14 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         FirebaseManager.shared.signIn(email: email, password: password) { result in
             switch result {
             case .success:
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                LocalUserManager.shared.fetchUser { userDataReady in
+                    switch userDataReady {
+                    case true:
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                    case false:
+                        print("FAIL")
+                    }
+                }
             case .failure(let failure):
                 print("There was an error: \(failure.localizedDescription)")
             }
@@ -80,7 +87,15 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         FirebaseManager.shared.createAccount(email: email, password: password) { result in
             switch result {
             case .success:
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                LocalUserManager.shared.fetchUser { userDataReady in
+                    switch userDataReady {
+                    case true:
+                       (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                    case false:
+                        print("FAIL")
+                    }
+                }
+                
             case .failure(let failure):
                 print("There was an error creating user: \(failure.localizedDescription)")
             }
