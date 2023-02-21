@@ -108,8 +108,7 @@ extension TodayViewController: SendNewActivityDelegate, SendCategoryDelegate {
         })
     }
     
-    #warning("Remove category from func")
-    func sendActivity(activity: Activity, category: Category) {
+    func sendActivity(activity: Activity) {
         FirebaseManager.shared.add(activity)
         user.activities.append(activity)
         updateDelegate()

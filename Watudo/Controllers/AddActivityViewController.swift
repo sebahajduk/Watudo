@@ -47,7 +47,7 @@ extension AddActivityViewController: AddActivityViewActionHandler {
         let activity = Activity(name: addActivityView.nameTextField.text!, category: (user?.categories[pickerViewSelectedRow])!)
         
         guard let user else { return }
-        self.delegate?.sendActivity(activity: activity, category: user.categories[pickerViewSelectedRow])
+        self.delegate?.sendActivity(activity: activity)
         
         self.dismiss(animated: true)
     }
@@ -72,5 +72,5 @@ extension AddActivityViewController: UIPickerViewDataSource, UIPickerViewDelegat
 }
 
 protocol SendNewActivityDelegate {
-    func sendActivity(activity: Activity, category: Category)
+    func sendActivity(activity: Activity)
 }
