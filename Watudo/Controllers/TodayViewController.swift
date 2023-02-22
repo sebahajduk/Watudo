@@ -23,6 +23,8 @@ class TodayViewController: UIViewController, ActivityDelegate {
         todayView.menuDelegate = self
         updateDelegate()
         
+        prepareChartsData()
+        
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
             todayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
@@ -32,6 +34,44 @@ class TodayViewController: UIViewController, ActivityDelegate {
         ])
         
         fetchQuote()
+    }
+    
+    private func prepareChartsData() {
+        var dates: [String] = []
+        var timeHistory: [Double] = []
+        for i in 0...6 {
+            let day = Calendar.current.date(byAdding: .day, value: -i, to: Date())
+            let dateString = day!.dateToStringYMD()
+            dates.append(dateString)
+        }
+        
+        
+        FirebaseManager.shared.getLastWeekHistory { result in
+            switch result {
+            case .success(let lastWeekHistory):
+                for day in dates {
+                    if lastWeekHistory[day] != nil {
+                        var timeSpent: Double = 0
+                        for activity in lastWeekHistory[day]! {
+                            timeSpent += activity.timeSpent
+                        }
+                        timeHistory.append(timeSpent)
+                    } else {
+                        timeHistory.append(0)
+                    }
+                    
+                }
+                
+                for i in 0...6 {
+                    self.todayView.chartView.setData(for: timeHistory)
+                }
+                
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
+        
     }
     
     private func updateDelegate() {

@@ -12,15 +12,7 @@ class HomeChartView: UIView {
     
     let visualEffect = WVisualEffectView(cornerRadius: 30)
     var chartView: LineChartView = LineChartView()
-    let weekDays: [ChartDataEntry] = [
-        ChartDataEntry(x: 0, y: 2),
-        ChartDataEntry(x: 1, y: 7),
-        ChartDataEntry(x: 2, y: 20),
-        ChartDataEntry(x: 3, y: 5),
-        ChartDataEntry(x: 4, y: 9),
-        ChartDataEntry(x: 5, y: 8),
-        ChartDataEntry(x: 6, y: 2)
-    ]
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,16 +44,25 @@ class HomeChartView: UIView {
         configureConstraints()
     }
     
-    func setData() {
+    func setData(for history: [Double]) {
+        let weekDays: [ChartDataEntry] = [
+            ChartDataEntry(x: 0, y: history[6]),
+            ChartDataEntry(x: 1, y: history[5]),
+            ChartDataEntry(x: 2, y: history[4]),
+            ChartDataEntry(x: 3, y: history[3]),
+            ChartDataEntry(x: 4, y: history[2]),
+            ChartDataEntry(x: 5, y: history[1]),
+            ChartDataEntry(x: 6, y: history[0])
+        ]
+        
         let presentWeek = LineChartDataSet(entries: weekDays)
         
         let gradientColors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.05).cgColor] as CFArray
         let colorLocations: [CGFloat] = [1.0, 0.0]
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
 
-        
         presentWeek.drawCirclesEnabled = false
-        presentWeek.mode = .cubicBezier
+        presentWeek.mode = .linear
         presentWeek.lineWidth = 2
         presentWeek.setColor(.white)
         presentWeek.fill = LinearGradientFill(gradient: gradient!, angle: 90)
@@ -97,7 +98,6 @@ class HomeChartView: UIView {
         chartView.legend.enabled = false
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
         
-        setData()
         chartView.translatesAutoresizingMaskIntoConstraints = false
     }
     

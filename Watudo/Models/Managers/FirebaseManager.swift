@@ -140,6 +140,51 @@ extension FirebaseManager {
             }
         }
     }
+    
+    func getLastWeekHistory(_ completion: @escaping (Result<[String : [Activity]], any Error>) -> Void) {
+        let daysHistory = db.collection("Users").document("\(user!.uid)").collection("Days")
+        var dates: [String] = []
+        var lastWeekHistory: [String:[Activity]] = [:]
+        
+        for i in 0...6 {
+            let day = Calendar.current.date(byAdding: .day, value: -i, to: Date())
+            let dateString = day!.dateToStringYMD()
+            dates.append(dateString)
+        }
+        
+        daysHistory.whereField("id", in: dates).getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                for document in querySnapshot!.documents {
+                    let day = document.documentID
+                    let docRef = document.reference.collection("Activities")
+                    
+                    docRef.getDocuments { (querySnap, error) in
+                        if let error = error {
+                            print("Error: \(error)")
+                        } else {
+                            var activitiesList: [Activity] = []
+                            
+                            ///doc is single activity in specified day (document).
+                            for doc in querySnap!.documents {
+                                do {
+                                    let activity = try doc.data(as: Activity.self)
+                                    activitiesList.append(activity)
+                                } catch {
+                                    print("Erro")
+                                }
+                            }
+                            lastWeekHistory[day] = activitiesList
+                        }
+                        if querySnapshot!.documents.first == document {
+                            completion(.success(lastWeekHistory))
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 /// User data management (activities)
