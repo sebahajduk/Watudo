@@ -51,10 +51,11 @@ class ReportsViewController: UIViewController  {
         
         for category in categories where categorySpentHistory[category.name] != nil {
             categoriesWithHistory.append(category)
+            print("Name: \(category.name), color: \(category.colorHEX)")
         }
         
         reportsView.reportsChartView.setData(categories: categoriesWithHistory, categorySpentHistory: categorySpentHistory)
-    }
+     }
 }
 
 extension ReportsViewController: ChartViewDelegate {
