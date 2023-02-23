@@ -13,7 +13,6 @@ class HomeChartView: UIView {
     let visualEffect = WVisualEffectView(cornerRadius: 30)
     var chartView: LineChartView = LineChartView()
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -113,12 +112,6 @@ class HomeChartView: UIView {
             chartView.trailingAnchor.constraint(equalTo: visualEffect.trailingAnchor, constant: -10),
             chartView.bottomAnchor.constraint(equalTo: visualEffect.bottomAnchor, constant: -10)
         ])
-    }
-}
-
-extension TodayView: ChartViewDelegate {
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry)
     }
 }
 

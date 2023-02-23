@@ -96,7 +96,7 @@ class TodayView: UIView {
         var addMenu: UIMenu {
             return UIMenu(title: "Add", image: nil, identifier: nil, options: [], children: menuItems)
         }
-        var menuItems = [
+        let menuItems = [
             UIAction(title: "Activity", image: UIImage(systemName: "timer.circle.fill"), handler: { (_) in
                 self.menuDelegate?.addActivityButtonTapped()
             }),
@@ -206,5 +206,11 @@ extension TodayView {
             // Do nothing, view shouldn't change.
             print("We have no information about user interface style")
         }
+    }
+}
+
+extension TodayView: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry)
     }
 }

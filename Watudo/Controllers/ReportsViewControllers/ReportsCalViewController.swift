@@ -18,6 +18,7 @@ class ReportsCalViewController: UIViewController {
     
     let myCalendarView = ReportsCalendarView()
     var calendar: JTACMonthView!
+    var delegate: ReportsCalVCDelegate? = nil
     
     var calendarDataSource: [String:[Activity]] = [:] {
         didSet {
@@ -52,7 +53,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
         selectedDates.append(formatter.string(from: cellState.date))
-        print(selectedDates)
+        delegate?.dateSelected(dates: selectedDates)
     }
     
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
@@ -61,6 +62,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
         guard let index = selectedDates.firstIndex(where: { $0 == formatter.string(from: cellState.date)}) else { return }
         
         selectedDates.remove(at: index)
+        delegate?.dateSelected(dates: selectedDates)
     }
     
     func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
@@ -142,7 +144,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func populateDataSource() {
         // TODO: Here you should download data from a server
         
-        FirebaseManager.shared.fetchActivitiesByDate { result in
+        FirebaseManager.shared.fetchActivitiesByDate() { result in
             switch result {
             case .success(let success):
                 self.calendarDataSource = success
@@ -168,4 +170,8 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         return MonthSize(defaultSize: 35)
     }
+}
+
+protocol ReportsCalVCDelegate {
+    func dateSelected(dates: [String])
 }

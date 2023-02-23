@@ -311,5 +311,37 @@ extension FirebaseManager {
         }
     }
     
-    
+//    func fetchHistoryForDays(_ dates: [String], completion: @escaping (Result<[String:[Activity]], Error>) -> Void) {
+//        let days = db.collection("Users").document("\(user!.uid)").collection("Days")
+//        var history: [String:[Activity]] = [:]
+//        days.getDocuments { (querySnapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//            } else {
+//
+//                for date in dates {
+//                    for document in querySnapshot!.documents where document.documentID == date {
+//                        let docRef = document.reference.collection("Activities")
+//                        var activitiesList: [Activity] = []
+//                        docRef.getDocuments { querySnapshot, erorr in
+//                            if let error = error {
+//                                print("Error: \(error.localizedDescription)")
+//                            } else {
+//                                for doc in querySnapshot!.documents {
+//                                    do {
+//                                        let activity = try doc.data(as: Activity.self)
+//                                        activitiesList.append(activity)
+//                                    } catch {
+//                                        print(error.localizedDescription)
+//                                    }
+//                                }
+//                                history[date] = activitiesList
+//                            }
+//                            completion(.success(history))
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

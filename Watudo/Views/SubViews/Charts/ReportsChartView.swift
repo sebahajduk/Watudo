@@ -12,30 +12,28 @@ class ReportsChartView: UIView {
     
     let visualEffect = WVisualEffectView(cornerRadius: 30)
     var chartView: BarChartView = BarChartView()
-    var chartValues: [BarChartDataEntry] = []
+//    var chartValues: [BarChartDataEntry] = []
     var summary: [BarChartDataSet] = []
-    
-    let categories: [Category] = [
-        Category(name: "Coding"),
-        Category(name: "Netflix"),
-        Category(name: "Gaming"),
-        Category(name: "House chores")
-    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         configure()
+        chartView.noDataText = "Select dates to see data."
     }
     
-    func setData() {
+    func setData(categories: [Category], categorySpentHistory: [String:Double]) {
+        chartView.animate(xAxisDuration: 0.3, yAxisDuration: 0.3)
+        summary = []
+        chartView.data = nil
+        
         for category in categories {
             if let index = categories.firstIndex(of: category) {
-                let chartValue = BarChartDataEntry(x: Double(index), y: 5)
+                let chartValue = BarChartDataEntry(x: Double(index), y: categorySpentHistory[category.name]!)
                 let dataSet = BarChartDataSet(entries: [chartValue], label: category.name)
-//                dataSet.colors = [category.color.withAlphaComponent(0.2)]
+                dataSet.colors = [UIColor().colorWithHexString(hexString: category.colorHEX).withAlphaComponent(0.2)]
                 dataSet.barBorderWidth = 2
-//                dataSet.barBorderColor = category.color
+                dataSet.barBorderColor = UIColor().colorWithHexString(hexString: category.colorHEX)
                 
                 summary.append(dataSet)
             }
@@ -75,7 +73,6 @@ class ReportsChartView: UIView {
         chartView.xAxis.enabled = false
         chartView.doubleTapToZoomEnabled = false
         chartView.legend.enabled = true
-        setData()
         chartView.translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -59,6 +59,10 @@ extension LocalUserManager {
         user.categories.count
     }
     
+    func getCategories() -> [Category] {
+        user.categories
+    }
+    
     func getActivitiesForCategory(at section: Int) -> [Activity] {
         let category = user.categories[section]
 

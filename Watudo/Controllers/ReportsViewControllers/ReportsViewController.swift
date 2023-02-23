@@ -18,7 +18,7 @@ class ReportsViewController: UIViewController  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
-        
+        myCalendarVC.delegate = self
         reportsView.tableView.reloadData()
     }
     
@@ -43,6 +43,17 @@ class ReportsViewController: UIViewController  {
             reportsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             reportsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func updateCharts(categorySpentHistory: [String:Double]) {
+        let categories = LocalUserManager.shared.getCategories()
+        var categoriesWithHistory: [Category] = []
+        
+        for category in categories where categorySpentHistory[category.name] != nil {
+            categoriesWithHistory.append(category)
+        }
+        
+        reportsView.reportsChartView.setData(categories: categoriesWithHistory, categorySpentHistory: categorySpentHistory)
     }
 }
 
@@ -85,4 +96,30 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
         header.contentConfiguration = content
     }
     
+}
+
+extension ReportsViewController: ReportsCalVCDelegate {
+    func dateSelected(dates: [String]) {
+        var timeSpentHistory: [String:Double] = [:]
+        var categorySpentHistory: [String:Double] = [:]
+        
+        for date in dates {
+            if myCalendarVC.calendarDataSource[date] == nil { continue } else {
+                for activity in myCalendarVC.calendarDataSource[date]! {
+                    if timeSpentHistory[activity.name] == nil {
+                        timeSpentHistory[activity.name] = activity.timeSpent
+                    } else {
+                        timeSpentHistory[activity.name]! += activity.timeSpent
+                    }
+                    
+                    if categorySpentHistory[activity.category.name] == nil {
+                        categorySpentHistory[activity.category.name] = activity.timeSpent
+                    } else {
+                        categorySpentHistory[activity.category.name]! += activity.timeSpent
+                    }
+                }
+            }
+            updateCharts(categorySpentHistory: categorySpentHistory)
+        }
+    }
 }

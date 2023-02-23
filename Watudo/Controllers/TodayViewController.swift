@@ -45,7 +45,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
             dates.append(dateString)
         }
         
-        
         FirebaseManager.shared.getLastWeekHistory { result in
             switch result {
             case .success(let lastWeekHistory):
@@ -62,16 +61,14 @@ class TodayViewController: UIViewController, ActivityDelegate {
                     
                 }
                 
-                for i in 0...6 {
-                    self.todayView.chartView.setData(for: timeHistory)
-                }
+                
+                self.todayView.chartView.setData(for: timeHistory)
+                
                 
             case .failure(let failure):
                 print(failure)
             }
         }
-        
-        
     }
     
     private func updateDelegate() {

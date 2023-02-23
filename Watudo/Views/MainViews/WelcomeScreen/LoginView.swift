@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FacebookLogin
 
 class LoginView: UIView, UITextFieldDelegate {
     
