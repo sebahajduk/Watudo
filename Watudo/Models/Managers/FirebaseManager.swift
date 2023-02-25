@@ -61,7 +61,7 @@ class FirebaseManager {
         }
     }
     
-    func signInByFacebook(credential: AuthCredential) async throws {
+    func signInByPlatforms(credential: AuthCredential) async throws {
         
         do {
             let authResult = try await auth.signIn(with: credential)
@@ -70,7 +70,6 @@ class FirebaseManager {
             if isNewUser! {
                 self.createDefaultDatabase()
             }
-            print(user?.uid)
         } catch {
             print("There was an error signing in.")
         }
@@ -306,7 +305,6 @@ extension FirebaseManager {
     
     func delete<T: Addable & Codable>(_ object: T, completion: @escaping (Bool) -> Void) {
         let userDoc = db.collection("Users").document("\(user!.uid)")
-        let userActivitiesList = userDoc.collection("Activities")
         let userCategoriesList = userDoc.collection("Categories")
         
         if object is Category {

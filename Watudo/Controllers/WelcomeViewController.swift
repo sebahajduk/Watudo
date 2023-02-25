@@ -58,13 +58,14 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
     
     func signInByGoogle(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
+        
+        WLoginManager.signInGoogle(viewController: self)
     }
     
     func signInByFacebook(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
         WLoginManager.signInFacebook()
-        
     }
     
     // RegisterView

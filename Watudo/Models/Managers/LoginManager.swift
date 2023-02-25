@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import FirebaseCore
 import FacebookLogin
 import FirebaseAuth
+import GoogleSignIn
 
 @MainActor
 struct WLoginManager {
@@ -60,7 +62,7 @@ struct WLoginManager {
                 let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
                 Task {
                     do {
-                        try await FirebaseManager.shared.signInByFacebook(credential: credential)
+                        try await FirebaseManager.shared.signInByPlatforms(credential: credential)
                         LocalUserManager.shared.fetchUser { userDataReady in
                             switch userDataReady {
                             case true:
@@ -81,7 +83,32 @@ struct WLoginManager {
         
     }
     
-    static func signInGoole() {
+    static func signInGoogle(viewController: UIViewController) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { result, error in
+            guard error == nil else { return }
+            
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else { return }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            
+            Task {
+                do {
+                    try await FirebaseManager.shared.signInByPlatforms(credential: credential)
+                    LocalUserManager.shared.fetchUser { userDataReady in
+                        switch userDataReady {
+                        case true:
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                        case false:
+                            print("FAIL")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
