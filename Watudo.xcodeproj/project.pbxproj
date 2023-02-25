@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600AEA4D29AA44C40077E27F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AEA4C29AA44C40077E27F /* LoginManager.swift */; };
 		6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */; };
 		601553F2299D548300A2817A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F1299D548300A2817A /* AddCategoryView.swift */; };
 		601553F4299D825100A2817A /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F3299D825100A2817A /* AddCategoryViewController.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		600AEA4C29AA44C40077E27F /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		601553F1299D548300A2817A /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		601553F3299D825100A2817A /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
 				60EFA5002986C50000586AB9 /* FirebaseManager.swift */,
 				607A096C29A4863000349400 /* LocalUserManager.swift */,
+				600AEA4C29AA44C40077E27F /* LoginManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */,
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
 				60581738296C94E1002AEE2E /* ReportsView.swift in Sources */,
+				600AEA4D29AA44C40077E27F /* LoginManager.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
 				60A2D8A029649EF10082338B /* AddActivityViewController.swift in Sources */,
 				608CBD8D2980551400F82ABF /* WLabel.swift in Sources */,

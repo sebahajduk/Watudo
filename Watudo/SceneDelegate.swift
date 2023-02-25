@@ -45,7 +45,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         
         Settings.appID = "3517037301863277"
+        Settings.isAutoLogAppEventsEnabled = true
+        
+        
         ApplicationDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+        
         
     }
     

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FacebookLogin
+
 
 class WelcomeViewController: UIViewController {
 
@@ -49,21 +49,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.loginView.emailTextField.text else { return }
         guard let password = welcomeView.loginView.passwordTextField.text else { return }
         
-        FirebaseManager.shared.signIn(email: email, password: password) { result in
-            switch result {
-            case .success:
-                LocalUserManager.shared.fetchUser { userDataReady in
-                    switch userDataReady {
-                    case true:
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
-                    case false:
-                        print("FAIL")
-                    }
-                }
-            case .failure(let failure):
-                print("There was an error: \(failure.localizedDescription)")
-            }
-        }
+        WLoginManager.signIn(email: email, password: password)
     }
     
     func signInByApple(sender: UIButton) {
@@ -77,23 +63,8 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
     func signInByFacebook(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        let loginManager = LoginManager()
+        WLoginManager.signInFacebook()
         
-        loginManager.logIn(permissions: [], from: self) { [weak self] (result, error) in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            guard let result = result, !result.isCancelled else {
-                print("User cancelled login")
-                return
-            }
-        }
-        
-        Profile.loadCurrentProfile { profile, error in
-            print("Logged in")
-        }
     }
     
     // RegisterView
@@ -103,21 +74,6 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.registerView.emailTextField.text else { return }
         guard let password = welcomeView.registerView.passwordTextField.text else { return }
         
-        FirebaseManager.shared.createAccount(email: email, password: password) { result in
-            switch result {
-            case .success:
-                LocalUserManager.shared.fetchUser { userDataReady in
-                    switch userDataReady {
-                    case true:
-                       (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
-                    case false:
-                        print("FAIL")
-                    }
-                }
-                
-            case .failure(let failure):
-                print("There was an error creating user: \(failure.localizedDescription)")
-            }
-        }
+        WLoginManager.createAccount(email: email, password: password)
     }
 }

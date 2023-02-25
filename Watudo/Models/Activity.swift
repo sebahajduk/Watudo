@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Activity: NSObject, Codable, Addable {
+class Activity: NSCoder, Codable, Addable {
     
     weak var delegate: ActivityDelegate? = nil
     

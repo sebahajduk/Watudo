@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FacebookLogin
 
 /// Everything sticked to user account (Login, creating account, signing out)
 class FirebaseManager {
@@ -56,6 +58,21 @@ class FirebaseManager {
                 self.user = authResult.user
                 completion(.success(authResult))
             }
+        }
+    }
+    
+    func signInByFacebook(credential: AuthCredential) async throws {
+        
+        do {
+            let authResult = try await auth.signIn(with: credential)
+            let isNewUser = authResult.additionalUserInfo?.isNewUser
+            self.user = authResult.user
+            if isNewUser! {
+                self.createDefaultDatabase()
+            }
+            print(user?.uid)
+        } catch {
+            print("There was an error signing in.")
         }
     }
     
@@ -310,38 +327,4 @@ extension FirebaseManager {
             completion(true)
         }
     }
-    
-//    func fetchHistoryForDays(_ dates: [String], completion: @escaping (Result<[String:[Activity]], Error>) -> Void) {
-//        let days = db.collection("Users").document("\(user!.uid)").collection("Days")
-//        var history: [String:[Activity]] = [:]
-//        days.getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//            } else {
-//
-//                for date in dates {
-//                    for document in querySnapshot!.documents where document.documentID == date {
-//                        let docRef = document.reference.collection("Activities")
-//                        var activitiesList: [Activity] = []
-//                        docRef.getDocuments { querySnapshot, erorr in
-//                            if let error = error {
-//                                print("Error: \(error.localizedDescription)")
-//                            } else {
-//                                for doc in querySnapshot!.documents {
-//                                    do {
-//                                        let activity = try doc.data(as: Activity.self)
-//                                        activitiesList.append(activity)
-//                                    } catch {
-//                                        print(error.localizedDescription)
-//                                    }
-//                                }
-//                                history[date] = activitiesList
-//                            }
-//                            completion(.success(history))
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 }

@@ -48,7 +48,7 @@ class ReportsViewController: UIViewController  {
     private func updateCharts(categorySpentHistory: [String:Double]) {
         let categories = LocalUserManager.shared.getCategories()
         var categoriesWithHistory: [Category] = []
-        
+    
         for category in categories where categorySpentHistory[category.name] != nil {
             categoriesWithHistory.append(category)
             print("Name: \(category.name), color: \(category.colorHEX)")
