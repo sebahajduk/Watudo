@@ -50,10 +50,6 @@ class LoginView: UIView, UITextFieldDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func signIn() {
-        print("Hello")
-    }
 }
 
 // Buttons tap action handler - called by Responder Chain in WelcomeViewController.

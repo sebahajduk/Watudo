@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class LocalUser {
+struct LocalUser {
     var name: String = ""
     let email = ""
     
