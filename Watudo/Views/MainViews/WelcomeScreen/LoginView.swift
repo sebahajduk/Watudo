@@ -38,6 +38,10 @@ class LoginView: UIView, UITextFieldDelegate {
         translatesAutoresizingMaskIntoConstraints = false
         
         configureUI()
+        
+        emailTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        loginButton.isEnabled = false
     }
     
     private func configureUI() {

@@ -101,3 +101,7 @@ extension WelcomeView: UIScrollViewDelegate {
         }
     }
 }
+
+@objc protocol WelcomeViewTFListener {
+    func textFieldDidChange(_ sender: UITextField)
+}

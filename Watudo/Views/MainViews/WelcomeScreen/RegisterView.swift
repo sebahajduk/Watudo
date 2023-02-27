@@ -35,6 +35,13 @@ class RegisterView: UIView, UITextFieldDelegate {
         translatesAutoresizingMaskIntoConstraints = false
         
         configureUI()
+        
+        nicknameTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        emailTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        repeatPasswordTextField.addTarget(nil, action: #selector(WelcomeViewTFListener.textFieldDidChange), for: .editingChanged)
+        
+        createAccountButton.isEnabled = false
     }
     
     private func configureUI() {
@@ -70,7 +77,7 @@ extension RegisterView {
         
         passwordTextField.isSecureTextEntry = true
         repeatPasswordTextField.isSecureTextEntry = true
-        var tag = 0
+        var tag = 2
         for textField in textFields {
             textField.delegate = self
             textField.tag = tag

@@ -13,6 +13,14 @@ enum ButtonRole {
 
 class WButton: UIButton {
     
+    override var isEnabled: Bool {
+        didSet {
+            updateButtonUI()
+        }
+    }
+    
+    private var buttonRole: ButtonRole = .primary
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         layer.cornerRadius = 10
@@ -27,7 +35,11 @@ class WButton: UIButton {
         switch role {
         case .primary:
             setTitleColor(WColors.background, for: .normal)
-            backgroundColor = WColors.purple
+            if !self.isEnabled {
+                backgroundColor = WColors.purple!.withAlphaComponent(0.3)
+            } else {
+                backgroundColor = WColors.purple
+            }
         case .secondary:
             setTitleColor(WColors.purple, for: .normal)
             backgroundColor = .clear
@@ -53,6 +65,14 @@ class WButton: UIButton {
             layer.borderWidth = 1
             layer.borderColor = WColors.purple?.cgColor
             
+        }
+    }
+    
+    func updateButtonUI() {
+        if !isEnabled && buttonRole == .primary {
+            backgroundColor = WColors.purple!.withAlphaComponent(0.3)
+        } else if isEnabled && buttonRole == .primary {
+            backgroundColor = WColors.purple
         }
     }
     

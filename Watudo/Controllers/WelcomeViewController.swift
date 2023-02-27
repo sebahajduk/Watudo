@@ -37,6 +37,7 @@ class WelcomeViewController: UIViewController {
             welcomeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
 }
 
 // Buttons tap action handlers
@@ -76,5 +77,63 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let password = welcomeView.registerView.passwordTextField.text else { return }
         
         WLoginManager.createAccount(email: email, password: password)
+    }
+}
+
+// UITextFields listeners
+extension WelcomeViewController: WelcomeViewTFListener {
+    func textFieldDidChange(_ sender: UITextField) {
+        let loginView = welcomeView.loginView
+        let loginViewTFTags = [0, 1]
+        let registerView = welcomeView.registerView
+        
+        if loginViewTFTags.contains(sender.tag) {
+            if isLoginDataValid(email: loginView.emailTextField.text ?? "", password: loginView.passwordTextField.text ?? "") {
+                loginView.loginButton.isEnabled = true
+            } else {
+                loginView.loginButton.isEnabled = false
+            }
+        } else {
+            if isRegisterDataValid(nickname: registerView.nicknameTextField.text ?? "",
+                                   email: registerView.emailTextField.text ?? "",
+                                   password: registerView.passwordTextField.text ?? "",
+                                   repeatedPass: registerView.repeatPasswordTextField.text ?? "") {
+                registerView.createAccountButton.isEnabled = true
+            } else {
+                registerView.createAccountButton.isEnabled = false
+            }
+        }
+    }
+    
+    private func isLoginDataValid(email: String, password: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        
+        let isEmailValid = emailPredicate.evaluate(with: email)
+        let isPasswordValid = password.count > 5
+        
+        if isEmailValid && isPasswordValid {
+            return true
+        }
+        
+        return false
+    }
+    
+    private func isRegisterDataValid(nickname: String, email: String, password: String, repeatedPass: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        
+        let isNicknameValid = nickname.count > 2
+        let isEmailValid = emailPredicate.evaluate(with: email)
+        let isPasswordValid = password.count > 5
+        let isRepeatedPassValid = repeatedPass == password
+        
+        if isNicknameValid && isEmailValid && isPasswordValid && isRepeatedPassValid {
+            return true
+        }
+        
+        return false
     }
 }
