@@ -9,7 +9,7 @@ import UIKit
 
 class AddActivityView: UIView {
     
-    let doneButton = UIButton()
+    let addButton = UIButton()
     
     let titleLabel = UILabel()
     
@@ -29,16 +29,26 @@ class AddActivityView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         configure()
+        
+        changeButtonEnableState(to: false)
+    }
+    
+    func changeButtonEnableState(to isEnabled: Bool) {
+        if isEnabled {
+            addButton.setTitleColor(WColors.purple, for: .normal)
+        } else {
+            addButton.setTitleColor(WColors.purple?.withAlphaComponent(0.3), for: .normal)
+        }
     }
     
     private func configure() {
-        let views: [UIView] = [doneButton, titleLabel, visualEffect, nameTextField, divider, goalTextField, paidSwitch, visualEffectSmall, moneyPerHourTextField, categoryPicker]
+        let views: [UIView] = [addButton, titleLabel, visualEffect, nameTextField, divider, goalTextField, paidSwitch, visualEffectSmall, moneyPerHourTextField, categoryPicker]
         
         addSubviews(views)
         
-        doneButton.setTitle("Add", for: .normal)
-        doneButton.setTitleColor(WColors.purple, for: .normal)
-        doneButton.addTarget(nil, action: #selector(AddActivityViewActionHandler.doneButtonTapped), for: .touchUpInside)
+        addButton.setTitle("Add", for: .normal)
+        addButton.setTitleColor(WColors.purple, for: .normal)
+        addButton.addTarget(nil, action: #selector(AddActivityViewActionHandler.doneButtonTapped), for: .touchUpInside)
         
         titleLabel.text = "Add activity"
         titleLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
@@ -48,6 +58,8 @@ class AddActivityView: UIView {
         moneyPerHourTextField.placeholder = "Paid?"
         
         paidSwitch.addTarget(self, action: #selector(switchTapped), for: .touchUpInside)
+        nameTextField.addTarget(nil, action: #selector(AddActivityViewActionHandler.nameTFchanged), for: .editingChanged)
+        addButton.isEnabled = false
         
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,14 +75,16 @@ class AddActivityView: UIView {
         
         nameTextField.placeholder = "Name"
         goalTextField.placeholder = "Daily goal in minutes"
+        
+        
     
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            doneButton.heightAnchor.constraint(equalToConstant: 44),
-            doneButton.widthAnchor.constraint(equalToConstant: 44),
+            addButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addButton.heightAnchor.constraint(equalToConstant: 44),
+            addButton.widthAnchor.constraint(equalToConstant: 44),
             
-            titleLabel.topAnchor.constraint(equalTo: doneButton.bottomAnchor),
+            titleLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             titleLabel.heightAnchor.constraint(equalToConstant: 25),
             titleLabel.widthAnchor.constraint(equalToConstant: 150),
@@ -133,4 +147,5 @@ class AddActivityView: UIView {
 
 @objc protocol AddActivityViewActionHandler {
     func doneButtonTapped()
+    func nameTFchanged()
 }

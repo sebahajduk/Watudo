@@ -18,7 +18,7 @@ class AddCategoryView: UIView {
     let colorPicker: UIColorWell = {
         let colorWell = UIColorWell()
         colorWell.supportsAlpha = false
-        
+        colorWell.selectedColor = UIColor.random()
         return colorWell
     }()
     
@@ -34,10 +34,19 @@ class AddCategoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func changeButtonEnableState(to isEnabled: Bool) {
+        if isEnabled {
+            addButton.setTitleColor(WColors.purple, for: .normal)
+        } else {
+            addButton.setTitleColor(WColors.purple?.withAlphaComponent(0.3), for: .normal)
+        }
+    }
+    
     private func configure() {
         addSubviews([addCategoryLabel, addButton, visualEffect, nameTextField, colorLabel, colorPicker])
         
         nameTextField.placeholder = "Category name"
+        nameTextField.addTarget(nil, action: #selector(AddCategoryViewActionHandler.nameTFChanged), for: .editingChanged)
         
         addCategoryLabel.text = "Add category"
         addCategoryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
@@ -48,6 +57,7 @@ class AddCategoryView: UIView {
         addButton.setTitle("Add", for: .normal)
         addButton.setTitleColor(WColors.purple, for: .normal)
         addButton.addTarget(nil, action: #selector(AddCategoryViewActionHandler.addButtonTapped), for: .touchUpInside)
+        
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -85,4 +95,5 @@ class AddCategoryView: UIView {
 
 @objc protocol AddCategoryViewActionHandler {
     func addButtonTapped()
+    func nameTFChanged()
 }

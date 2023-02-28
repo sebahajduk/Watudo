@@ -36,6 +36,16 @@ class AddActivityViewController: UIViewController {
 }
 
 extension AddActivityViewController: AddActivityViewActionHandler {
+    func nameTFchanged() {
+        guard let activityName = addActivityView.nameTextField.text else { return }
+        
+        if activityName.count > 2 {
+            addActivityView.changeButtonEnableState(to: true)
+        } else {
+            addActivityView.changeButtonEnableState(to: false)
+        }
+    }
+    
     func doneButtonTapped() {
         let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
         let activityName = addActivityView.nameTextField.text!

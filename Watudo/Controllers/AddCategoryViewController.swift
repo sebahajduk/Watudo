@@ -34,6 +34,16 @@ class AddCategoryViewController: UIViewController {
 }
 
 extension AddCategoryViewController: AddCategoryViewActionHandler {
+    func nameTFChanged() {
+        guard let categoryName = addCategoryView.nameTextField.text else { return }
+        
+        if categoryName.count > 2 {
+            addCategoryView.changeButtonEnableState(to: true)
+        } else {
+            addCategoryView.changeButtonEnableState(to: false)
+        }
+    }
+    
     func addButtonTapped() {
         guard let categoryName = addCategoryView.nameTextField.text else { return }
         guard let color = addCategoryView.colorPicker.selectedColor?.hexStringFromColor() else { return }

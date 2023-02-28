@@ -127,7 +127,7 @@ class TodayView: UIView {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.sectionHeaderHeight = 30
-        
+        tableView.sectionHeaderTopPadding = 5
     }
     
     func configureConstraints() {
@@ -165,10 +165,10 @@ class TodayView: UIView {
             
             activitiesLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
             activitiesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            activitiesLabel.heightAnchor.constraint(equalToConstant: 50),
+            activitiesLabel.heightAnchor.constraint(equalToConstant: 25),
             activitiesLabel.widthAnchor.constraint(equalToConstant: 150),
             
-            tableView.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 10),
+            tableView.topAnchor.constraint(equalToSystemSpacingBelow: addButton.bottomAnchor, multiplier: 1),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)

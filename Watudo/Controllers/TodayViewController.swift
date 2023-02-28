@@ -25,6 +25,8 @@ class TodayViewController: UIViewController, ActivityDelegate {
         
         prepareChartsData()
         
+        navigationController?.isNavigationBarHidden = true
+        
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
             todayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
