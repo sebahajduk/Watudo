@@ -17,7 +17,7 @@ extension UIView {
         }
     }
     
-    public func addShadowToView(shadowColor: UIColor, offset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat) {
+    func addShadowToView(shadowColor: UIColor, offset: CGSize, shadowRadius: CGFloat, shadowOpacity: Float, cornerRadius: CGFloat) {
             self.layer.shadowColor = shadowColor.cgColor
             self.layer.shadowOpacity = shadowOpacity
             self.layer.shadowOffset = offset
@@ -25,7 +25,7 @@ extension UIView {
             self.layer.cornerRadius = cornerRadius
     }
     
-    public func addCornerRadius(radius: CGFloat) {
+    func addCornerRadius(radius: CGFloat) {
         self.layer.cornerRadius = radius
     }
 }

@@ -36,7 +36,7 @@ class Activity: NSCoder, Codable, Addable {
     }
     
     static func == (lhs: Activity, rhs: Activity) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.name == rhs.name
     }
     
     private enum CodingKeys: CodingKey {

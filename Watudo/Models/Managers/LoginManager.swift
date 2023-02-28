@@ -13,7 +13,7 @@ import GoogleSignIn
 
 @MainActor
 struct WLoginManager {
-    static func signIn(email: String, password: String) {
+    static func signIn(email: String, password: String, completion: @escaping (Error?) -> ()) {
         FirebaseManager.shared.signIn(email: email, password: password) { result in
             switch result {
             case .success:
@@ -26,12 +26,12 @@ struct WLoginManager {
                     }
                 }
             case .failure(let failure):
-                print("There was an error: \(failure.localizedDescription)")
+                completion(failure)
             }
         }
     }
     
-    static func createAccount(email: String, password: String) {
+    static func createAccount(email: String, password: String, completion: @escaping (Error?) -> ()) {
         FirebaseManager.shared.createAccount(email: email, password: password) { result in
             switch result {
             case .success:
@@ -45,12 +45,12 @@ struct WLoginManager {
                 }
                 
             case .failure(let failure):
-                print("There was an error creating user: \(failure.localizedDescription)")
+                completion(failure)
             }
         }
     }
     
-    static func signInFacebook() {
+    static func signInFacebook(completion: @escaping (Error?) -> ()) {
         let loginManager = LoginManager()
         
         loginManager.logIn(permissions: ["email"], from: nil) { result, error in
@@ -72,7 +72,7 @@ struct WLoginManager {
                             }
                         }
                     } catch {
-                        print(error.localizedDescription)
+                        completion(error)
                     }
                 }
             }
@@ -83,14 +83,17 @@ struct WLoginManager {
         
     }
     
-    static func signInGoogle(viewController: UIViewController) {
+    static func signInGoogle(viewController: UIViewController, completion: @escaping (Error?) -> ()) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
         GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { result, error in
-            guard error == nil else { return }
+            guard error == nil else {
+                completion(error)
+                return
+            }
             
             guard let user = result?.user, let idToken = user.idToken?.tokenString else { return }
             
@@ -111,4 +114,5 @@ struct WLoginManager {
             }
         }
     }
+    
 }

@@ -50,7 +50,10 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.loginView.emailTextField.text else { return }
         guard let password = welcomeView.loginView.passwordTextField.text else { return }
         
-        WLoginManager.signIn(email: email, password: password)
+        WLoginManager.signIn(email: email, password: password) { error in
+            guard error != nil else { return }
+            self.presentAlert(title: "Upst", message: error!.localizedDescription)
+        }
     }
     
     func signInByApple(sender: UIButton) {
@@ -60,13 +63,21 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
     func signInByGoogle(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        WLoginManager.signInGoogle(viewController: self)
+        WLoginManager.signInGoogle(viewController: self) { error in
+            guard let error = error else { return }
+            
+            self.presentAlert(title: "Error", message: error.localizedDescription)
+        }
     }
     
     func signInByFacebook(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
         
-        WLoginManager.signInFacebook()
+        WLoginManager.signInFacebook() { error in
+            guard let error = error else { return }
+            
+            self.presentAlert(title: "Error", message: error.localizedDescription)
+        }
     }
     
     // RegisterView
@@ -76,7 +87,11 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let email = welcomeView.registerView.emailTextField.text else { return }
         guard let password = welcomeView.registerView.passwordTextField.text else { return }
         
-        WLoginManager.createAccount(email: email, password: password)
+        WLoginManager.createAccount(email: email, password: password) { error in
+            guard let error = error else { return }
+            
+            self.presentAlert(title: "Error", message: error.localizedDescription)
+        }
     }
 }
 

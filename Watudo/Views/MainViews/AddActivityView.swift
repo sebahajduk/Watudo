@@ -34,6 +34,7 @@ class AddActivityView: UIView {
     }
     
     func changeButtonEnableState(to isEnabled: Bool) {
+        addButton.isEnabled = isEnabled
         if isEnabled {
             addButton.setTitleColor(WColors.purple, for: .normal)
         } else {

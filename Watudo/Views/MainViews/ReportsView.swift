@@ -22,8 +22,9 @@ class ReportsView: UIView {
     
     let tableView = UITableView()
     
-    var tableHeight: CGFloat = 225
-    
+    var tableHeight: CGFloat = 600
+    let activitiesLabel = UILabel()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -43,19 +44,24 @@ class ReportsView: UIView {
     private func configure() {
         
         addSubview(scrollView)
-        scrollView.addSubviews([myCalendarView, reportsChartView, tableView])
+        scrollView.addSubviews([myCalendarView, reportsChartView, activitiesLabel, tableView])
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.rowHeight = 75
         tableView.separatorStyle = .none
+        tableView.sectionHeaderTopPadding = 5
         
         myCalendarView.translatesAutoresizingMaskIntoConstraints = false
-        
+        activitiesLabel.text = "Activities"
+        activitiesLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
+        activitiesLabel.textColor = WColors.foreground
+
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.isPagingEnabled = true
         
-        if tableHeight > 600 {
-            tableHeight = 560
+        if tableHeight > 1000 {
+            tableHeight = 1000
         }
         
         print(tableHeight)
@@ -76,7 +82,12 @@ class ReportsView: UIView {
             reportsChartView.heightAnchor.constraint(equalToConstant: 300),
             reportsChartView.widthAnchor.constraint(equalToConstant: 350),
             
-            tableView.topAnchor.constraint(equalTo: reportsChartView.bottomAnchor, constant: 40),
+            activitiesLabel.topAnchor.constraint(equalToSystemSpacingBelow: reportsChartView.bottomAnchor, multiplier: 1),
+            activitiesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            activitiesLabel.heightAnchor.constraint(equalToConstant: 25),
+            activitiesLabel.widthAnchor.constraint(equalToConstant: 150),
+
+            tableView.topAnchor.constraint(equalTo: activitiesLabel.bottomAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableHeight),

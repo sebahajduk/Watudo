@@ -52,8 +52,13 @@ extension AddActivityViewController: AddActivityViewActionHandler {
         let activityCategory = LocalUserManager.shared.getCategory(for: pickerViewSelectedRow)
         
         let activity = Activity(name: activityName, category: activityCategory)
-        self.delegate?.sendActivity(activity: activity)
         
+        if LocalUserManager.shared.getActivities().contains(where: { $0.name == activity.name }) {
+            self.presentAlert(title: "Error", message: "This name is taken. Please choose another one.")
+            return
+        }
+        
+        self.delegate?.sendActivity(activity: activity)
         self.dismiss(animated: true)
     }
 }
