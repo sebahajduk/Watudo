@@ -74,7 +74,7 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
         
         let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
         
-        cell.set(for: activities[indexPath.row])
+        cell.set(for: activities[indexPath.row], style: .report)
         
         return cell
     }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum WCellStyle {
+    case activity, report
+}
+
 class ActivityCell: UITableViewCell {
 
     static let reuseID = "ActivityCell"
@@ -31,7 +35,7 @@ class ActivityCell: UITableViewCell {
         
     }
     
-    func set(for activity: Activity) {
+    func set(for activity: Activity, style: WCellStyle) {
         backgroundColor = .clear
         configure()
         name.text = activity.name
@@ -44,10 +48,13 @@ class ActivityCell: UITableViewCell {
         time.text = formatter.string(from: activity.timeSpent)
         time.textColor = WColors.foreground
         time.font = .systemFont(ofSize: 15)
-    }
-    
-    func startTimer() {
         
+        switch style {
+        case .activity:
+            print()
+        case .report:
+            playStopImage.removeFromSuperview()
+        }
     }
     
     private func configure() {
@@ -69,7 +76,7 @@ class ActivityCell: UITableViewCell {
             name.topAnchor.constraint(equalTo: visualEffect.topAnchor, constant: 10),
             name.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 20),
             name.heightAnchor.constraint(equalToConstant: 20),
-            name.widthAnchor.constraint(equalToConstant: 100),
+            name.widthAnchor.constraint(equalToConstant: 200),
             
             time.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5),
             time.leadingAnchor.constraint(equalTo: visualEffect.leadingAnchor, constant: 20),

@@ -124,6 +124,7 @@ class TodayView: UIView {
         tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseID)
         tableView.rowHeight = 75
         
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.sectionHeaderHeight = 30

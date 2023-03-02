@@ -105,7 +105,7 @@ extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
         
         addActivityVC.sheetPresentationController?.detents = [.medium()]
         addActivityVC.delegate = self
-        
+
         present(addActivityVC, animated: true)
     }
     
@@ -156,7 +156,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
         
         let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
         
-        cell.set(for: activities[indexPath.row])
+        cell.set(for: activities[indexPath.row], style: .activity)
         cell.selectionStyle = .none
         return cell
     }
@@ -193,7 +193,12 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     /// Drag deleting row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        if editingStyle == .delete {
-           LocalUserManager.shared.removeActivity(at: indexPath)
+           LocalUserManager.shared.removeActivity(at: indexPath) { error in
+               guard error == nil else {
+                   self.presentAlert(title: "Error", message: error!.localizedDescription)
+                   return
+               }
+           }
            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

@@ -303,26 +303,25 @@ extension FirebaseManager {
         }
     }
     
-    func delete<T: Addable & Codable>(_ object: T, completion: @escaping (Bool) -> Void) {
+    func delete<T: Addable & Codable>(_ object: T, completion: @escaping (Error?) -> Void) {
         let userDoc = db.collection("Users").document("\(user!.uid)")
         let userCategoriesList = userDoc.collection("Categories")
+        let userActivitiesList = userDoc.collection("Activities")
         
         if object is Category {
             userCategoriesList.document(object.name).delete { error in
                 guard error == nil else {
-                    completion(false)
+                    completion(error)
                     return
                 }
             }
-            completion(true)
         } else if object is Activity {
-            userCategoriesList.document(object.name).delete { error in
+            userActivitiesList.document(object.name).delete { error in
                 guard error == nil else {
-                    completion(false)
+                    completion(error)
                     return
                 }
             }
-            completion(true)
         }
     }
 }
