@@ -12,6 +12,7 @@
 		6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */; };
 		601553F2299D548300A2817A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F1299D548300A2817A /* AddCategoryView.swift */; };
 		601553F4299D825100A2817A /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F3299D825100A2817A /* AddCategoryViewController.swift */; };
+		6019142229B5A82C00F5337B /* TimeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6019142129B5A82C00F5337B /* TimeValueFormatter.swift */; };
 		602E1D42293CA8CD00570249 /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D41293CA8CD00570249 /* LocalUser.swift */; };
 		602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602E1D43293CA8EF00570249 /* RegisterView.swift */; };
 		602EB36C2939676A000A99C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602EB36B2939676A000A99C8 /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		601553F1299D548300A2817A /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		601553F3299D825100A2817A /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		6019142129B5A82C00F5337B /* TimeValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeValueFormatter.swift; sourceTree = "<group>"; };
 		602E1D41293CA8CD00570249 /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		602E1D43293CA8EF00570249 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		602EB3682939676A000A99C8 /* Watudo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watudo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +233,7 @@
 				60581735296C93D6002AEE2E /* Day.swift */,
 				60EA77732982F811000AACA9 /* Quote.swift */,
 				60404F7F2989A27D007415CC /* Defaults.swift */,
+				6019142129B5A82C00F5337B /* TimeValueFormatter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
 				607A096D29A4863000349400 /* LocalUserManager.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
+				6019142229B5A82C00F5337B /* TimeValueFormatter.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
 				606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */,
 				608942E32979D2590094A8D7 /* ProfileView.swift in Sources */,

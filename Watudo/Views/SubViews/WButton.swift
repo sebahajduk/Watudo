@@ -64,7 +64,6 @@ class WButton: UIButton {
             backgroundColor = .clear
             layer.borderWidth = 1
             layer.borderColor = WColors.purple?.cgColor
-            
         }
     }
     

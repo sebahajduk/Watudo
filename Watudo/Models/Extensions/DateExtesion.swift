@@ -34,4 +34,16 @@ extension Date {
         
         return formatter.string(from: date)
     }
+    
+    func getWeekdayString(for date: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let day = formatter.date(from: date) else { return "Invalid data format."}
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en-US")
+        dateFormatter.dateFormat = "EEE"
+        let weekday = dateFormatter.string(from: day)
+        return weekday
+    }
 }

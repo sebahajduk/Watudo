@@ -34,12 +34,17 @@ class ReportsChartView: UIView {
                 dataSet.colors = [UIColor().colorWithHexString(hexString: category.colorHEX).withAlphaComponent(0.2)]
                 dataSet.barBorderWidth = 2
                 dataSet.barBorderColor = UIColor().colorWithHexString(hexString: category.colorHEX)
+                dataSet.drawValuesEnabled = false
                 
-                summary.append(dataSet)
+            summary.append(dataSet)
             }
         }
         
+        let timeFormatter = TimeValueFormatter()
+        
+        chartView.leftAxis.valueFormatter = timeFormatter
         let data = BarChartData(dataSets: summary)
+        
         data.barWidth = 0.5
         chartView.data = data
     }

@@ -40,11 +40,17 @@ class TodayViewController: UIViewController, ActivityDelegate {
     
     private func prepareChartsData() {
         var dates: [String] = []
+        var weekdays: [String] = []
         var timeHistory: [Double] = []
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en-US")
+        formatter.dateFormat = "EEE"
+        
         for i in 0...6 {
-            let day = Calendar.current.date(byAdding: .day, value: -i, to: Date())
-            let dateString = day!.dateToStringYMD()
+            guard let day = Calendar.current.date(byAdding: .day, value: -i, to: Date()) else { return }
+            let dateString = day.dateToStringYMD()
             dates.append(dateString)
+            weekdays.append(formatter.string(from: day).uppercased())
         }
         
         FirebaseManager.shared.getLastWeekHistory { result in
@@ -54,7 +60,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
                     if lastWeekHistory[day] != nil {
                         var timeSpent: Double = 0
                         for activity in lastWeekHistory[day]! {
-                            timeSpent += activity.timeSpent
+                            timeSpent += activity.timeSpent / 60
                         }
                         timeHistory.append(timeSpent)
                     } else {
@@ -63,11 +69,9 @@ class TodayViewController: UIViewController, ActivityDelegate {
                     
                 }
                 
+                self.todayView.chartView.setData(forTimes: timeHistory, forDays: weekdays.reversed())
                 
-                self.todayView.chartView.setData(for: timeHistory)
-                
-                
-            case .failure(let failure):
+           case .failure(let failure):
                 print(failure)
             }
         }
@@ -91,7 +95,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
     func activityDidChange() {
         let selectedRows = todayView.tableView.indexPathsForSelectedRows
         todayView.tableView.reloadData()
-        print("Hello")
         selectedRows?.forEach({ selectedRow in
             self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })

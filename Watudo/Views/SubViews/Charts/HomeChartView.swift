@@ -43,9 +43,9 @@ class HomeChartView: UIView {
         configureConstraints()
     }
     
-    func setData(for history: [Double]) {
+    func setData(forTimes history: [Double], forDays days: [String]) {
         let weekDays: [ChartDataEntry] = [
-            ChartDataEntry(x: 0, y: history[6]),
+            ChartDataEntry(x: 0, y: history[5]),
             ChartDataEntry(x: 1, y: history[5]),
             ChartDataEntry(x: 2, y: history[4]),
             ChartDataEntry(x: 3, y: history[3]),
@@ -55,11 +55,13 @@ class HomeChartView: UIView {
         ]
         
         let presentWeek = LineChartDataSet(entries: weekDays)
-        
+        chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
         let gradientColors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.05).cgColor] as CFArray
         let colorLocations: [CGFloat] = [1.0, 0.0]
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object
 
+        let formatter = DateComponentsFormatter()
+        
         presentWeek.drawCirclesEnabled = false
         presentWeek.mode = .linear
         presentWeek.lineWidth = 2
@@ -71,7 +73,6 @@ class HomeChartView: UIView {
         presentWeek.drawVerticalHighlightIndicatorEnabled = false
         presentWeek.drawHorizontalHighlightIndicatorEnabled = false
     
-        
         let data = LineChartData(dataSet: presentWeek)
         
         data.setDrawValues(false)
@@ -95,7 +96,6 @@ class HomeChartView: UIView {
         chartView.xAxis.labelPosition = .bottom
         chartView.doubleTapToZoomEnabled = false
         chartView.legend.enabled = false
-        chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
         
         chartView.translatesAutoresizingMaskIntoConstraints = false
     }
