@@ -26,6 +26,7 @@ class ReportsChartView: UIView {
         chartView.animate(xAxisDuration: 0.3, yAxisDuration: 0.3)
         summary = []
         chartView.data = nil
+        guard !categorySpentHistory.isEmpty else { return }
         
         for category in categories {
             if let index = categories.firstIndex(of: category) {
@@ -36,10 +37,10 @@ class ReportsChartView: UIView {
                 dataSet.barBorderColor = UIColor().colorWithHexString(hexString: category.colorHEX)
                 dataSet.drawValuesEnabled = false
                 
-            summary.append(dataSet)
+                summary.append(dataSet)
+                
             }
         }
-        
         let timeFormatter = TimeValueFormatter()
         
         chartView.leftAxis.valueFormatter = timeFormatter
@@ -47,6 +48,7 @@ class ReportsChartView: UIView {
         
         data.barWidth = 0.5
         chartView.data = data
+        
     }
     
     required init?(coder: NSCoder) {

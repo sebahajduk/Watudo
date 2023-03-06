@@ -87,6 +87,7 @@ class HomeChartView: UIView {
         chartView.leftAxis.gridColor = .white.withAlphaComponent(0.2)
         chartView.leftAxis.axisLineColor = .white
         chartView.leftAxis.labelTextColor = .white
+        chartView.leftAxis.labelPosition = .insideChart
         
         chartView.xAxis.gridColor = .white.withAlphaComponent(0.2)
         chartView.xAxis.axisLineColor = .white
@@ -96,6 +97,8 @@ class HomeChartView: UIView {
         chartView.xAxis.labelPosition = .bottom
         chartView.doubleTapToZoomEnabled = false
         chartView.legend.enabled = false
+        
+        chartView.leftAxis.valueFormatter = TimeValueFormatter()
         
         chartView.translatesAutoresizingMaskIntoConstraints = false
     }

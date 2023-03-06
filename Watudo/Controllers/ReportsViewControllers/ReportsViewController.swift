@@ -11,10 +11,11 @@ import Charts
 
 class ReportsViewController: UIViewController  {
     
-    let myCalendarVC = ReportsCalViewController()
-    
-    let reportsView = ReportsView()
+    private let myCalendarVC = ReportsCalViewController()
+    private let reportsView = ReportsView()
 
+    //MARK: Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
@@ -28,6 +29,8 @@ class ReportsViewController: UIViewController  {
         
         configure()
     }
+    
+    //MARK: Configuring UI
     
     private func configure() {
         reportsView.setView(calendarView: myCalendarVC.view, tableHeight: 1000)
@@ -44,18 +47,6 @@ class ReportsViewController: UIViewController  {
             reportsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    private func updateCharts(categorySpentHistory: [String:Double]) {
-        let categories = LocalUserManager.shared.getCategories()
-        var categoriesWithHistory: [Category] = []
-    
-        for category in categories where categorySpentHistory[category.name] != nil {
-            categoriesWithHistory.append(category)
-            print("Name: \(category.name), color: \(category.colorHEX)")
-        }
-        
-        reportsView.reportsChartView.setData(categories: categoriesWithHistory, categorySpentHistory: categorySpentHistory)
-     }
 }
 
 extension ReportsViewController: ChartViewDelegate {
@@ -71,7 +62,6 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
-        
         let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
         
         cell.set(for: activities[indexPath.row], style: .report)
@@ -101,18 +91,36 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ReportsViewController: ReportsCalVCDelegate {
     func dateSelected(dates: [String]) {
-        var timeSpentHistory: [String:Double] = [:]
-        var categorySpentHistory: [String:Double] = [:]
+        updateActivitiesList(dates: dates)
+        updateCharts(dates: dates)
+    }
+    
+    private func updateActivitiesList(dates: [String]) {
+        var timeSpentHistory: [String: Double] = [:]
         
         for date in dates {
             if myCalendarVC.calendarDataSource[date] == nil { continue } else {
+                let history = myCalendarVC.calendarDataSource[date]
+                
                 for activity in myCalendarVC.calendarDataSource[date]! {
                     if timeSpentHistory[activity.name] == nil {
                         timeSpentHistory[activity.name] = activity.timeSpent
                     } else {
                         timeSpentHistory[activity.name]! += activity.timeSpent
                     }
-                    
+                }
+            }
+        }
+    }
+    
+    private func updateCharts(dates: [String]) {
+        let categories = LocalUserManager.shared.getCategories()
+        var categoriesWithHistory: [Category] = []
+        var categorySpentHistory: [String:Double] = [:]
+        
+        for date in dates {
+            if myCalendarVC.calendarDataSource[date] == nil { continue } else {
+                for activity in myCalendarVC.calendarDataSource[date]! {
                     if categorySpentHistory[activity.category.name] == nil {
                         categorySpentHistory[activity.category.name] = activity.timeSpent
                     } else {
@@ -120,7 +128,12 @@ extension ReportsViewController: ReportsCalVCDelegate {
                     }
                 }
             }
-            updateCharts(categorySpentHistory: categorySpentHistory)
         }
-    }
+    
+        for category in categories where categorySpentHistory[category.name] != nil {
+            categoriesWithHistory.append(category)
+        }
+        
+        reportsView.reportsChartView.setData(categories: categoriesWithHistory, categorySpentHistory: categorySpentHistory)
+     }
 }

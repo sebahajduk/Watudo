@@ -60,7 +60,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
                     if lastWeekHistory[day] != nil {
                         var timeSpent: Double = 0
                         for activity in lastWeekHistory[day]! {
-                            timeSpent += activity.timeSpent / 60
+                            timeSpent += activity.timeSpent
                         }
                         timeHistory.append(timeSpent)
                     } else {

@@ -39,6 +39,10 @@ class Activity: NSCoder, Codable, Addable {
         return lhs.id == rhs.id
     }
     
+    static func += (lhs: inout Activity, rhs: Activity) {
+        lhs.timeSpent += rhs.timeSpent
+    }
+    
     private enum CodingKeys: CodingKey {
         case id, name, category, dailyGoal, timeSpent, isPaid, moneyPerHour
     }
