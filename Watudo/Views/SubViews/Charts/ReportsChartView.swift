@@ -38,7 +38,6 @@ class ReportsChartView: UIView {
                 dataSet.drawValuesEnabled = false
                 
                 summary.append(dataSet)
-                
             }
         }
         let timeFormatter = TimeValueFormatter()

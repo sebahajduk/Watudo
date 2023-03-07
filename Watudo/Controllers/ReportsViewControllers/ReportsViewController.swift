@@ -13,6 +13,8 @@ class ReportsViewController: UIViewController  {
     
     private let myCalendarVC = ReportsCalViewController()
     private let reportsView = ReportsView()
+    private var activitiesHistory: [Activity] = []
+    private var categoriesWithHistory: [Category] = []
 
     //MARK: Lifecycle
     
@@ -47,6 +49,20 @@ class ReportsViewController: UIViewController  {
             reportsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    //MARK: Logic
+    
+    private func getUniqueCategoryList(from activities: [Activity]) {
+        var categories: [Category] = []
+        
+        for activity in activities {
+            guard !categories.contains(activity.category) else { continue }
+            
+            categories.append(activity.category)
+        }
+        print(categories)
+        self.categoriesWithHistory = categories
+    }
 }
 
 extension ReportsViewController: ChartViewDelegate {
@@ -57,12 +73,14 @@ extension ReportsViewController: ChartViewDelegate {
 
 extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        LocalUserManager.shared.getActivitiesForCategory(at: section).count
+        let activities = activitiesHistory.filter { $0.category ==  categoriesWithHistory[section]}
+        
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
-        let activities = LocalUserManager.shared.getActivitiesForCategory(at: indexPath.section)
+        let activities = activitiesHistory.filter { $0.category ==  categoriesWithHistory[indexPath.section]}
         
         cell.set(for: activities[indexPath.row], style: .report)
         
@@ -70,18 +88,18 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        LocalUserManager.shared.getCategory(for: section).name
+        categoriesWithHistory[section].name
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        LocalUserManager.shared.getNumberOfCategories()
+        categoriesWithHistory.count
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.tintColor = WColors.background
         let header = view as! UITableViewHeaderFooterView
         var content = header.defaultContentConfiguration()
-        content.text = LocalUserManager.shared.getCategory(for: section).name
+        content.text = categoriesWithHistory[section].name
         content.textProperties.color = WColors.green!
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content
@@ -93,24 +111,35 @@ extension ReportsViewController: ReportsCalVCDelegate {
     func dateSelected(dates: [String]) {
         updateActivitiesList(dates: dates)
         updateCharts(dates: dates)
+        
+        reportsView.tableView.reloadData()
     }
     
     private func updateActivitiesList(dates: [String]) {
-        var timeSpentHistory: [String: Double] = [:]
+        var timeSpentHistory: [Activity] = []
         
-        for date in dates {
-            if myCalendarVC.calendarDataSource[date] == nil { continue } else {
-                let history = myCalendarVC.calendarDataSource[date]
-                
-                for activity in myCalendarVC.calendarDataSource[date]! {
-                    if timeSpentHistory[activity.name] == nil {
-                        timeSpentHistory[activity.name] = activity.timeSpent
-                    } else {
-                        timeSpentHistory[activity.name]! += activity.timeSpent
+        if !dates.isEmpty {
+            for date in dates {
+                if myCalendarVC.calendarDataSource[date] == nil { continue } else {
+                    let history = myCalendarVC.calendarDataSource[date]
+                    
+                    for activity in myCalendarVC.calendarDataSource[date]! {
+                        if timeSpentHistory.contains(activity) {
+                            guard let index = timeSpentHistory.firstIndex(where: { $0 == activity }) else { return }
+                            timeSpentHistory[index].timeSpent += activity.timeSpent
+                        } else {
+                            timeSpentHistory.append(activity)
+                        }
                     }
                 }
             }
+            self.activitiesHistory = timeSpentHistory
+            getUniqueCategoryList(from: timeSpentHistory)
+        } else {
+            self.categoriesWithHistory = []
+            self.activitiesHistory = []
         }
+        
     }
     
     private func updateCharts(dates: [String]) {
