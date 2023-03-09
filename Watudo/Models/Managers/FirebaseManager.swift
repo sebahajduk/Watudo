@@ -33,16 +33,16 @@ class FirebaseManager {
     /// - Parameters:
     ///   - email: must be correct email style
     ///   - password: needs to be minimum 6 characters long
-    func createAccount(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
+    func createAccount(email: String, password: String, name: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         auth.createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             
             if let error = error {
                 completion(.failure(error))
             } else if let authResult = authResult {
-                completion(.success(authResult))
                 self.user = authResult.user
-                self.createDefaultDatabase()
+                self.createDefaultDatabase(name: name)
+                completion(.success(authResult))
             }
         }
     }
@@ -68,7 +68,7 @@ class FirebaseManager {
             let isNewUser = authResult.additionalUserInfo?.isNewUser
             self.user = authResult.user
             if isNewUser! {
-                self.createDefaultDatabase()
+                self.createDefaultDatabase(name: "Unknown")
             }
         } catch {
             print("There was an error signing in.")
@@ -100,7 +100,14 @@ extension FirebaseManager {
                     switch result {
                     case .success(let fetchedCategories):
                         categories = fetchedCategories
-                        completion(.success(LocalUser(activities: activitiesList, categories: categories)))
+                        self.fetchUserDetails { result in
+                            switch result {
+                            case .success(let name):
+                                completion(.success(LocalUser(name: name, activities: activitiesList, categories: categories)))
+                            case .failure(let failure):
+                                completion(.failure(failure))
+                            }
+                        }
                     case .failure(let failure):
                         completion(.failure(failure))
                     }
@@ -157,6 +164,17 @@ extension FirebaseManager {
         }
     }
     
+    private func fetchUserDetails(_ completion: @escaping (Result<String, any Error>) -> Void) {
+        let userDoc = db.collection("Users").document("\(user!.uid)")
+        
+        userDoc.getDocument { document, error in
+            if let document = document, document.exists {
+                let name: String = document.data()?["name"] as? String ?? "Sebastian"
+                completion(.success(name))
+            }
+        }
+    }
+    
     func getLastWeekHistory(_ completion: @escaping (Result<[String : [Activity]], any Error>) -> Void) {
         let daysHistory = db.collection("Users").document("\(user!.uid)").collection("Days")
         var dates: [String] = []
@@ -205,9 +223,9 @@ extension FirebaseManager {
 
 /// User data management (activities)
 extension FirebaseManager {
-    private func createDefaultDatabase() {
+    private func createDefaultDatabase(name: String) {
         let userDoc = db.collection("Users").document("\(user!.uid)")
-        userDoc.setData(["id":user!.uid])
+        userDoc.setData(["id":user!.uid, "name":name])
         
         let userActivitiesList = userDoc.collection("Activities")
         let userCategoriesList = userDoc.collection("Categories")

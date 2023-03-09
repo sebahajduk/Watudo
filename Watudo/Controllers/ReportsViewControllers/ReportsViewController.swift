@@ -60,7 +60,6 @@ class ReportsViewController: UIViewController  {
             
             categories.append(activity.category)
         }
-        print(categories)
         self.categoriesWithHistory = categories
     }
 }
@@ -143,7 +142,6 @@ extension ReportsViewController: ReportsCalVCDelegate {
     }
     
     private func updateCharts(dates: [String]) {
-        let categories = LocalUserManager.shared.getCategories()
         var categoriesWithHistory: [Category] = []
         var categorySpentHistory: [String:Double] = [:]
         

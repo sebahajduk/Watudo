@@ -9,8 +9,7 @@ import UIKit
 
 class ProfileView: UIView {
     
-    let profileImage = UIImageView()
-    let nameLabel = WLabel(text: "Unknown", textAlignment: .center, size: 20, weight: .black)
+    let nameLabel = WLabel(text: "Sebastian Hajduk", textAlignment: .center, size: 30, weight: .black)
     
     let firstDivider = DividerView()
     
@@ -41,8 +40,6 @@ class ProfileView: UIView {
         super.init(frame: frame)
         backgroundColor = WColors.background
         
-        
-        configureUserInfo()
         configureSettingsViews()
         configureButtons()
         configureConstraints()
@@ -52,21 +49,8 @@ class ProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUserInfo() {
-        let views: [UIView] = [profileImage, nameLabel]
-        addSubviews(views)
-        
-        profileImage.image = UIImage(systemName: "camera")
-        profileImage.contentMode = .scaleAspectFit
-        profileImage.backgroundColor = WColors.foreground?.withAlphaComponent(0.05)
-        profileImage.tintColor = WColors.purple!.withAlphaComponent(0.5)
-        profileImage.addCornerRadius(radius: 50)
-        profileImage.clipsToBounds = true
-        
-    }
-    
     private func configureSettingsViews() {
-        let views: [UIView] = [firstDivider, appearenceModeLabel, appearenceModeSwitch, secondDivider, timeZoneLabel, timeZoneTextField, notificationsLabel, notificationsSwitch, notificationsIntervalLabel, notificationsIntervalTextField]
+        let views: [UIView] = [nameLabel, firstDivider, appearenceModeLabel, appearenceModeSwitch, secondDivider, timeZoneLabel, timeZoneTextField, notificationsLabel, notificationsSwitch, notificationsIntervalLabel, notificationsIntervalTextField]
         addSubviews(views)
         
         timeZonePicker.tag = 0
@@ -103,17 +87,12 @@ class ProfileView: UIView {
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            profileImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            profileImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            profileImage.heightAnchor.constraint(equalToConstant: 100),
-            profileImage.widthAnchor.constraint(equalToConstant: 100),
-            
-            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
+            nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 40),
             nameLabel.widthAnchor.constraint(equalToConstant: 200),
             
-            appearenceModeLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 100),
+            appearenceModeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 100),
             appearenceModeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             appearenceModeLabel.heightAnchor.constraint(equalToConstant: 30),
             appearenceModeLabel.widthAnchor.constraint(equalToConstant: 200),

@@ -10,13 +10,12 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let profileView = ProfileView()
-    var user: LocalUser? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(profileView)
         profileView.translatesAutoresizingMaskIntoConstraints = false
-        profileView.nameLabel.text = user?.name ?? "Unknown"
+        profileView.nameLabel.text = LocalUserManager.shared.getUsername()
         loadSwitchValue()
         
         NSLayoutConstraint.activate([
@@ -25,10 +24,6 @@ class ProfileViewController: UIViewController {
             profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-    
-    func setVC(user: LocalUser) {
-        self.user = user
     }
     
     private func loadSwitchValue() {

@@ -16,6 +16,10 @@ class LocalUserManager {
         user.categories.append(category)
     }
     
+    func getUsername() -> String {
+        user.name
+    }
+    
     func addActivity(_ activity: Activity) {
         user.activities.append(activity)
         FirebaseManager.shared.add(activity)
@@ -114,7 +118,7 @@ extension LocalUserManager {
             switch result {
             case .success(let localUser):
                 self.user = localUser
-                print(self.user.categories)
+                self.user.name = localUser.name
                 completion(true)
             case .failure:
                 completion(false)

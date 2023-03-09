@@ -31,8 +31,8 @@ struct WLoginManager {
         }
     }
     
-    static func createAccount(email: String, password: String, completion: @escaping (Error?) -> ()) {
-        FirebaseManager.shared.createAccount(email: email, password: password) { result in
+    static func createAccount(email: String, password: String, name: String, completion: @escaping (Error?) -> ()) {
+        FirebaseManager.shared.createAccount(email: email, password: password, name: name) { result in
             switch result {
             case .success:
                 LocalUserManager.shared.fetchUser { userDataReady in

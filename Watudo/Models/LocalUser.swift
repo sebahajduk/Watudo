@@ -14,7 +14,8 @@ struct LocalUser {
     var activities: [Activity] = []
     var categories: [Category] = []
     
-    init(activities: [Activity], categories: [Category]) {
+    init(name: String, activities: [Activity], categories: [Category]) {
+        self.name = name
         self.activities = activities
         self.categories = categories
     }

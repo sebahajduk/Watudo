@@ -86,8 +86,9 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         
         guard let email = welcomeView.registerView.emailTextField.text else { return }
         guard let password = welcomeView.registerView.passwordTextField.text else { return }
+        guard let name = welcomeView.registerView.nicknameTextField.text else { return }
         
-        WLoginManager.createAccount(email: email, password: password) { error in
+        WLoginManager.createAccount(email: email, password: password, name: name) { error in
             guard let error = error else { return }
             
             self.presentAlert(title: "Error", message: error.localizedDescription)
