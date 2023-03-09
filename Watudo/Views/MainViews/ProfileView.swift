@@ -27,7 +27,7 @@ class ProfileView: UIView {
     let notificationsLabel = WLabel(text: "NOTIFICATIONS", size: 15, weight: .black)
     let notificationsSwitch = UISwitch()
     
-    let notificationsIntervalLabel = WLabel(text: "NOTIFICATIONS interval", size: 15, weight: .black)
+    let notificationsIntervalLabel = WLabel(text: "NOTIFICATIONS INTERVAL", size: 15, weight: .black)
     let notificationsIntervalTextField = UITextField()
     let notificationsIntervalPicker = UIPickerView()
     let intervalOptions = ["5 min", "10 min", "15 min", "20 min", "30 min"]
@@ -98,6 +98,7 @@ class ProfileView: UIView {
         deleteAccount.layer.borderColor = WColors.red?.cgColor
         
         signOutButton.addTarget(nil, action: #selector(ProfileViewActionHandler.signOutButtonTapped), for: .touchUpInside)
+        categoriesEditButton.addTarget(nil, action: #selector(ProfileViewActionHandler.editCategoryButtonTapped), for: .touchUpInside)
     }
     
     private func configureConstraints() {
@@ -212,5 +213,6 @@ extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
 
 @objc protocol ProfileViewActionHandler {
     func switchChanged(mySwitch: UISwitch)
-    func signOutButtonTapped(sender: UIButton)
+    func signOutButtonTapped()
+    func editCategoryButtonTapped()
 }

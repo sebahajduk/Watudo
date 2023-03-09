@@ -18,7 +18,7 @@ class ReportsCalViewController: UIViewController {
     
     let myCalendarView = ReportsCalendarView()
     var calendar: JTACMonthView!
-    var delegate: ReportsCalVCDelegate? = nil
+    weak var delegate: ReportsCalVCDelegate? = nil
     
     var calendarDataSource: [String:[Activity]] = [:] {
         didSet {
@@ -149,11 +149,9 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
             case .success(let success):
                 self.calendarDataSource = success
             case .failure(let failure):
-                print("Upst")
+                self.presentAlert(title: "Error", message: failure.localizedDescription)
             }
         }
-            
-        
     }
     
     // Configuring calendar header.
@@ -172,6 +170,6 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     }
 }
 
-protocol ReportsCalVCDelegate {
+protocol ReportsCalVCDelegate: AnyObject {
     func dateSelected(dates: [String])
 }

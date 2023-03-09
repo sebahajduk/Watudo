@@ -32,19 +32,45 @@ class LocalUserManager {
         activities[indexPath.row].startWork()
     }
     
-    func removeActivity(at indexPath: IndexPath, completion: @escaping (Error?) -> Void) {
+    func removeActivity(at indexPath: IndexPath) throws {
         let activity = getActivitiesForCategory(at: indexPath.section)[indexPath.row]
+        var err: Error?
         
         FirebaseManager.shared.delete(activity) { error in
             guard error == nil else {
-                completion(error)
+                err = error
                 return
             }
-            
-            guard let index = self.user.activities.firstIndex(where: { $0.name == activity.name}) else { return }
-            self.user.activities.remove(at: index)
-            
         }
+        
+        guard err == nil else { throw err! }
+        
+        guard let index = self.user.activities.firstIndex(where: { $0.name == activity.name}) else { return }
+        self.user.activities.remove(at: index)
+    }
+    
+    func deleteCategory(at indexPath: IndexPath) throws {
+        let category = getCategory(for: indexPath.row)
+        let activitiesInCategory = getActivitiesForCategory(at: indexPath.row)
+        var err: Error?
+        
+        if !activitiesInCategory.isEmpty {
+            throw WError.categoryIsNotEmpty
+        }
+        
+        FirebaseManager.shared.delete(category) { error in
+            guard error == nil else {
+                err = error
+                return
+            }
+        }
+        
+        guard err == nil else {
+            throw err!
+        }
+
+        guard let index = self.user.categories.firstIndex(where: { $0.name == category.name }) else { return }
+        self.user.categories.remove(at: index)
     }
 }
 

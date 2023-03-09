@@ -41,7 +41,13 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewActionHandler {
-    func signOutButtonTapped(sender: UIButton) {
+    func editCategoryButtonTapped() {
+        let editCategoryVC = EditCategoryViewController()
+        editCategoryVC.sheetPresentationController?.detents = [.medium()]
+        present(editCategoryVC, animated: true)
+    }
+    
+    func signOutButtonTapped() {
         do {
             try FirebaseManager.shared.signOut()
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeViewController())

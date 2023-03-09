@@ -11,7 +11,7 @@ class AddActivityViewController: UIViewController {
     
     let addActivityView = AddActivityView()
     
-    var delegate: SendNewActivityDelegate? = nil
+    weak var delegate: SendNewActivityDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +49,11 @@ extension AddActivityViewController: AddActivityViewActionHandler {
     func doneButtonTapped() {
         let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
         let activityName = addActivityView.nameTextField.text!
+        
+        guard !LocalUserManager.shared.getCategories().isEmpty else {
+            self.presentAlert(title: "Error", message: "Please add at least one category before creating activity.")
+            return
+        }
         let activityCategory = LocalUserManager.shared.getCategory(for: pickerViewSelectedRow)
         
         let activity = Activity(name: activityName, category: activityCategory)
@@ -81,6 +86,6 @@ extension AddActivityViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
 }
 
-protocol SendNewActivityDelegate {
+protocol SendNewActivityDelegate: AnyObject {
     func sendActivity(activity: Activity)
 }

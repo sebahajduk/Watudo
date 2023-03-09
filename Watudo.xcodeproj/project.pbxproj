@@ -53,6 +53,9 @@
 		60A86AFD2941181D00DD484D /* WButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFC2941181D00DD484D /* WButton.swift */; };
 		60A86AFF2941186A00DD484D /* WColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A86AFE2941186900DD484D /* WColors.swift */; };
 		60B5D65A29A3D880008A1DA7 /* Addable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B5D65929A3D880008A1DA7 /* Addable.swift */; };
+		60BDBCD429B8F2F300811B73 /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDBCD329B8F2F300811B73 /* EditCategoryViewController.swift */; };
+		60BDBCD629B8F39B00811B73 /* EditCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDBCD529B8F39B00811B73 /* EditCategoryCell.swift */; };
+		60BDBCD829B8FA7100811B73 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDBCD729B8FA7100811B73 /* Errors.swift */; };
 		60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D535EC2996BA5700DED790 /* DateExtesion.swift */; };
 		60E110D4298D816C008D4BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */; };
 		60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */; };
@@ -113,6 +116,9 @@
 		60A86AFC2941181D00DD484D /* WButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButton.swift; sourceTree = "<group>"; };
 		60A86AFE2941186900DD484D /* WColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WColors.swift; sourceTree = "<group>"; };
 		60B5D65929A3D880008A1DA7 /* Addable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addable.swift; sourceTree = "<group>"; };
+		60BDBCD329B8F2F300811B73 /* EditCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
+		60BDBCD529B8F39B00811B73 /* EditCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCell.swift; sourceTree = "<group>"; };
+		60BDBCD729B8FA7100811B73 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		60D535EC2996BA5700DED790 /* DateExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtesion.swift; sourceTree = "<group>"; };
 		60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteApiManager.swift; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				6031D5612963691C0019D399 /* ActivityCell.swift */,
+				60BDBCD529B8F39B00811B73 /* EditCategoryCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 				602E1D41293CA8CD00570249 /* LocalUser.swift */,
 				60A2D89D29649C270082338B /* Activity.swift */,
 				603E470E2965FC8A00B0589E /* Category.swift */,
+				60BDBCD729B8FA7100811B73 /* Errors.swift */,
 				60581735296C93D6002AEE2E /* Day.swift */,
 				60EA77732982F811000AACA9 /* Quote.swift */,
 				60404F7F2989A27D007415CC /* Defaults.swift */,
@@ -258,6 +266,7 @@
 				60A2D89F29649EF10082338B /* AddActivityViewController.swift */,
 				608942E02979D2450094A8D7 /* ProfileViewController.swift */,
 				601553F3299D825100A2817A /* AddCategoryViewController.swift */,
+				60BDBCD329B8F2F300811B73 /* EditCategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -520,6 +529,7 @@
 				60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */,
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
 				60581738296C94E1002AEE2E /* ReportsView.swift in Sources */,
+				60BDBCD829B8FA7100811B73 /* Errors.swift in Sources */,
 				600AEA4D29AA44C40077E27F /* LoginManager.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
 				6009838729AE80260026FB0D /* UIViewControllerExt.swift in Sources */,
@@ -542,6 +552,7 @@
 				608F1D32293BD7CD00B8BF2A /* LoginView.swift in Sources */,
 				607A096D29A4863000349400 /* LocalUserManager.swift in Sources */,
 				608F1D3B293BE13300B8BF2A /* DividerView.swift in Sources */,
+				60BDBCD629B8F39B00811B73 /* EditCategoryCell.swift in Sources */,
 				6019142229B5A82C00F5337B /* TimeValueFormatter.swift in Sources */,
 				602E1D44293CA8EF00570249 /* RegisterView.swift in Sources */,
 				606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */,
@@ -554,6 +565,7 @@
 				602E1D42293CA8CD00570249 /* LocalUser.swift in Sources */,
 				60A2D89E29649C270082338B /* Activity.swift in Sources */,
 				60A86AFF2941186A00DD484D /* WColors.swift in Sources */,
+				60BDBCD429B8F2F300811B73 /* EditCategoryViewController.swift in Sources */,
 				603E470F2965FC8A00B0589E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

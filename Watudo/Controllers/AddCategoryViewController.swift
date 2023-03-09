@@ -9,7 +9,7 @@ import UIKit
 
 class AddCategoryViewController: UIViewController {
 
-    var delegate: SendCategoryDelegate? = nil
+    weak var delegate: SendCategoryDelegate? = nil
     
     let addCategoryView = AddCategoryView()
     
@@ -56,6 +56,6 @@ extension AddCategoryViewController: AddCategoryViewActionHandler {
     }
 }
 
-protocol SendCategoryDelegate {
+protocol SendCategoryDelegate: AnyObject {
     func sendCategory(_ category: Category)
 }

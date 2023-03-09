@@ -65,12 +65,14 @@ class ReportsViewController: UIViewController  {
     }
 }
 
+//MARK: ChartViewDelegate
 extension ReportsViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
 }
 
+//MARK: ReportsView table view delegate and data source
 extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let activities = activitiesHistory.filter { $0.category ==  categoriesWithHistory[section]}
@@ -107,6 +109,7 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+//MARK: Calendar delegate
 extension ReportsViewController: ReportsCalVCDelegate {
     func dateSelected(dates: [String]) {
         updateActivitiesList(dates: dates)
@@ -121,8 +124,6 @@ extension ReportsViewController: ReportsCalVCDelegate {
         if !dates.isEmpty {
             for date in dates {
                 if myCalendarVC.calendarDataSource[date] == nil { continue } else {
-                    let history = myCalendarVC.calendarDataSource[date]
-                    
                     for activity in myCalendarVC.calendarDataSource[date]! {
                         if timeSpentHistory.contains(activity) {
                             guard let index = timeSpentHistory.firstIndex(where: { $0 == activity }) else { return }
@@ -139,7 +140,6 @@ extension ReportsViewController: ReportsCalVCDelegate {
             self.categoriesWithHistory = []
             self.activitiesHistory = []
         }
-        
     }
     
     private func updateCharts(dates: [String]) {
@@ -152,15 +152,12 @@ extension ReportsViewController: ReportsCalVCDelegate {
                 for activity in myCalendarVC.calendarDataSource[date]! {
                     if categorySpentHistory[activity.category.name] == nil {
                         categorySpentHistory[activity.category.name] = activity.timeSpent
+                        categoriesWithHistory.append(activity.category)
                     } else {
                         categorySpentHistory[activity.category.name]! += activity.timeSpent
                     }
                 }
             }
-        }
-    
-        for category in categories where categorySpentHistory[category.name] != nil {
-            categoriesWithHistory.append(category)
         }
         
         reportsView.reportsChartView.setData(categories: categoriesWithHistory, categorySpentHistory: categorySpentHistory)

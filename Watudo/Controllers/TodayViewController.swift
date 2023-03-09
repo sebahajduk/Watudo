@@ -13,6 +13,12 @@ class TodayViewController: UIViewController, ActivityDelegate {
     
     var timer: Timer?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        todayView.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = WColors.background!
@@ -196,14 +202,13 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
     /// Drag deleting row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        if editingStyle == .delete {
-           LocalUserManager.shared.removeActivity(at: indexPath) { error in
-               guard error == nil else {
-                   self.presentAlert(title: "Error", message: error!.localizedDescription)
-                   return
-               }
+           do {
+               try LocalUserManager.shared.removeActivity(at: indexPath)
+               tableView.deleteRows(at: [indexPath], with: .automatic)
+           } catch {
+               self.presentAlert(title: "Error", message: error.localizedDescription)
            }
-           tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+       }
     }
     
     /// If cell is actively measuring time stop the timer.

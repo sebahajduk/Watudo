@@ -12,7 +12,6 @@ class ReportsChartView: UIView {
     
     let visualEffect = WVisualEffectView(cornerRadius: 30)
     var chartView: BarChartView = BarChartView()
-//    var chartValues: [BarChartDataEntry] = []
     var summary: [BarChartDataSet] = []
     
     override init(frame: CGRect) {
@@ -40,14 +39,13 @@ class ReportsChartView: UIView {
                 summary.append(dataSet)
             }
         }
-        let timeFormatter = TimeValueFormatter()
         
-        chartView.leftAxis.valueFormatter = timeFormatter
+        chartView.leftAxis.valueFormatter = TimeValueFormatter()
+        
         let data = BarChartData(dataSets: summary)
         
         data.barWidth = 0.5
         chartView.data = data
-        
     }
     
     required init?(coder: NSCoder) {
@@ -65,21 +63,22 @@ class ReportsChartView: UIView {
     
     private func createChart() {
         addSubview(chartView)
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.doubleTapToZoomEnabled = false
+        chartView.highlightPerTapEnabled = false
+        chartView.legend.enabled = true
         
         chartView.rightAxis.enabled = false
+        
         chartView.leftAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
         chartView.leftAxis.axisLineColor = WColors.purple!
         chartView.leftAxis.labelTextColor = WColors.foreground!
         
+        chartView.xAxis.enabled = false
         chartView.xAxis.gridColor = WColors.purple!.withAlphaComponent(0.2)
         chartView.xAxis.axisLineColor = WColors.purple!
         chartView.xAxis.labelTextColor = WColors.foreground!
         chartView.xAxis.labelFont = .boldSystemFont(ofSize: 10)
-        
-        chartView.xAxis.enabled = false
-        chartView.doubleTapToZoomEnabled = false
-        chartView.legend.enabled = true
-        chartView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureConstraints() {
