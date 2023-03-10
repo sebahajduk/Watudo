@@ -25,14 +25,16 @@ class Activity: NSCoder, Codable, Addable {
     var startDate: Date?
     var endDate: Date?
     
-    var isPaid: Bool = false
+    var isPaid: Bool
     var moneyPerHour: Double = 0
     var timer: Timer!
     
-    init(name: String, category: Category, dailyGoal: Double? = nil, isPaid: Bool = false, moneyPerHour: Double = 0) {
+    init(name: String, category: Category, dailyGoal: Double? = nil, isPaid: Bool, moneyPerHour: Double) {
         self.name = name
         self.dailyGoal = dailyGoal
         self.category = category
+        self.isPaid = isPaid
+        self.moneyPerHour = moneyPerHour
     }
     
     static func == (lhs: Activity, rhs: Activity) -> Bool {
@@ -49,7 +51,7 @@ class Activity: NSCoder, Codable, Addable {
     
     func startWork() {
         startDate = Date()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [self] timer in
             self.timeSpent = Date().timeIntervalSince(self.startDate!)
             print(self.timeSpent)
         })

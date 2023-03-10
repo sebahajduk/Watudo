@@ -49,6 +49,9 @@ extension AddActivityViewController: AddActivityViewActionHandler {
     func doneButtonTapped() {
         let pickerViewSelectedRow = addActivityView.categoryPicker.selectedRow(inComponent: 0)
         let activityName = addActivityView.nameTextField.text!
+        let isPaid = addActivityView.paidSwitch.isOn
+        let dailyGoal = Double(addActivityView.goalTextField.text ?? "0") ?? 0
+        let moneyPerHour = Double(addActivityView.moneyPerHourTextField.text ?? "0") ?? 0
         
         guard !LocalUserManager.shared.getCategories().isEmpty else {
             self.presentAlert(title: "Error", message: "Please add at least one category before creating activity.")
@@ -56,8 +59,8 @@ extension AddActivityViewController: AddActivityViewActionHandler {
         }
         let activityCategory = LocalUserManager.shared.getCategory(for: pickerViewSelectedRow)
         
-        let activity = Activity(name: activityName, category: activityCategory)
-        
+        let activity = Activity(name: activityName, category: activityCategory, dailyGoal: dailyGoal, isPaid: isPaid, moneyPerHour: moneyPerHour)
+        print(activity.isPaid)
         if LocalUserManager.shared.getActivities().contains(where: { $0.name == activity.name }) {
             self.presentAlert(title: "Error", message: "This name is taken. Please choose another one.")
             return

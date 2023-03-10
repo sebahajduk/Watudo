@@ -18,14 +18,18 @@ class ReportsCalViewController: UIViewController {
     
     let myCalendarView = ReportsCalendarView()
     var calendar: JTACMonthView!
-    weak var delegate: ReportsCalVCDelegate? = nil
+    var delegate: ReportsCalVCDelegate? = nil
     
     var calendarDataSource: [String:[Activity]] = [:] {
         didSet {
             calendar.reloadData()
         }
     }
-    var selectedDates: [String] = []
+    var selectedDates: [String] = [] {
+        didSet {
+            populateDataSource()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +57,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell!, cellState: cellState)
         selectedDates.append(formatter.string(from: cellState.date))
+        
         delegate?.dateSelected(dates: selectedDates)
     }
     
@@ -62,6 +67,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
         guard let index = selectedDates.firstIndex(where: { $0 == formatter.string(from: cellState.date)}) else { return }
         
         selectedDates.remove(at: index)
+        
         delegate?.dateSelected(dates: selectedDates)
     }
     
@@ -142,8 +148,6 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
     }
     
     func populateDataSource() {
-        // TODO: Here you should download data from a server
-        
         FirebaseManager.shared.fetchActivitiesByDate() { result in
             switch result {
             case .success(let success):

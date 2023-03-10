@@ -13,10 +13,16 @@ class TodayViewController: UIViewController, ActivityDelegate {
     
     var timer: Timer?
     
+    var selectedRows: [IndexPath] = []
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         todayView.tableView.reloadData()
+        
+        selectedRows.forEach({ selectedRow in
+            self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
+        })
     }
     
     override func viewDidLoad() {
@@ -42,6 +48,14 @@ class TodayViewController: UIViewController, ActivityDelegate {
         ])
         
         fetchQuote()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        selectedRows = todayView.tableView.indexPathsForSelectedRows ?? []
+        
+        
     }
     
     private func prepareChartsData() {
@@ -72,7 +86,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
                     } else {
                         timeHistory.append(0)
                     }
-                    
                 }
                 
                 self.todayView.chartView.setData(forTimes: timeHistory, forDays: weekdays.reversed())

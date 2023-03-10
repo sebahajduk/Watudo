@@ -233,8 +233,8 @@ extension FirebaseManager {
         let defaultJobCategory: Category = Category(name: "Work")
         let defaultHomeCategory: Category = Category(name: "House")
         
-        let defaultHomeActivity: Activity = Activity(name: "House chores", category: defaultHomeCategory)
-        let defaultJobActivity: Activity = Activity(name: "Working", category: defaultJobCategory)
+        let defaultHomeActivity: Activity = Activity(name: "House chores", category: defaultHomeCategory, isPaid: false, moneyPerHour: 0)
+        let defaultJobActivity: Activity = Activity(name: "Working", category: defaultJobCategory, isPaid: false, moneyPerHour: 0)
         
         do {
             try userCategoriesList.document(defaultHomeCategory.name).setData(from: defaultHomeCategory)
