@@ -10,6 +10,8 @@ import FirebaseCore
 import FacebookLogin
 import FirebaseAuth
 import GoogleSignIn
+import CryptoKit
+import AuthenticationServices
 
 @MainActor
 struct WLoginManager {
@@ -79,8 +81,53 @@ struct WLoginManager {
         }
     }
     
-    static func signInApple() {
+    func signInApple<T: ASAuthorizationControllerDelegate & ASAuthorizationControllerPresentationContextProviding & UIViewController>(_ object: T, currentNonce: inout String?) {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
         
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = object.self
+        authorizationController.presentationContextProvider = object.self
+        authorizationController.performRequests()
+    }
+    
+    static func initializeCredentials(with authorization: ASAuthorization, currentNonce: String?, completion: @escaping (Error?) -> ()) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                return
+            }
+            
+            Task {
+                do {
+                    try await FirebaseManager.shared.signInWithApple(idTokenString: idTokenString, nonce: nonce)
+                    LocalUserManager.shared.fetchUser { userDataReady in
+                        switch userDataReady {
+                        case true:
+                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(TabBarController())
+                        case false:
+                            print("FAIL")
+                        }
+                    }
+                } catch {
+                    completion(error)
+                }
+            }
+            
+        }
     }
     
     static func signInGoogle(viewController: UIViewController, completion: @escaping (Error?) -> ()) {
@@ -115,4 +162,49 @@ struct WLoginManager {
         }
     }
     
+}
+
+//MARK: Utilities for Sign in with Apple
+
+extension WLoginManager {
+    fileprivate func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms:[UInt8] = (0..<16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    fileprivate func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
 }

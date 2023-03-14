@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FacebookLogin
+import CryptoKit
 
 /// Everything sticked to user account (Login, creating account, signing out)
 class FirebaseManager {
@@ -28,6 +29,8 @@ class FirebaseManager {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
+    
+    private var currentNonce: String?
     
     /// Use this method whenever you want to create new user
     /// - Parameters:
@@ -63,6 +66,23 @@ class FirebaseManager {
     
     func signInByPlatforms(credential: AuthCredential) async throws {
         
+        do {
+            let authResult = try await auth.signIn(with: credential)
+            let isNewUser = authResult.additionalUserInfo?.isNewUser
+            self.user = authResult.user
+            if isNewUser! {
+                self.createDefaultDatabase(name: "Unknown")
+            }
+        } catch {
+            print("There was an error signing in.")
+        }
+    }
+    
+    func signInWithApple(idTokenString: String, nonce: String) async throws {
+        let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                  idToken: idTokenString,
+                                                  rawNonce: nonce)
+        // Sign in with Firebase.
         do {
             let authResult = try await auth.signIn(with: credential)
             let isNewUser = authResult.additionalUserInfo?.isNewUser

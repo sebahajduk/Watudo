@@ -120,6 +120,7 @@
 		60BDBCD529B8F39B00811B73 /* EditCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCell.swift; sourceTree = "<group>"; };
 		60BDBCD729B8FA7100811B73 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		60D535EC2996BA5700DED790 /* DateExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtesion.swift; sourceTree = "<group>"; };
+		60D5BBBA29C0B6880029E998 /* WatudoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatudoDebug.entitlements; sourceTree = "<group>"; };
 		60E110D3298D816C008D4BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteApiManager.swift; sourceTree = "<group>"; };
 		60EA77732982F811000AACA9 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 		602EB36A2939676A000A99C8 /* Watudo */ = {
 			isa = PBXGroup;
 			children = (
+				60D5BBBA29C0B6880029E998 /* WatudoDebug.entitlements */,
 				608F1D30293BD78200B8BF2A /* Controllers */,
 				608F1D2F293BD77C00B8BF2A /* Views */,
 				608F1D2E293BD77200B8BF2A /* Models */,
@@ -704,6 +706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Watudo/WatudoDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;

@@ -6,13 +6,15 @@
 //
 
 import UIKit
-
+import AuthenticationServices
 
 class WelcomeViewController: UIViewController {
 
     let welcomeView = WelcomeView()
     var currentlyLogged = false
     var backgroundGradient = CAGradientLayer()
+    
+    var currentNonce: String?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,8 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
     
     func signInByApple(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
+        
+        WLoginManager().signInApple(self, currentNonce: &currentNonce)
     }
     
     func signInByGoogle(sender: UIButton) {
@@ -151,5 +155,19 @@ extension WelcomeViewController: WelcomeViewTFListener {
         }
         
         return false
+    }
+}
+
+
+extension WelcomeViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return ASPresentationAnchor()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        WLoginManager.initializeCredentials(with: authorization, currentNonce: currentNonce) { error in
+            guard let error = error else { return }
+            self.presentAlert(title: "Error", message: error.localizedDescription)
+        }
     }
 }
