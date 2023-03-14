@@ -13,38 +13,27 @@ enum TimeZones: Codable {
 
 class Defaults {
     static let shared = Defaults()
-    
+
     let defaults = UserDefaults.standard
-    
+
     var isDarkMode: Bool {
-        set {
-            defaults.setValue(newValue, forKey: "isDarkMode")
-            
-        }
         get {
             return defaults.bool(forKey: "isDarkMode")
         }
-    }
-    
-    
-    var timeZone: TimeZones? {
+
         set {
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(newValue)
-                
-                defaults.setValue(data, forKey: "timeZone")
-            } catch {
-                print("There was an error saving time zone. Please try again later.")
-            }
+            defaults.setValue(newValue, forKey: "isDarkMode")
+
         }
-        
+    }
+
+    var timeZone: TimeZones? {
         get {
             if let data = defaults.data(forKey: "timeZone") {
                 do {
                     let decoder = JSONDecoder()
                     let userTimeZone = try decoder.decode(TimeZones.self, from: data)
-                    
+
                     return userTimeZone
                 } catch {
                     print("There was an error fetching data. Please try again later.")
@@ -53,29 +42,36 @@ class Defaults {
             }
             return nil
         }
-    }
-    
-    
-    var areNotificationsOn: Bool {
+
         set {
-            defaults.setValue(newValue, forKey: "areNotificationsOn")
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(newValue)
+
+                defaults.setValue(data, forKey: "timeZone")
+            } catch {
+                print("There was an error saving time zone. Please try again later.")
+            }
         }
-        
+    }
+
+    var areNotificationsOn: Bool {
         get {
             return defaults.bool(forKey: "areNotificationsOn")
         }
-    }
-    
-    
-    var notificationInterval: Double {
+
         set {
-            defaults.setValue(newValue, forKey: "notificationInterval")
+            defaults.setValue(newValue, forKey: "areNotificationsOn")
         }
-        
+    }
+
+    var notificationInterval: Double {
         get {
             return defaults.double(forKey: "notificationInterval")
         }
+
+        set {
+            defaults.setValue(newValue, forKey: "notificationInterval")
+        }
     }
-    
-    
 }

@@ -15,7 +15,8 @@ extension WError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .categoryIsNotEmpty:
-            return NSLocalizedString("Category is not empty, please delete all activities before deleting category.", comment: "Category is not empty")
+            return NSLocalizedString("Category is not empty, please delete all activities before deleting category.",
+                                     comment: "Category is not empty")
         }
     }
 }

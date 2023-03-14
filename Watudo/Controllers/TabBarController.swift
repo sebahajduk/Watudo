@@ -8,14 +8,14 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
+
     let uiTabBar = UITabBar()
     let tabBarAppearance = UITabBarAppearance()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.unselectedItemTintColor = WColors.background
-        
+
         tabBar.isTranslucent = true
         delegate = self
         tabBarAppearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
@@ -28,45 +28,46 @@ class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = tabBarAppearance
         configureVCs()
     }
-    
+
     private func configureVCs() {
         let todayVC = TodayViewController()
         let reportsVC = ReportsViewController()
         let profileVC = ProfileViewController()
-        
+
         viewControllers = [
             configureTabBar(for: todayVC, title: "Today", image: UIImage(systemName: "house.fill")!),
             configureTabBar(for: reportsVC, title: "Reports", image: UIImage(systemName: "chart.pie.fill")!),
             configureTabBar(for: profileVC, title: "Profile", image: UIImage(systemName: "person.fill")!)
         ]
     }
-    
-    private func configureTabBar(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+
+    private func configureTabBar(for rootViewController: UIViewController,
+                                 title: String,
+                                 image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        
+
         return navController
     }
 }
 
 extension TabBarController: UITabBarControllerDelegate {
-    
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+
+    func tabBarController(_ tabBarController: UITabBarController,
+                          shouldSelect viewController: UIViewController) -> Bool {
         guard let fromView = selectedViewController?.view, let toView = viewController.view else {
             return false
         }
-        
+
         if fromView != toView {
-            UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
-            
+            UIView.transition(from: fromView, to: toView,
+                              duration: 0.3,
+                              options: [.transitionCrossDissolve],
+                              completion: nil)
+
             UIView.transition(with: tabBar, duration: 0.3, options: [.transitionCrossDissolve]) { }
         }
-        
         return true
-        
     }
-    
 }
-
-

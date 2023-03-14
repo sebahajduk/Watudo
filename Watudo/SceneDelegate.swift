@@ -14,15 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var navController = UINavigationController()
-    
+
     let curreLogged = FirebaseManager.shared.user != nil ? true : false
-    
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
-        
+
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         if curreLogged {
@@ -38,35 +35,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().tintColor = .systemGray2
 
         window?.makeKeyAndVisible()
-        
+
         window?.overrideUserInterfaceStyle = Defaults.shared.isDarkMode ? .dark : .light
 
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
-        
+
         Settings.appID = "3517037301863277"
         Settings.isAutoLogAppEventsEnabled = true
-        
-        
+
         ApplicationDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
-        
-        
     }
-    
+
     func changeRootViewController(_ viewController: UIViewController, animated: Bool = true) {
         guard let window = self.window else { return }
-        
+
         window.rootViewController = viewController
-        
-        UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight],animations: nil)
+
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: [.transitionFlipFromRight],
+                          animations: nil)
     }
-    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        // The scene may re-connect later, as its session was not necessarily discarded.
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -90,6 +86,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
 }
-

@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.nameLabel.text = LocalUserManager.shared.getUsername()
         loadSwitchValue()
-        
+
         NSLayoutConstraint.activate([
             profileView.topAnchor.constraint(equalTo: view.topAnchor),
             profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
             profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
+
     private func loadSwitchValue() {
         if Defaults.shared.isDarkMode {
             profileView.appearenceModeSwitch.isOn = Defaults.shared.isDarkMode
@@ -41,27 +41,29 @@ extension ProfileViewController: ProfileViewActionHandler {
         editCategoryVC.sheetPresentationController?.detents = [.medium()]
         present(editCategoryVC, animated: true)
     }
-    
+
     func signOutButtonTapped() {
         do {
             try FirebaseManager.shared.signOut()
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeViewController())
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?
+                .changeRootViewController(WelcomeViewController())
         } catch {
             print("There was an error signing out.")
         }
     }
-    
+
     func switchChanged(mySwitch: UISwitch) {
         let isDarkMode = mySwitch.isOn
-        let window: UIWindow? = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first
-        
+        let connectedScenesRef = UIApplication.shared.connectedScenes
+        let window: UIWindow? = connectedScenesRef.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first
+
         guard let window else { return }
         if isDarkMode {
             window.overrideUserInterfaceStyle = .unspecified
             window.overrideUserInterfaceStyle = .dark
             window.layoutIfNeeded()
             Defaults.shared.isDarkMode = true
-            
+
         } else {
             window.overrideUserInterfaceStyle = .unspecified
             window.overrideUserInterfaceStyle = .light

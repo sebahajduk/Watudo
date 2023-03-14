@@ -12,26 +12,26 @@ enum ButtonRole {
 }
 
 class WButton: UIButton {
-    
+
     override var isEnabled: Bool {
         didSet {
             updateButtonUI()
         }
     }
-    
+
     private var buttonRole: ButtonRole = .primary
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     convenience init(title: String, role: ButtonRole) {
         self.init(frame: .zero)
-        
+
         setTitle(title, for: .normal)
-        
+
         switch role {
         case .primary:
             setTitleColor(WColors.background, for: .normal)
@@ -47,14 +47,14 @@ class WButton: UIButton {
             layer.borderColor = WColors.purple?.cgColor
         }
     }
-    
+
     convenience init(image: UIImage, role: ButtonRole) {
         self.init(frame: .zero)
-        
+
         setImage(image, for: .normal)
         self.imageView?.contentMode = .scaleAspectFit
         self.imageView?.layer.transform = CATransform3DMakeScale(0.7, 0.7, 0.7)
-        
+
         switch role {
         case .primary:
             tintColor = WColors.background
@@ -66,7 +66,7 @@ class WButton: UIButton {
             layer.borderColor = WColors.purple?.cgColor
         }
     }
-    
+
     func updateButtonUI() {
         if !isEnabled && buttonRole == .primary {
             backgroundColor = WColors.purple!.withAlphaComponent(0.3)
@@ -74,7 +74,7 @@ class WButton: UIButton {
             backgroundColor = WColors.purple
         }
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

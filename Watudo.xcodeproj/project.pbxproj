@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6009838729AE80260026FB0D /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6009838629AE80260026FB0D /* UIViewControllerExt.swift */; };
-		600AEA4D29AA44C40077E27F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AEA4C29AA44C40077E27F /* LoginManager.swift */; };
+		600AEA4D29AA44C40077E27F /* WLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AEA4C29AA44C40077E27F /* WLoginManager.swift */; };
 		6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */; };
 		601553F2299D548300A2817A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F1299D548300A2817A /* AddCategoryView.swift */; };
 		601553F4299D825100A2817A /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601553F3299D825100A2817A /* AddCategoryViewController.swift */; };
@@ -28,7 +28,6 @@
 		60581738296C94E1002AEE2E /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60581737296C94E1002AEE2E /* ReportsView.swift */; };
 		606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */; };
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
-		6066A70D2992CB6400A0BEBA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066A70C2992CB6400A0BEBA /* TimeManager.swift */; };
 		6067D46E29A67BB500F9F0E6 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 6067D46D29A67BB500F9F0E6 /* FacebookLogin */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
 		607A096D29A4863000349400 /* LocalUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A096C29A4863000349400 /* LocalUserManager.swift */; };
@@ -36,7 +35,6 @@
 		608942E12979D2450094A8D7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E02979D2450094A8D7 /* ProfileViewController.swift */; };
 		608942E32979D2590094A8D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942E22979D2590094A8D7 /* ProfileView.swift */; };
 		608CBD8D2980551400F82ABF /* WLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CBD8C2980551400F82ABF /* WLabel.swift */; };
-		608CBD8F29806D2300F82ABF /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CBD8E29806D2300F82ABF /* UILabelExtension.swift */; };
 		608E919F2951085E0072FE02 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E919E2951085E0072FE02 /* TodayViewController.swift */; };
 		608E91A1295108810072FE02 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A0295108810072FE02 /* TodayView.swift */; };
 		608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E91A429510FA70072FE02 /* ReportsViewController.swift */; };
@@ -70,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		6009838629AE80260026FB0D /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
-		600AEA4C29AA44C40077E27F /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		600AEA4C29AA44C40077E27F /* WLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLoginManager.swift; sourceTree = "<group>"; };
 		6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		601553F1299D548300A2817A /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		601553F3299D825100A2817A /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
@@ -92,14 +90,12 @@
 		60581737296C94E1002AEE2E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsChartView.swift; sourceTree = "<group>"; };
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		6066A70C2992CB6400A0BEBA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
 		607A096C29A4863000349400 /* LocalUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserManager.swift; sourceTree = "<group>"; };
 		608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalViewController.swift; sourceTree = "<group>"; };
 		608942E02979D2450094A8D7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		608942E22979D2590094A8D7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		608CBD8C2980551400F82ABF /* WLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLabel.swift; sourceTree = "<group>"; };
-		608CBD8E29806D2300F82ABF /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		608E919E2951085E0072FE02 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		608E91A0295108810072FE02 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		608E91A429510FA70072FE02 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
@@ -277,7 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				608F1D34293BD9C100B8BF2A /* UIViewExtension.swift */,
-				608CBD8E29806D2300F82ABF /* UILabelExtension.swift */,
 				60D535EC2996BA5700DED790 /* DateExtesion.swift */,
 				6012E865299EAC3D00ADF6EC /* UIColorExtension.swift */,
 				6009838629AE80260026FB0D /* UIViewControllerExt.swift */,
@@ -331,7 +326,6 @@
 		60D535E92996B23500DED790 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				6066A70C2992CB6400A0BEBA /* TimeManager.swift */,
 				60B5D65929A3D880008A1DA7 /* Addable.swift */,
 			);
 			path = Protocols;
@@ -343,7 +337,7 @@
 				60EA77712982F7E7000AACA9 /* QuoteApiManager.swift */,
 				60EFA5002986C50000586AB9 /* FirebaseManager.swift */,
 				607A096C29A4863000349400 /* LocalUserManager.swift */,
-				600AEA4C29AA44C40077E27F /* LoginManager.swift */,
+				600AEA4C29AA44C40077E27F /* WLoginManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -404,6 +398,7 @@
 				602EB3652939676A000A99C8 /* Frameworks */,
 				602EB3662939676A000A99C8 /* Resources */,
 				AF39970AC70A8AD5A65EC7A2 /* [CP] Embed Pods Frameworks */,
+				60D5BBBB29C0BF4A0029E998 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -470,6 +465,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		60D5BBBB29C0BF4A0029E998 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		A08748D4CC980A35F8B38F8A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -521,7 +534,6 @@
 				608E91A529510FA70072FE02 /* ReportsViewController.swift in Sources */,
 				60EA77722982F7E7000AACA9 /* QuoteApiManager.swift in Sources */,
 				60A86AFD2941181D00DD484D /* WButton.swift in Sources */,
-				608CBD8F29806D2300F82ABF /* UILabelExtension.swift in Sources */,
 				60B5D65A29A3D880008A1DA7 /* Addable.swift in Sources */,
 				60EA77742982F811000AACA9 /* Quote.swift in Sources */,
 				60581736296C93D6002AEE2E /* Day.swift in Sources */,
@@ -532,7 +544,7 @@
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,
 				60581738296C94E1002AEE2E /* ReportsView.swift in Sources */,
 				60BDBCD829B8FA7100811B73 /* Errors.swift in Sources */,
-				600AEA4D29AA44C40077E27F /* LoginManager.swift in Sources */,
+				600AEA4D29AA44C40077E27F /* WLoginManager.swift in Sources */,
 				602EB3702939676A000A99C8 /* WelcomeViewController.swift in Sources */,
 				6009838729AE80260026FB0D /* UIViewControllerExt.swift in Sources */,
 				60A2D8A029649EF10082338B /* AddActivityViewController.swift in Sources */,
@@ -544,7 +556,6 @@
 				6012E866299EAC3D00ADF6EC /* UIColorExtension.swift in Sources */,
 				60EFA5012986C50000586AB9 /* FirebaseManager.swift in Sources */,
 				60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */,
-				6066A70D2992CB6400A0BEBA /* TimeManager.swift in Sources */,
 				60A423DB294A357700B72126 /* WAnimations.swift in Sources */,
 				608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */,
 				608E919F2951085E0072FE02 /* TodayViewController.swift in Sources */,

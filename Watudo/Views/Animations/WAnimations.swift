@@ -8,7 +8,7 @@
 import UIKit
 
 struct WAnimations {
-    
+
     static func buttonTapAnimation(_ sender: UIButton) {
         UIButton.animate(withDuration: 0.1, delay: 0) {
             sender.transform = CGAffineTransform(scaleX: 0.975, y: 0.96)
@@ -18,5 +18,5 @@ struct WAnimations {
             }
         }
     }
-    
+
 }
