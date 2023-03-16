@@ -32,6 +32,10 @@ class WelcomeView: UIView {
         dotsAnimationBackground!.play()
         addSubviews([dotsAnimationBackground!])
         configure()
+
+        registerView.emailTextField.delegate = self
+        registerView.passwordTextField.delegate = self
+        registerView.repeatPasswordTextField.delegate = self
     }
 
     private func configure() {
@@ -104,4 +108,14 @@ extension WelcomeView: UIScrollViewDelegate {
 
 @objc protocol WelcomeViewTFListener {
     func textFieldDidChange(_ sender: UITextField)
+}
+
+extension WelcomeView: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.scrollView.isPagingEnabled = true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.scrollView.isPagingEnabled = false
+    }
 }

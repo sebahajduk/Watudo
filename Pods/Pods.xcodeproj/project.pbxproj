@@ -3126,7 +3126,7 @@
 		7A856E8A48914BA5E5D86F683FC10656 /* http_uri.upb.h in Copy src/core/ext/upb-generated/envoy/config/core/v3 Private Headers */ = {isa = PBXBuildFile; fileRef = C11929184ED7131096CA068CE2AF0621 /* http_uri.upb.h */; };
 		7A974D473EF425E4421A2CA1D6AFE42F /* grpc_alts_credentials_options.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F2DEB2C3642A5F7D25FEC1A141889D3 /* grpc_alts_credentials_options.h */; };
 		7A9B053D1B21460430FC363AC6086019 /* time_averaged_stats.h in Copy src/core/lib/iomgr Private Headers */ = {isa = PBXBuildFile; fileRef = 0A443E53587590C2E5D4DD50D45889C0 /* time_averaged_stats.h */; };
-		7AB6ECD78044726F830C200C8739BDA8 /* gRPC-C++-gRPCCertificates-Cpp in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */; };
+		7AB6ECD78044726F830C200C8739BDA8 /* gRPCCertificates-Cpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */; };
 		7AC065F93C7EBC2005DBD83C4825D37C /* circuit_breaker.upb.h in Copy src/core/ext/upb-generated/envoy/config/cluster/v3 Private Headers */ = {isa = PBXBuildFile; fileRef = 092A41AF3ACAE6660BC2C7B3F3ECD21F /* circuit_breaker.upb.h */; };
 		7AC995F567A776FC1A80A9FA0733F3D1 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36054377C69DAB02BE24D273E465590A /* IQNSArray+Sort.swift */; };
 		7AD89B187E898FC88CFCCDCEDBA7E3CD /* aead.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 1C0335B303F8F23DD434FEE2C6273775 /* aead.h */; };
@@ -15979,7 +15979,7 @@
 		9C2025356C8D1D35F2E2FA46DB59B6F9 /* evp_ctx.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = evp_ctx.c; path = src/crypto/evp/evp_ctx.c; sourceTree = "<group>"; };
 		9C3F583FD9A76293C32049471EEBFED3 /* api_listener.upbdefs.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = api_listener.upbdefs.c; path = "src/core/ext/upbdefs-generated/envoy/config/listener/v3/api_listener.upbdefs.c"; sourceTree = "<group>"; };
 		9C5BD1CC00C99FCA42A2CB2AF3DEF5C7 /* error_utils.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = error_utils.cc; path = src/core/lib/transport/error_utils.cc; sourceTree = "<group>"; };
-		9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "gRPC-C++-gRPCCertificates-Cpp"; path = "gRPCCertificates-Cpp.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "gRPCCertificates-Cpp.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C91880F70988B8432902D847411A90F /* dh_asn1.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = dh_asn1.c; path = src/crypto/dh_extra/dh_asn1.c; sourceTree = "<group>"; };
 		9C9787623590810B440DD1C954D20216 /* ScatterChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScatterChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/ScatterChartDataSet.swift; sourceTree = "<group>"; };
 		9CA828221A621E0FC134A8EFC6C80056 /* GoogleUtilities.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GoogleUtilities.modulemap; sourceTree = "<group>"; };
@@ -21061,7 +21061,7 @@
 				E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn.bundle */,
 				B43874C6CBB50E7134FBEC24BABFE14F /* GoogleUtilities */,
 				1911113E0FBF13CFF9132E5FF7685228 /* gRPC-C++ */,
-				9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */,
+				9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */,
 				B471867C535B02FA55D87E260F6480F8 /* gRPC-Core */,
 				6FD122EA0AB9AB2A8FFA5F676C795DF0 /* GTMAppAuth.framework */,
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher */,
@@ -27264,7 +27264,7 @@
 			);
 			name = "gRPC-C++-gRPCCertificates-Cpp";
 			productName = "gRPCCertificates-Cpp";
-			productReference = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPC-C++-gRPCCertificates-Cpp */;
+			productReference = 9C7C87B5D0A6752AFA2642F1BCA967A3 /* gRPCCertificates-Cpp.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		421B6ABF460857FE6CA2905EFB5A4F74 /* JTAppleCalendar */ = {
@@ -28256,7 +28256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AB6ECD78044726F830C200C8739BDA8 /* gRPC-C++-gRPCCertificates-Cpp in Resources */,
+				7AB6ECD78044726F830C200C8739BDA8 /* gRPCCertificates-Cpp.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31283,6 +31283,7 @@
 			baseConfigurationReference = B82AADC93974D639B1CF5A0E3EAE8950 /* GoogleSignIn.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -31299,6 +31300,7 @@
 			baseConfigurationReference = 0FF709BD8A9346B2BB48F25EA30E145D /* gRPC-C++.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -31582,6 +31584,7 @@
 			baseConfigurationReference = 78534A27DD578C45FA06A2AB799D1F94 /* gRPC-C++.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -32848,6 +32851,7 @@
 			baseConfigurationReference = FC0F117C19A7AED85E9ADD208ADAC07F /* GoogleSignIn.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 9AWGRVU6P9;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
