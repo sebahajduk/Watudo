@@ -21,6 +21,11 @@ class ReportsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+
+        updateActivitiesList(dates: myCalendarVC.selectedDates)
+        updateCharts()
+
+        reportsView.tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -118,7 +123,7 @@ extension ReportsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         var content = header.defaultContentConfiguration()
         content.text = categoriesWithHistory[section].name
-        content.textProperties.color = WColors.green!
+        content.textProperties.color = UIColor().colorWithHexString(hexString: categoriesWithHistory[section].colorHEX)
         content.textProperties.font = .boldSystemFont(ofSize: 13)
         header.contentConfiguration = content
     }

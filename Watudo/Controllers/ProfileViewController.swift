@@ -27,8 +27,10 @@ class ProfileViewController: UIViewController {
     }
 
     private func loadSwitchValue() {
-        if Defaults.shared.isDarkMode {
-            profileView.appearenceModeSwitch.isOn = Defaults.shared.isDarkMode
+        guard Defaults.shared.isDarkMode != nil else { return }
+
+        if Defaults.shared.isDarkMode! {
+            profileView.appearenceModeSwitch.isOn = Defaults.shared.isDarkMode!
         } else {
             profileView.appearenceModeSwitch.isOn = traitCollection.userInterfaceStyle == .dark ? true : false
         }
@@ -36,19 +38,36 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewActionHandler {
-    func editCategoryButtonTapped() {
+    func deleteAccountTapped(_ sender: UIButton) {
+        FirebaseManager.shared.deleteAccount { err in
+            guard let err else {
+                self.presentAlert(title: "Account deleted",
+                                  message: "Thank you for being with us for such a long time!")
+                do {
+                    try FirebaseManager.shared.signOut()
+                } catch {
+                    self.presentAlert(title: "Error", message: error.localizedDescription)
+                }
+                return
+            }
+
+            self.presentAlert(title: "Error", message: err.localizedDescription)
+        }
+    }
+
+    func editCategoryButtonTapped(_ sender: UIButton) {
         let editCategoryVC = EditCategoryViewController()
         editCategoryVC.sheetPresentationController?.detents = [.medium()]
         present(editCategoryVC, animated: true)
     }
 
-    func signOutButtonTapped() {
+    func signOutButtonTapped(_ sender: UIButton) {
         do {
             try FirebaseManager.shared.signOut()
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?
                 .changeRootViewController(WelcomeViewController())
         } catch {
-            print("There was an error signing out.")
+            self.presentAlert(title: "Error", message: error.localizedDescription)
         }
     }
 

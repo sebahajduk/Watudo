@@ -91,6 +91,10 @@ class ProfileView: UIView {
         categoriesEditButton.addTarget(nil,
                                        action: #selector(ProfileViewActionHandler.editCategoryButtonTapped),
                                        for: .touchUpInside)
+
+        deleteAccount.addTarget(nil,
+                                action: #selector(ProfileViewActionHandler.deleteAccountTapped),
+                                for: .touchUpInside)
     }
 
     private func configureConstraints() {
@@ -198,6 +202,7 @@ extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
 
 @objc protocol ProfileViewActionHandler {
     func switchChanged(mySwitch: UISwitch)
-    func signOutButtonTapped()
-    func editCategoryButtonTapped()
+    func signOutButtonTapped(_ sender: UIButton)
+    func editCategoryButtonTapped(_ sender: UIButton)
+    func deleteAccountTapped(_ sender: UIButton)
 }

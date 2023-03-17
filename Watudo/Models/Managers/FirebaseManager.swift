@@ -106,6 +106,24 @@ class FirebaseManager {
             throw err
         }
     }
+
+    func resetPassword(email: String, completion: @escaping (Error) -> Void) {
+        auth.sendPasswordReset(withEmail: email) { error in
+            guard let error else { return }
+            completion(error)
+        }
+    }
+
+    func deleteAccount(completion: @escaping (Error?) -> Void) {
+        self.user?.delete { error in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+
+            completion(nil)
+        }
+    }
 }
 
 /// Download user

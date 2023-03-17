@@ -69,6 +69,7 @@ class LoginView: UIView, UITextFieldDelegate {
     func signInByFacebook(sender: UIButton)
     func signInByApple(sender: UIButton)
     func signInByGoogle(sender: UIButton)
+    func resetPasswordButtonTapped(sender: UIButton)
 }
 
 // UI configure functions
@@ -156,6 +157,10 @@ extension LoginView {
         appleButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByApple), for: .touchUpInside)
         facebookButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByFacebook), for: .touchUpInside)
         googleButton.addTarget(nil, action: #selector(LoginViewActionHandler.signInByGoogle), for: .touchUpInside)
+
+        forgetPasswordButton.addTarget(nil,
+                                       action: #selector(LoginViewActionHandler.resetPasswordButtonTapped),
+                                       for: .touchUpInside)
 
         if isLightMode {
             loginButton.addShadowToView(shadowColor: WColors.purple!,

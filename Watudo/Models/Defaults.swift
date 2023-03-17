@@ -16,7 +16,7 @@ class Defaults {
 
     let defaults = UserDefaults.standard
 
-    var isDarkMode: Bool {
+    var isDarkMode: Bool? {
         get {
             return defaults.bool(forKey: "isDarkMode")
         }

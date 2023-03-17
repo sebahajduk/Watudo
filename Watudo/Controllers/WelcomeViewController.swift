@@ -32,6 +32,8 @@ class WelcomeViewController: UIViewController {
     private func configureWelcomeView() {
         view.addSubview(welcomeView)
 
+
+
         NSLayoutConstraint.activate([
             welcomeView.topAnchor.constraint(equalTo: view.topAnchor),
             welcomeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -84,6 +86,18 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         }
     }
 
+    func resetPasswordButtonTapped(sender: UIButton) {
+        guard !welcomeView.loginView.emailTextField.text!.isEmpty else {
+            self.presentAlert(title: "Error", message: "Please write an email before reseting password.")
+            return
+        }
+        let email = welcomeView.loginView.emailTextField.text!
+
+        FirebaseManager.shared.resetPassword(email: email) { err in
+           self.presentAlert(title: "Error", message: err.localizedDescription)
+        }
+    }
+
     // RegisterView
     func createAccount(sender: UIButton) {
         WAnimations.buttonTapAnimation(sender)
@@ -98,6 +112,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
             self.presentAlert(title: "Error", message: error.localizedDescription)
         }
     }
+
 }
 
 // UITextFields listeners

@@ -19,6 +19,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
         super.viewWillAppear(animated)
 
         todayView.tableView.reloadData()
+        prepareChartsData()
 
         selectedRows.forEach({ selectedRow in
             self.todayView.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
@@ -32,7 +33,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
         todayView.tableView.dataSource = self
         todayView.tableView.delegate = self
         todayView.tableView.allowsMultipleSelection = true
-        todayView.menuDelegate = self
         updateDelegate()
 
         prepareChartsData()
@@ -54,7 +54,6 @@ class TodayViewController: UIViewController, ActivityDelegate {
         super.viewWillDisappear(animated)
 
         selectedRows = todayView.tableView.indexPathsForSelectedRows ?? []
-
     }
 
     private func prepareChartsData() {
@@ -119,7 +118,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
     }
 }
 
-extension TodayViewController: TodayViewActionHandler, AddMenuDelegate {
+extension TodayViewController: TodayViewActionHandler {
     func addActivityButtonTapped() {
         let addActivityVC = AddActivityViewController()
 
@@ -212,6 +211,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         LocalUserManager.shared.finishWork(at: indexPath)
+        prepareChartsData()
     }
 
     /// Drag deleting row

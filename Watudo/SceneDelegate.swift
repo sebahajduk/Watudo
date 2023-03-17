@@ -36,7 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window?.makeKeyAndVisible()
 
-        window?.overrideUserInterfaceStyle = Defaults.shared.isDarkMode ? .dark : .light
+        if Defaults.shared.isDarkMode != nil {
+            window?.overrideUserInterfaceStyle = Defaults.shared.isDarkMode! ? .dark : .light
+        }
 
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false

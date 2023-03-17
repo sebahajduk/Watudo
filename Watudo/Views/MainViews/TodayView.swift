@@ -11,15 +11,14 @@ import Lottie
 
 class TodayView: UIView {
 
-    weak var menuDelegate: AddMenuDelegate?
-
     let quoteLabel = UILabel()
     let quoteBackground = WVisualEffectView()
     let authorLabel = UILabel()
     let weekSummaryLabel = UILabel()
     let activitiesLabel = UILabel()
     let chartView = HomeChartView()
-    let addButton = UIButton()
+    let addActivityButton = UIButton()
+    let addCategoryButton = UIButton()
     let tableView = UITableView()
 
     var activities: [Activity] = []
@@ -87,30 +86,20 @@ class TodayView: UIView {
     }
 
     private func configureAddButton() {
-        addSubview(addButton)
+        addSubviews([addCategoryButton, addActivityButton])
 
-        var addMenu: UIMenu {
-            return UIMenu(title: "Add", image: nil, identifier: nil, options: [], children: menuItems)
-        }
-        let menuItems = [
-            UIAction(title: "Activity", image: UIImage(systemName: "timer.circle.fill"), handler: { (_) in
-                self.menuDelegate?.addActivityButtonTapped()
-            }),
-            UIAction(title: "Category", image: UIImage(systemName: "folder.fill"), handler: { (_) in
-                self.menuDelegate?.addCategoryButtonTapped()
-            })
-        ]
-
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-
-        addButton.setImage(UIImage(systemName: "plus",
+        addActivityButton.setImage(UIImage(systemName: "gauge.medium.badge.plus",
                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)),
                            for: .normal)
+        addCategoryButton.setImage(UIImage(systemName: "folder.badge.plus",
+                                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)),
+                                    for: .normal)
 
-        addButton.tintColor = WColors.purple!
+        addActivityButton.tintColor = WColors.purple!
+        addCategoryButton.tintColor = WColors.purple!
 
-        addButton.addTarget(nil, action: #selector(TodayViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
-        addButton.menu = addMenu
+        addActivityButton.addTarget(nil, action: #selector(TodayViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
+        addCategoryButton.addTarget(nil, action: #selector(TodayViewActionHandler.addCategoryButtonTapped), for: .touchUpInside)
     }
 
     private func configureChart() {
@@ -158,17 +147,22 @@ class TodayView: UIView {
             chartView.heightAnchor.constraint(equalToConstant: 200),
             chartView.widthAnchor.constraint(equalToConstant: 330),
 
-            addButton.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 30),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            addButton.heightAnchor.constraint(equalToConstant: 44),
-            addButton.widthAnchor.constraint(equalToConstant: 44),
+            addCategoryButton.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 30),
+            addCategoryButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            addCategoryButton.heightAnchor.constraint(equalToConstant: 35),
+            addCategoryButton.widthAnchor.constraint(equalToConstant: 35),
 
-            activitiesLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
+            addActivityButton.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 30),
+            addActivityButton.trailingAnchor.constraint(equalTo: addCategoryButton.leadingAnchor, constant: -10),
+            addActivityButton.heightAnchor.constraint(equalToConstant: 35),
+            addActivityButton.widthAnchor.constraint(equalToConstant: 35),
+
+            activitiesLabel.centerYAnchor.constraint(equalTo: addActivityButton.centerYAnchor),
             activitiesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             activitiesLabel.heightAnchor.constraint(equalToConstant: 25),
             activitiesLabel.widthAnchor.constraint(equalToConstant: 150),
 
-            tableView.topAnchor.constraint(equalToSystemSpacingBelow: addButton.bottomAnchor, multiplier: 1),
+            tableView.topAnchor.constraint(equalToSystemSpacingBelow: addActivityButton.bottomAnchor, multiplier: 1),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -177,10 +171,6 @@ class TodayView: UIView {
 }
 
 @objc protocol TodayViewActionHandler {
-    func addActivityButtonTapped()
-}
-
-protocol AddMenuDelegate: AnyObject {
     func addActivityButtonTapped()
     func addCategoryButtonTapped()
 }

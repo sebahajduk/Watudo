@@ -50,7 +50,7 @@ class HomeChartView: UIView {
 
     func setData(forTimes history: [Double], forDays days: [String]) {
         let weekDays: [ChartDataEntry] = [
-            ChartDataEntry(x: 0, y: history[5]),
+            ChartDataEntry(x: 0, y: history[6]),
             ChartDataEntry(x: 1, y: history[5]),
             ChartDataEntry(x: 2, y: history[4]),
             ChartDataEntry(x: 3, y: history[3]),
