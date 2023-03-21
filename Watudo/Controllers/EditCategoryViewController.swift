@@ -59,7 +59,7 @@ extension EditCategoryViewController: UITableViewDelegate, UITableViewDataSource
                 try LocalUserManager.shared.deleteCategory(at: indexPath)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             } catch {
-                self.presentAlert(title: "Error", message: error.localizedDescription.description)
+                self.presentAlert(error)
             }
         }
     }

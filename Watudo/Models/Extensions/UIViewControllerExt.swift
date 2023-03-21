@@ -17,4 +17,12 @@ extension UIViewController {
         self.present(alert, animated: true)
     }
 
+    func presentAlert(_ error: any Error) {
+        let alert = UIAlertController(title: "Something went wrong", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alert, animated: true)
+    }
+
 }

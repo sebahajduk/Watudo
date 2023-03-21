@@ -176,7 +176,7 @@ extension ReportsCalViewController: JTACMonthViewDelegate, JTACMonthViewDataSour
             case .success(let success):
                 self.calendarDataSource = success
             case .failure(let failure):
-                self.presentAlert(title: "Error", message: failure.localizedDescription)
+                self.presentAlert(failure)
             }
         }
     }

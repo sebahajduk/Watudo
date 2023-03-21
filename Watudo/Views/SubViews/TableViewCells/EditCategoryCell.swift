@@ -11,7 +11,7 @@ class EditCategoryCell: UITableViewCell {
 
     static let reuseID = "EditCategoryCell"
     private let label = UILabel()
-    private let editImage = UIImageView(image: UIImage(systemName: "pencil"))
+    private let editImage = UIImageView(image: UIImage(systemName: "trash.circle.fill"))
 
     func set(for category: Category) {
         label.text = category.name
@@ -21,7 +21,7 @@ class EditCategoryCell: UITableViewCell {
     private func configure() {
         addSubviews([label, editImage])
         backgroundColor = .clear
-        editImage.tintColor = WColors.green
+        editImage.tintColor = WColors.red
         label.textColor = WColors.foreground
 
         NSLayoutConstraint.activate([

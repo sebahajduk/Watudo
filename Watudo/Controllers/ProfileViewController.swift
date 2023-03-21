@@ -67,7 +67,7 @@ extension ProfileViewController: ProfileViewActionHandler {
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?
                 .changeRootViewController(WelcomeViewController())
         } catch {
-            self.presentAlert(title: "Error", message: error.localizedDescription)
+            self.presentAlert(error)
         }
     }
 

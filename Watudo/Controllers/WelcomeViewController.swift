@@ -25,14 +25,8 @@ class WelcomeViewController: UIViewController {
         configureWelcomeView()
     }
 
-    @objc private func buttonTapped() {
-        print("Button Tapped, Responder Chain is working.")
-     }
-
     private func configureWelcomeView() {
         view.addSubview(welcomeView)
-
-
 
         NSLayoutConstraint.activate([
             welcomeView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -55,8 +49,8 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         guard let password = welcomeView.loginView.passwordTextField.text else { return }
 
         WLoginManager.signIn(email: email, password: password) { error in
-            guard error != nil else { return }
-            self.presentAlert(title: "Upst", message: error!.localizedDescription)
+            guard let error = error else { return }
+            self.presentAlert(error)
         }
     }
 
@@ -72,7 +66,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         WLoginManager.signInGoogle(viewController: self) { error in
             guard let error = error else { return }
 
-            self.presentAlert(title: "Error", message: error.localizedDescription)
+            self.presentAlert(error)
         }
     }
 
@@ -82,19 +76,19 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         WLoginManager.signInFacebook { error in
             guard let error = error else { return }
 
-            self.presentAlert(title: "Error", message: error.localizedDescription)
+            self.presentAlert(error)
         }
     }
 
     func resetPasswordButtonTapped(sender: UIButton) {
         guard !welcomeView.loginView.emailTextField.text!.isEmpty else {
-            self.presentAlert(title: "Error", message: "Please write an email before reseting password.")
+            self.presentAlert(WError.emptyEmailPasswordReset)
             return
         }
         let email = welcomeView.loginView.emailTextField.text!
 
         FirebaseManager.shared.resetPassword(email: email) { err in
-           self.presentAlert(title: "Error", message: err.localizedDescription)
+           self.presentAlert(err)
         }
     }
 
@@ -109,7 +103,7 @@ extension WelcomeViewController: LoginViewActionHandler, RegisterViewActionHandl
         WLoginManager.createAccount(email: email, password: password, name: name) { error in
             guard let error = error else { return }
 
-            self.presentAlert(title: "Error", message: error.localizedDescription)
+            self.presentAlert(error)
         }
     }
 
@@ -187,7 +181,7 @@ extension WelcomeViewController: ASAuthorizationControllerDelegate,
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         WLoginManager.initializeCredentials(with: authorization, currentNonce: currentNonce) { error in
             guard let error = error else { return }
-            self.presentAlert(title: "Error", message: error.localizedDescription)
+            self.presentAlert(error)
         }
     }
 }

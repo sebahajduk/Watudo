@@ -31,7 +31,7 @@ class ProfileView: UIView {
     let notificationsIntervalPicker = UIPickerView()
     let intervalOptions = ["5 min", "10 min", "15 min", "20 min", "30 min"]
 
-    let categoriesEditButton = WButton(title: "Edit categories", role: .primary)
+    let categoriesDeleteButton = WButton(title: "Delete category", role: .primary)
     let rateUsButton = WButton(title: "Rate us", role: .secondary)
     let signOutButton = WButton(title: "Sign out", role: .secondary)
     let deleteAccount = WButton(title: "Delete account", role: .secondary)
@@ -78,7 +78,7 @@ class ProfileView: UIView {
     }
 
     private func configureButtons() {
-        let views: [UIView] = [categoriesEditButton, rateUsButton, signOutButton, deleteAccount]
+        let views: [UIView] = [categoriesDeleteButton, rateUsButton, signOutButton, deleteAccount]
         addSubviews(views)
 
         deleteAccount.setTitleColor(WColors.red, for: .normal)
@@ -88,7 +88,7 @@ class ProfileView: UIView {
                                 action: #selector(ProfileViewActionHandler.signOutButtonTapped),
                                 for: .touchUpInside)
 
-        categoriesEditButton.addTarget(nil,
+        categoriesDeleteButton.addTarget(nil,
                                        action: #selector(ProfileViewActionHandler.editCategoryButtonTapped),
                                        for: .touchUpInside)
 
@@ -127,10 +127,10 @@ class ProfileView: UIView {
             rateUsButton.heightAnchor.constraint(equalToConstant: 44),
             rateUsButton.widthAnchor.constraint(equalToConstant: 290),
 
-            categoriesEditButton.bottomAnchor.constraint(equalTo: rateUsButton.topAnchor, constant: -10),
-            categoriesEditButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            categoriesEditButton.heightAnchor.constraint(equalToConstant: 44),
-            categoriesEditButton.widthAnchor.constraint(equalToConstant: 290),
+            categoriesDeleteButton.bottomAnchor.constraint(equalTo: rateUsButton.topAnchor, constant: -10),
+            categoriesDeleteButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            categoriesDeleteButton.heightAnchor.constraint(equalToConstant: 44),
+            categoriesDeleteButton.widthAnchor.constraint(equalToConstant: 290),
 
             timeZoneLabel.topAnchor.constraint(equalTo: appearenceModeLabel.bottomAnchor, constant: 15),
             timeZoneLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

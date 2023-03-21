@@ -49,7 +49,7 @@ extension AddCategoryViewController: AddCategoryViewActionHandler {
         guard let color = addCategoryView.colorPicker.selectedColor?.hexStringFromColor() else { return }
 
         guard !LocalUserManager.shared.getCategories().contains(where: { $0.name == categoryName }) else {
-            self.presentAlert(title: "Error", message: "Category name is already taken. Please choose another one.")
+            self.presentAlert(WError.categoryNameTaken)
             return
         }
 

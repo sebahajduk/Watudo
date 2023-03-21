@@ -78,7 +78,7 @@ class FirebaseManager {
                 self.createDefaultDatabase(name: "Unknown")
             }
         } catch {
-            print("There was an error signing in.")
+            print(error.localizedDescription)
         }
     }
 
