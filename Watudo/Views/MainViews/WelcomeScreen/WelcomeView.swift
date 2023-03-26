@@ -70,15 +70,15 @@ class WelcomeView: UIView {
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            loginView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 140),
+            loginView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Dimension.welcomeViewLoginViewTopAnchor),
             loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            loginView.heightAnchor.constraint(equalToConstant: 700),
+            loginView.heightAnchor.constraint(equalToConstant: Dimension.welcomeViewLoginViewHeightAnchor),
             loginView.widthAnchor.constraint(equalTo: widthAnchor),
 
             registerView.topAnchor.constraint(equalTo: loginView.bottomAnchor),
             registerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             registerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50),
-            registerView.heightAnchor.constraint(equalToConstant: 700),
+            registerView.heightAnchor.constraint(equalToConstant: Dimension.welcomeViewRegisteViewHeightAnchor),
             registerView.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }

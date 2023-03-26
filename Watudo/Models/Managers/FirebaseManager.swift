@@ -156,7 +156,6 @@ extension FirebaseManager {
                         completion(.failure(failure))
                     }
                 }
-
             case .failure(let failure):
                 completion(.failure(failure))
             }

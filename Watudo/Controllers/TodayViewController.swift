@@ -41,7 +41,7 @@ class TodayViewController: UIViewController, ActivityDelegate {
 
         view.addSubview(todayView)
         NSLayoutConstraint.activate([
-            todayView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            todayView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             todayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             todayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             todayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

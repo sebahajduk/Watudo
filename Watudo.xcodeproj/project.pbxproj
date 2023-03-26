@@ -29,6 +29,7 @@
 		606586902975B7EC00EBBD94 /* ReportsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */; };
 		60658816293FCCAF00EE7AE2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60658815293FCCAF00EE7AE2 /* WelcomeView.swift */; };
 		6067D46E29A67BB500F9F0E6 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 6067D46D29A67BB500F9F0E6 /* FacebookLogin */; };
+		606E598629CF259D00D99002 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606E598529CF259D00D99002 /* Dimension.swift */; };
 		607566B92948F5C00023A9DC /* dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 607566B82948F5C00023A9DC /* dots.json */; };
 		607A096D29A4863000349400 /* LocalUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A096C29A4863000349400 /* LocalUserManager.swift */; };
 		608942DF2979C08E0094A8D7 /* ReportsCalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */; };
@@ -90,6 +91,7 @@
 		60581737296C94E1002AEE2E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		6065868F2975B7EC00EBBD94 /* ReportsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsChartView.swift; sourceTree = "<group>"; };
 		60658815293FCCAF00EE7AE2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		606E598529CF259D00D99002 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		607566B82948F5C00023A9DC /* dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dots.json; sourceTree = "<group>"; };
 		607A096C29A4863000349400 /* LocalUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserManager.swift; sourceTree = "<group>"; };
 		608942DE2979C08E0094A8D7 /* ReportsCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCalViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				60EA77732982F811000AACA9 /* Quote.swift */,
 				60404F7F2989A27D007415CC /* Defaults.swift */,
 				6019142129B5A82C00F5337B /* TimeValueFormatter.swift */,
+				606E598529CF259D00D99002 /* Dimension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		60D5BBBB29C0BF4A0029E998 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -541,6 +545,7 @@
 				60581736296C93D6002AEE2E /* Day.swift in Sources */,
 				6031D5622963691C0019D399 /* ActivityCell.swift in Sources */,
 				608F1D35293BD9C100B8BF2A /* UIViewExtension.swift in Sources */,
+				606E598629CF259D00D99002 /* Dimension.swift in Sources */,
 				60EE479A296DCF5100DFDC37 /* ReportsCalendarHeader.swift in Sources */,
 				60D535ED2996BA5700DED790 /* DateExtesion.swift in Sources */,
 				608E91A729510FCB0072FE02 /* TabBarController.swift in Sources */,

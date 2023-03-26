@@ -20,6 +20,7 @@ class TodayView: UIView {
     let addActivityButton = UIButton()
     let addCategoryButton = UIButton()
     let tableView = UITableView()
+    let scrollView = UIScrollView()
 
     var activities: [Activity] = []
     var heightOfQuoteLabel: CGFloat = 0
@@ -50,7 +51,8 @@ class TodayView: UIView {
     private func configureLabels() {
         let isLightMode = traitCollection.userInterfaceStyle == .light ? true : false
 
-        addSubviews([quoteBackground, quoteLabel, authorLabel, weekSummaryLabel, activitiesLabel])
+        addSubviews([scrollView])
+        scrollView.addSubviews([quoteBackground, quoteLabel, authorLabel, weekSummaryLabel, activitiesLabel])
 
         weekSummaryLabel.text = "Week summary"
         weekSummaryLabel.font = UIFont(name: "Panton-BlackCaps", size: 20)
@@ -86,20 +88,24 @@ class TodayView: UIView {
     }
 
     private func configureAddButton() {
-        addSubviews([addCategoryButton, addActivityButton])
+        scrollView.addSubviews([addCategoryButton, addActivityButton])
 
         addActivityButton.setImage(UIImage(systemName: "gauge.medium.badge.plus",
                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)),
                            for: .normal)
         addCategoryButton.setImage(UIImage(systemName: "folder.badge.plus",
-                                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)),
+                                        withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)),
                                     for: .normal)
 
         addActivityButton.tintColor = WColors.purple!
         addCategoryButton.tintColor = WColors.purple!
 
-        addActivityButton.addTarget(nil, action: #selector(TodayViewActionHandler.addActivityButtonTapped), for: .touchUpInside)
-        addCategoryButton.addTarget(nil, action: #selector(TodayViewActionHandler.addCategoryButtonTapped), for: .touchUpInside)
+        addActivityButton.addTarget(nil,
+                                    action: #selector(TodayViewActionHandler.addActivityButtonTapped),
+                                    for: .touchUpInside)
+        addCategoryButton.addTarget(nil,
+                                    action: #selector(TodayViewActionHandler.addCategoryButtonTapped),
+                                    for: .touchUpInside)
     }
 
     private func configureChart() {
@@ -107,7 +113,7 @@ class TodayView: UIView {
     }
 
     private func configureTableView() {
-        addSubview(tableView)
+        scrollView.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseID)
         tableView.rowHeight = 75
@@ -122,7 +128,12 @@ class TodayView: UIView {
     func configureConstraints() {
 
         NSLayoutConstraint.activate([
-            quoteBackground.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            quoteBackground.topAnchor.constraint(equalTo: scrollView.topAnchor),
             quoteBackground.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             quoteBackground.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             quoteBackground.heightAnchor.constraint(equalToConstant: 70),
@@ -163,9 +174,10 @@ class TodayView: UIView {
             activitiesLabel.widthAnchor.constraint(equalToConstant: 150),
 
             tableView.topAnchor.constraint(equalToSystemSpacingBelow: addActivityButton.bottomAnchor, multiplier: 1),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: 500),
+            tableView.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
 }

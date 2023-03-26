@@ -189,7 +189,7 @@ extension LoginView {
             greetingDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             greetingDescriptionLabel.heightAnchor.constraint(equalToConstant: 30),
 
-            visualEffectView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 160),
+            visualEffectView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: Dimension.loginViewVisualEffectViewTopAnchor),
             visualEffectView.centerXAnchor.constraint(equalTo: centerXAnchor),
             visualEffectView.heightAnchor.constraint(equalToConstant: 105),
             visualEffectView.widthAnchor.constraint(equalToConstant: 330),

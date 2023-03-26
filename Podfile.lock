@@ -613,6 +613,7 @@ PODS:
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
+  - DeviceKit (4.9.0)
   - FirebaseAuth (10.4.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
@@ -740,6 +741,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Charts
+  - DeviceKit (~> 4.0)
   - FirebaseAuth
   - FirebaseFirestore
   - FirebaseFirestoreSwift
@@ -755,6 +757,7 @@ SPEC REPOS:
     - AppAuth
     - BoringSSL-GRPC
     - Charts
+    - DeviceKit
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreExtension
@@ -783,6 +786,7 @@ SPEC CHECKSUMS:
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Charts: 354f86803d11d9c35de280587fef50d1af063978
+  DeviceKit: 847709bf70b78fd9ab765bd571fb9f5f815c3fc1
   FirebaseAuth: 5608282535d6f2dc902b2b88a379aaf6912fb837
   FirebaseCore: b8697a177690b69b0dbce9d612b69b893be70469
   FirebaseCoreExtension: d209ada6f48bac53d149e996cf1b2dafa632a615
@@ -805,6 +809,6 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: bf849c47aec716d11241c027fd61a0b3b8b3be67
+PODFILE CHECKSUM: 93c323fd047781a1902f4f525e941e6e058ed75c
 
 COCOAPODS: 1.11.3

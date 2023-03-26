@@ -63,8 +63,6 @@ class ReportsView: UIView {
         if tableHeight > 1000 {
             tableHeight = 1000
         }
-
-        print(tableHeight)
         // swiftlint:disable line_length
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -79,7 +77,7 @@ class ReportsView: UIView {
 
             reportsChartView.topAnchor.constraint(equalTo: myCalendarView.bottomAnchor, constant: 20),
             reportsChartView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            reportsChartView.heightAnchor.constraint(equalToConstant: 300),
+            reportsChartView.heightAnchor.constraint(equalToConstant: Dimension.reportsViewChartViewHeightAnchor),
             reportsChartView.widthAnchor.constraint(equalToConstant: 350),
 
             activitiesLabel.topAnchor.constraint(equalToSystemSpacingBelow: reportsChartView.bottomAnchor, multiplier: 1),

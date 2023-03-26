@@ -26,6 +26,7 @@ pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseFirestoreSwift'
 pod 'GoogleSignIn'
+pod 'DeviceKit', '~> 4.0'
 
 
 end

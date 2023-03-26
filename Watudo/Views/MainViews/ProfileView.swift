@@ -16,11 +16,6 @@ class ProfileView: UIView {
     let appearenceModeSwitch = UISwitch()
     let appearenceModeLabel = WLabel(text: "Dark mode", size: 15, weight: .black)
 
-    let timeZoneLabel = WLabel(text: "Time zone", size: 15, weight: .black)
-    let timeZoneTextField = UITextField()
-    let timeZonePicker = UIPickerView()
-    let timeZoneOptions = ["AM/PM", "GMT"]
-
     let secondDivider = DividerView()
 
     let notificationsLabel = WLabel(text: "NOTIFICATIONS", size: 15, weight: .black)
@@ -51,22 +46,11 @@ class ProfileView: UIView {
 
     private func configureSettingsViews() {
         let views: [UIView] = [nameLabel, firstDivider, appearenceModeLabel, appearenceModeSwitch,
-                               secondDivider, timeZoneLabel, timeZoneTextField, notificationsLabel,
+                               secondDivider, notificationsLabel,
                                notificationsSwitch, notificationsIntervalLabel, notificationsIntervalTextField]
         addSubviews(views)
-
-        timeZonePicker.tag = 0
-        notificationsIntervalPicker.tag = 1
-
-        timeZonePicker.delegate = self
-        timeZonePicker.dataSource = self
-
         notificationsIntervalPicker.delegate = self
         notificationsIntervalPicker.dataSource = self
-
-        timeZoneTextField.inputView = timeZonePicker
-        timeZoneTextField.placeholder = "24H"
-        timeZoneTextField.textAlignment = .right
 
         notificationsIntervalTextField.inputView = notificationsIntervalPicker
         notificationsIntervalTextField.placeholder = "30 min"
@@ -132,17 +116,7 @@ class ProfileView: UIView {
             categoriesDeleteButton.heightAnchor.constraint(equalToConstant: 44),
             categoriesDeleteButton.widthAnchor.constraint(equalToConstant: 290),
 
-            timeZoneLabel.topAnchor.constraint(equalTo: appearenceModeLabel.bottomAnchor, constant: 15),
-            timeZoneLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            timeZoneLabel.heightAnchor.constraint(equalToConstant: 30),
-            timeZoneLabel.widthAnchor.constraint(equalToConstant: 200),
-
-            timeZoneTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            timeZoneTextField.centerYAnchor.constraint(equalTo: timeZoneLabel.centerYAnchor),
-            timeZoneTextField.heightAnchor.constraint(equalToConstant: 30),
-            timeZoneTextField.widthAnchor.constraint(equalToConstant: 100),
-
-            notificationsLabel.topAnchor.constraint(equalTo: timeZoneLabel.bottomAnchor, constant: 15),
+            notificationsLabel.topAnchor.constraint(equalTo: appearenceModeLabel.bottomAnchor, constant: 15),
             notificationsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             notificationsLabel.heightAnchor.constraint(equalToConstant: 30),
             notificationsLabel.widthAnchor.constraint(equalToConstant: 200),
@@ -169,34 +143,17 @@ extension ProfileView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        var title: String = ""
-
-        if pickerView.tag == 0 {
-            title = timeZoneOptions[row]
-        } else {
-            title = intervalOptions[row]
-        }
-
-        return title
+        return intervalOptions[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 0 {
-            return timeZoneOptions.count
-        } else {
-            return intervalOptions.count
-        }
+        return intervalOptions.count
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        notificationsIntervalTextField.placeholder = intervalOptions[row]
+        notificationsIntervalTextField.resignFirstResponder()
 
-        if pickerView.tag == 0 {
-            timeZoneTextField.placeholder = timeZoneOptions[row]
-            timeZoneTextField.resignFirstResponder()
-        } else {
-            notificationsIntervalTextField.placeholder = intervalOptions[row]
-            notificationsIntervalTextField.resignFirstResponder()
-        }
     }
 }
 
